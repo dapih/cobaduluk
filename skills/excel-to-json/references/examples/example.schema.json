@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:id:example-catalog",
+  "title": "Example catalog (generic shape demo)",
+  "description": "Synthetic example showing the structure the pipeline targets: entry -> group -> recursive item list. Not a real dataset.",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "items": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/Item" } }
+  },
+  "$defs": {
+    "Item": {
+      "type": "object",
+      "required": ["id", "name", "variants"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[0-9]+$", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "variants": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/Variant" } }
+      }
+    },
+    "Variant": {
+      "type": "object",
+      "required": ["tier", "regions", "notes"],
+      "additionalProperties": false,
+      "properties": {
+        "tier": { "type": "string", "enum": ["basic", "standard", "premium"] },
+        "regions": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "notes": { "type": "array", "items": { "$ref": "#/$defs/Note" } }
+      }
+    },
+    "Note": {
+      "type": "object",
+      "required": ["teks"],
+      "additionalProperties": false,
+      "properties": {
+        "teks": { "type": "string", "minLength": 1 },
+        "sub": { "type": "array", "items": { "$ref": "#/$defs/Note" } }
+      }
+    }
+  }
+}

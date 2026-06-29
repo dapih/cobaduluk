@@ -1,0 +1,88 @@
+{
+  "instance": "docs/table-20260628-1/table-20260628-1.json",
+  "summary": [
+    {
+      "category": "trailing_conjunction",
+      "severity": "info",
+      "count": 383
+    },
+    {
+      "category": "numeric_string",
+      "severity": "info",
+      "count": 94
+    },
+    {
+      "category": "duplicate_array_items",
+      "severity": "warn",
+      "count": 35
+    }
+  ],
+  "findings": {
+    "numeric_string": [
+      {
+        "path": "/entri/0/kode_kbli",
+        "value": "3111"
+      },
+      {
+        "path": "/entri/1/kode_kbli",
+        "value": "3112"
+      },
+      {
+        "path": "/entri/2/kode_kbli",
+        "value": "3113"
+      },
+      {
+        "path": "/entri/3/kode_kbli",
+        "value": "3114"
+      },
+      {
+        "path": "/entri/4/kode_kbli",
+        "value": "3115"
+      }
+    ],
+    "trailing_conjunction": [
+      {
+        "path": "/entri/0/tingkat_risiko/0/kewenangan/0/parameter/0",
+        "value": "1. Kapal penangkap ikan berukuran sampai dengan 5 (lima) GT atau tidak menggunakan kapal penangkap ikan dan"
+      },
+      {
+        "path": "/entri/0/tingkat_risiko/0/kewenangan/0/kewajiban/5/teks",
+        "value": "5. Memiliki Tanda Daftar Kegiatan penangkapan Ikan di Kawasan Konservasi, bagi yang melakukan penangkapan ikan di kawasa"
+      },
+      {
+        "path": "/entri/0/tingkat_risiko/0/kewenangan/0/kewajiban/7/teks",
+        "value": "1. Melaporkan ikan hasil tangkapan dan"
+      },
+      {
+        "path": "/entri/0/tingkat_risiko/0/kewenangan/0/kewajiban/8/sub/0/teks",
+        "value": "a. Daerah penangkapan ikan dan"
+      },
+      {
+        "path": "/entri/0/tingkat_risiko/1/kewenangan/0/parameter/0",
+        "value": "1. Kapal penangkap ikan berukuran di atas 5 (lima) GT sampai dengan 30 (tiga puluh) GT (Khusus Provinsi Aceh ukuran kapa"
+      }
+    ],
+    "duplicate_array_items": [
+      {
+        "path": "/entri/72/tingkat_risiko/0/kewenangan/1/kewajiban/3",
+        "value": "(complex item)"
+      },
+      {
+        "path": "/entri/72/tingkat_risiko/0/kewenangan/1/kewajiban/4",
+        "value": "(complex item)"
+      },
+      {
+        "path": "/entri/72/tingkat_risiko/0/kewenangan/1/kewajiban/5",
+        "value": "(complex item)"
+      },
+      {
+        "path": "/entri/73/tingkat_risiko/1/kewenangan/0/persyaratan/7",
+        "value": "(complex item)"
+      },
+      {
+        "path": "/entri/73/tingkat_risiko/1/kewenangan/0/persyaratan/8",
+        "value": "(complex item)"
+      }
+    ]
+  }
+}

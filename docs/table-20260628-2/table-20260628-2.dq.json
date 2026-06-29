@@ -1,0 +1,34 @@
+{
+  "instance": "c:/Works/AI works & experiments/ontology/regulations/excel-to-json/docs/table-20260628-2/table-20260628-2.json",
+  "summary": [
+    {
+      "category": "trailing_conjunction",
+      "severity": "info",
+      "count": 76
+    }
+  ],
+  "findings": {
+    "trailing_conjunction": [
+      {
+        "path": "/0/items/0/tiers/0/persyaratan/2/sub/1/teks",
+        "value": "b. Pelabuhan Pangkalan dan"
+      },
+      {
+        "path": "/0/items/0/tiers/0/kewajiban/9/teks",
+        "value": "10.Memiliki Surat Izin Penempatan Rumpon, bagi yang menempatkan rumpon dan"
+      },
+      {
+        "path": "/0/items/0/tiers/0/parameter/0/sub/0/teks",
+        "value": "(khusus Provinsi Aceh ukuran kapal penangkap ikan sesuai dengan ketentuan peraturan perundang-undangan mengenai Pemerint"
+      },
+      {
+        "path": "/0/items/0/tiers/1/persyaratan/1/teks",
+        "value": "2. Memiliki Buku Kapal Perikanan dan"
+      },
+      {
+        "path": "/0/items/0/tiers/1/persyaratan/2/sub/1/teks",
+        "value": "b. Pelabuhan Pangkalan dan"
+      }
+    ]
+  }
+}

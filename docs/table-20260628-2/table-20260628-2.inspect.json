@@ -1,0 +1,535 @@
+{
+  "workbook": {
+    "file": "c:/Works/AI works & experiments/ontology/regulations/cobaduluk/docs/table-20260628-2/table-20260628-2.xlsx",
+    "sheets": [
+      {
+        "name": "Sheet1",
+        "max_row": 298,
+        "max_col": 8
+      }
+    ]
+  },
+  "sheet": {
+    "name": "Sheet1",
+    "dimensions": {
+      "max_row": 298,
+      "max_col": 8,
+      "scanned_rows": 298
+    },
+    "truncated": false,
+    "header_row": 2,
+    "merged_cells": {
+      "count": 0,
+      "ranges": []
+    },
+    "blank_row_gaps": {
+      "count": 30,
+      "rows": [
+        3,
+        28,
+        53,
+        79,
+        88,
+        99,
+        103,
+        104,
+        113,
+        117,
+        118,
+        134,
+        143,
+        146,
+        147,
+        148,
+        158,
+        169,
+        176,
+        191,
+        210,
+        215,
+        235,
+        256,
+        267,
+        271,
+        275,
+        276,
+        284,
+        295
+      ]
+    },
+    "columns": [
+      {
+        "header": "No",
+        "fill_rate": 0.084,
+        "nonempty": 25,
+        "distinct": 25,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 25
+        },
+        "max_len": 34,
+        "top_values": [
+          {
+            "value": "I. KELAYAKAN OPERASI (B)",
+            "count": 1
+          },
+          {
+            "value": "1.",
+            "count": 1
+          },
+          {
+            "value": "2.",
+            "count": 1
+          },
+          {
+            "value": "3.",
+            "count": 1
+          },
+          {
+            "value": "4.",
+            "count": 1
+          },
+          {
+            "value": "5.",
+            "count": 1
+          },
+          {
+            "value": "6.",
+            "count": 1
+          },
+          {
+            "value": "II. STANDARDISASI PRODUK/JASA (C)",
+            "count": 1
+          }
+        ],
+        "column": "A"
+      },
+      {
+        "header": "Nomeklatur PB UMKU",
+        "fill_rate": 0.095,
+        "nonempty": 28,
+        "distinct": 24,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 28
+        },
+        "max_len": 94,
+        "top_values": [
+          {
+            "value": "(*berlaku untuk seluruh KBLI)",
+            "count": 5
+          },
+          {
+            "value": "Surat Izin Penangkapan Ikan",
+            "count": 1
+          },
+          {
+            "value": "Surat Izin Kapal Pengangkut Ikan",
+            "count": 1
+          },
+          {
+            "value": "Surat Izin Kapal Pendukung Operasi Pena…",
+            "count": 1
+          },
+          {
+            "value": "*Surat Izin Membangun Bangunan dan/atau…",
+            "count": 1
+          },
+          {
+            "value": "*Surat Izin Membongkar Bangunan dan/ata…",
+            "count": 1
+          },
+          {
+            "value": "*Surat Izin Perpanjangan jangka waktu p…",
+            "count": 1
+          },
+          {
+            "value": "Sertifikat Penerapan Distribusi Ikan",
+            "count": 1
+          }
+        ],
+        "column": "B"
+      },
+      {
+        "header": "Persyaratan",
+        "fill_rate": 0.672,
+        "nonempty": 199,
+        "distinct": 162,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 199
+        },
+        "max_len": 228,
+        "top_values": [
+          {
+            "value": "5. Membayar Penerimaan Negara Bukan Paj…",
+            "count": 5
+          },
+          {
+            "value": "a. Daerah penangkapan ikan",
+            "count": 4
+          },
+          {
+            "value": "b. Pelabuhan Pangkalan dan",
+            "count": 4
+          },
+          {
+            "value": "2. Bukti pembayaran Penerimaan Negara B…",
+            "count": 4
+          },
+          {
+            "value": "2. Memiliki Buku Kapal Perikanan dan",
+            "count": 3
+          },
+          {
+            "value": "1. Memiliki alokasi usaha kapal pengang…",
+            "count": 3
+          },
+          {
+            "value": "a. Identitas pemohon",
+            "count": 3
+          },
+          {
+            "value": "1. Memiliki alokasi usaha kapal penangk…",
+            "count": 2
+          }
+        ],
+        "column": "C"
+      },
+      {
+        "header": "Jangka Waktu Penerbitan",
+        "fill_rate": 0.084,
+        "nonempty": 25,
+        "distinct": 7,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 25
+        },
+        "max_len": 9,
+        "top_values": [
+          {
+            "value": "10 Hari",
+            "count": 10
+          },
+          {
+            "value": "7 Hari",
+            "count": 6
+          },
+          {
+            "value": "4 Hari",
+            "count": 3
+          },
+          {
+            "value": "21 Hari",
+            "count": 2
+          },
+          {
+            "value": "30 Hari",
+            "count": 2
+          },
+          {
+            "value": "15 Hari",
+            "count": 1
+          },
+          {
+            "value": "14 Hari",
+            "count": 1
+          }
+        ],
+        "column": "D"
+      },
+      {
+        "header": "Kewajiban",
+        "fill_rate": 0.378,
+        "nonempty": 112,
+        "distinct": 72,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 112
+        },
+        "max_len": 226,
+        "top_values": [
+          {
+            "value": "2. Memiliki Persetujuan Berlayar, setia…",
+            "count": 6
+          },
+          {
+            "value": "2. Menyampaikan laporan kegiatan usaha …",
+            "count": 6
+          },
+          {
+            "value": "1. Memenuhi kelaikan kapal perikanan ya…",
+            "count": 5
+          },
+          {
+            "value": "3. Memiliki Surat Tanda Bukti Lapor Ked…",
+            "count": 4
+          },
+          {
+            "value": "a. Standar pelaksanaan usaha dan",
+            "count": 4
+          },
+          {
+            "value": "b. Perkembangan kegiatan usaha",
+            "count": 4
+          },
+          {
+            "value": "4. Memiliki Surat Tanda Bukti Lapor Ked…",
+            "count": 2
+          },
+          {
+            "value": "5. Melaporkan hasil penghitungan sendir…",
+            "count": 2
+          }
+        ],
+        "column": "E"
+      },
+      {
+        "header": "Masa Berlaku",
+        "fill_rate": 0.084,
+        "nonempty": 25,
+        "distinct": 7,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 25
+        },
+        "max_len": 38,
+        "top_values": [
+          {
+            "value": "4 tahun",
+            "count": 9
+          },
+          {
+            "value": "1 tahun musim penang-kapan ikan",
+            "count": 6
+          },
+          {
+            "value": "5 tahun",
+            "count": 4
+          },
+          {
+            "value": "Selama masa berlaku perizinan berusaha",
+            "count": 3
+          },
+          {
+            "value": "1 tahun",
+            "count": 1
+          },
+          {
+            "value": "10 tahun",
+            "count": 1
+          },
+          {
+            "value": "2 tahun",
+            "count": 1
+          }
+        ],
+        "column": "F"
+      },
+      {
+        "header": "Parameter",
+        "fill_rate": 0.311,
+        "nonempty": 92,
+        "distinct": 44,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 92
+        },
+        "max_len": 253,
+        "top_values": [
+          {
+            "value": "Seluruh",
+            "count": 11
+          },
+          {
+            "value": "2. Usaha mikro",
+            "count": 6
+          },
+          {
+            "value": "a. Usaha kecil, mene-ngah, atau besar",
+            "count": 6
+          },
+          {
+            "value": "2. Kawasan perairan ≤12 mil dengan krit…",
+            "count": 5
+          },
+          {
+            "value": "b. Kawa-san Strate-gis Nasio-nal",
+            "count": 5
+          },
+          {
+            "value": "c. Kawa-san Strate-gis Nasio-nal Ter-te…",
+            "count": 5
+          },
+          {
+            "value": "d. Kawa-san kon-servasi per-airan nasio…",
+            "count": 4
+          },
+          {
+            "value": "1. Wilayah perairan ≤ 12 mil selain kew…",
+            "count": 3
+          }
+        ],
+        "column": "G"
+      },
+      {
+        "header": "Kewenangan",
+        "fill_rate": 0.108,
+        "nonempty": 32,
+        "distinct": 3,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 32
+        },
+        "max_len": 22,
+        "top_values": [
+          {
+            "value": "Menteri/ Kepala Badan",
+            "count": 21
+          },
+          {
+            "value": "Gubernur",
+            "count": 10
+          },
+          {
+            "value": "Menteri/ Kepala badan",
+            "count": 1
+          }
+        ],
+        "column": "H"
+      }
+    ],
+    "sample_rows": [
+      {
+        "row": 4,
+        "cells": [
+          "I. KELAYAKAN OPERASI (B)",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 5,
+        "cells": [
+          "1.",
+          "Surat Izin Penangkapan Ikan",
+          "1. Memiliki alokasi usaha kapal penangkap ikan yang tercant…",
+          "7 Hari",
+          "1. Memenuhi kelaikan kapal perikanan yang dibuktikan dengan…",
+          "1 tahun musim penang-kapan ikan",
+          "1. Kapal penang-kap ikan berukur-an di atas 5 (lima) gross …",
+          "Gubernur"
+        ]
+      },
+      {
+        "row": 6,
+        "cells": [
+          "",
+          "",
+          "2. Memiliki Buku Kapal Perikanan",
+          "",
+          "2. Memiliki Persetujuan Berlayar, setiap kali akan berlayar",
+          "",
+          "(khusus Provinsi Aceh ukuran kapal penang-kap ikan sesuai d…",
+          ""
+        ]
+      },
+      {
+        "row": 7,
+        "cells": [
+          "",
+          "",
+          "3. Menyampaikan permohonan paling sedikit memuat informasi:",
+          "",
+          "3. Mengisi Log Book Penangkapan Ikan dan melaporkannya seti…",
+          "",
+          "2. Daerah penang-kapan ikan di WPPNRI paling jauh 12 (dua b…",
+          ""
+        ]
+      },
+      {
+        "row": 8,
+        "cells": [
+          "",
+          "",
+          "a. Daerah penangkapan ikan",
+          "",
+          "4. Memiliki Surat Tanda Bukti Lapor Kedatangan Kapal Perika…",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 9,
+        "cells": [
+          "",
+          "",
+          "b. Pelabuhan Pangkalan dan",
+          "",
+          "5. Melaporkan hasil penghitungan sendiri jenis dan berat ik…",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 10,
+        "cells": [
+          "",
+          "",
+          "c. Nama kapal pengangkut ikan mitra, untuk yang diperbolehk…",
+          "",
+          "6. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan …",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 11,
+        "cells": [
+          "",
+          "",
+          "4. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan …",
+          "",
+          "7. Mengaktifkan transmitter Sistem Pemantauan Kapal Perikan…",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 12,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "8. Memenuhi ketentuan terkait pengawakan kapal perikanan se…",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 13,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "9. Mendaratkan ikan hasil tangkapan di Pelabuhan Pangkalan …",
+          "",
+          "",
+          ""
+        ]
+      }
+    ]
+  }
+}

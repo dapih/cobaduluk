@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:id:table-20260628-1",
+  "title": "table-20260628-1",
+  "description": "3-level schema: Entri → RiskGroup (tingkat_risiko) → KewenanganGroup (kewenangan).",
+  "type": "object",
+  "required": ["entri"],
+  "additionalProperties": false,
+  "properties": {
+    "judul_lampiran": { "type": "string", "minLength": 1 },
+    "entri": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Entri" }
+    }
+  },
+  "$defs": {
+    "Entri": {
+      "type": "object",
+      "required": ["no", "kode_kbli", "judul_kbli", "ruang_lingkup", "tingkat_risiko"],
+      "additionalProperties": false,
+      "properties": {
+        "no": { "type": "integer", "minimum": 1 },
+        "kode_kbli": { "type": "string", "pattern": "^[0-9]+$", "minLength": 1 },
+        "judul_kbli": { "type": ["string", "null"], "minLength": 1 },
+        "ruang_lingkup": { "type": ["string", "null"], "minLength": 1 },
+        "tingkat_risiko": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/RiskGroup" }
+        }
+      }
+    },
+    "RiskGroup": {
+      "type": "object",
+      "required": ["nilai", "perizinan_berusaha", "kewenangan"],
+      "additionalProperties": false,
+      "properties": {
+        "nilai": { "type": ["string", "null"] },
+        "perizinan_berusaha": { "type": ["string", "null"] },
+        "kewenangan": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/KewenanganGroup" }
+        }
+      }
+    },
+    "KewenanganGroup": {
+      "type": "object",
+      "required": ["nilai", "skala_usaha", "jangka_waktu_penerbitan", "persyaratan", "kewajiban", "parameter", "pb_umku"],
+      "additionalProperties": false,
+      "properties": {
+        "nilai": { "type": ["string", "null"] },
+        "skala_usaha": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "jangka_waktu_penerbitan": { "type": ["string", "null"] },
+        "persyaratan": { "type": "array", "items": { "$ref": "#/$defs/Item" } },
+        "kewajiban": { "type": "array", "items": { "$ref": "#/$defs/Item" } },
+        "parameter": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "pb_umku": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "Item": {
+      "type": "object",
+      "required": ["teks"],
+      "additionalProperties": false,
+      "properties": {
+        "teks": { "type": "string", "minLength": 1 },
+        "sub": { "type": "array", "items": { "$ref": "#/$defs/Item" } }
+      }
+    }
+  }
+}

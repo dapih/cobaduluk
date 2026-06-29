@@ -1,0 +1,1812 @@
+[
+  {
+    "section_id": "I",
+    "section_title": "KELAYAKAN OPERASI (B)",
+    "items": [
+      {
+        "no": "1.",
+        "nama_pb_umku": "Surat Izin Penangkapan Ikan",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "7 Hari",
+        "masa_berlaku": "1 tahun musim penangkapan ikan",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Memiliki alokasi usaha kapal penangkap ikan yang tercantum dalam perizinan berusaha"
+              },
+              {
+                "teks": "2. Memiliki Buku Kapal Perikanan"
+              },
+              {
+                "teks": "3. Menyampaikan permohonan paling sedikit memuat informasi:",
+                "sub": [
+                  {
+                    "teks": "a. Daerah penangkapan ikan"
+                  },
+                  {
+                    "teks": "b. Pelabuhan Pangkalan dan"
+                  },
+                  {
+                    "teks": "c. Nama kapal pengangkut ikan mitra, untuk yang diperbolehkan melakukan alih muatan sesuai ketentuan peraturan perundang undangan"
+                  }
+                ]
+              },
+              {
+                "teks": "4. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan sebelum mendapatkan perizinan berusaha"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Memenuhi kelaikan kapal perikanan yang dibuktikan dengan Sertifikat Kelaikan Kapal Perikanan"
+              },
+              {
+                "teks": "2. Memiliki Persetujuan Berlayar, setiap kali akan berlayar"
+              },
+              {
+                "teks": "3. Mengisi Log Book Penangkapan Ikan dan melaporkannya setiap kali mendaratkan ikan"
+              },
+              {
+                "teks": "4. Memiliki Surat Tanda Bukti Lapor Kedatangan Kapal Perikanan, setiap kali kapal tiba di Pelabuhan Pangkalan"
+              },
+              {
+                "teks": "5. Melaporkan hasil penghitungan sendiri jenis dan berat ikan hasil tangkapan, setiap kali mendaratkan ikan"
+              },
+              {
+                "teks": "6. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan setelah mendapatkan perizinan berusaha"
+              },
+              {
+                "teks": "7. Mengaktifkan transmitter Sistem Pemantauan Kapal Perikanan"
+              },
+              {
+                "teks": "8. Memenuhi ketentuan terkait pengawakan kapal perikanan sesuai ketentuan peraturan perundangundangan"
+              },
+              {
+                "teks": "9. Mendaratkan ikan hasil tangkapan di Pelabuhan Pangkalan sesuai ketentuan peraturan perundangundangan"
+              },
+              {
+                "teks": "10.Memiliki Surat Izin Penempatan Rumpon, bagi yang menempatkan rumpon dan"
+              },
+              {
+                "teks": "11.Memenuhi ketentuan terkait alih muatan, bagi yang diperbolehkan melakukan alih muatan sesuai ketentuan peraturan perundangundangan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Kapal penangkap ikan berukuran di atas 5 (lima) gross tonnage sampai dengan 30 (tiga puluh) gross tonnage",
+                "sub": [
+                  {
+                    "teks": "(khusus Provinsi Aceh ukuran kapal penangkap ikan sesuai dengan ketentuan peraturan perundang-undangan mengenai Pemerintahan Aceh) dan"
+                  }
+                ]
+              },
+              {
+                "teks": "2. Daerah penangkapan ikan di WPPNRI paling jauh 12 (dua belas) mil laut di wilayah administrasi provinsi yang bersangkutan"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Memiliki alokasi usaha kapal penangkap ikan yang tercantum dalam perizinan berusaha"
+              },
+              {
+                "teks": "2. Memiliki Buku Kapal Perikanan dan"
+              },
+              {
+                "teks": "3. Menyampaikan permohonan yang paling sedikit memuat informasi:",
+                "sub": [
+                  {
+                    "teks": "a. Daerah penangkapan ikan"
+                  },
+                  {
+                    "teks": "b. Pelabuhan Pangkalan dan"
+                  },
+                  {
+                    "teks": "c. Nama kapal pengangkut ikan mitra, untuk yang diperbolehkan melakukan alih muatan sesuai ketentuan peraturan perundang undangan"
+                  }
+                ]
+              },
+              {
+                "teks": "4. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan sebelum mendapatkan perizinan berusaha"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Memenuhi kelaikan kapal perikanan yang dibuktikan dengan Sertifikat Kelaikan Kapal Perikanan"
+              },
+              {
+                "teks": "2. Memiliki Persetujuan Berlayar, setiap kali akan berlayar"
+              },
+              {
+                "teks": "3. Mengisi log book penangkapan ikan dan melaporkannya setiap kali mendaratkan ikan"
+              },
+              {
+                "teks": "4. Memiliki Surat Tanda Bukti Lapor Kedatangan Kapal Perikanan, setiap kali kapal tiba di Pelabuhan Pangkalan"
+              },
+              {
+                "teks": "5. Melaporkan hasil penghitungan sendiri jenis dan berat ikan hasil tangkapan, setiap kali mendaratkan ikan"
+              },
+              {
+                "teks": "6. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan setelah mendapatkan perizinan berusaha"
+              },
+              {
+                "teks": "7. Mengaktifkan transmitter Sistem Pemantauan Kapal Perikanan"
+              },
+              {
+                "teks": "8. Memenuhi ketentuan terkait pengawakan kapal perikanan sesuai ketentuan peraturan perundangundangan"
+              },
+              {
+                "teks": "9. Mendaratkan ikan hasil tangkapan di Pelabuhan Pangkalan sesuai ketentuan peraturan perundangundangan"
+              },
+              {
+                "teks": "10.Terdaftar dan memenuhi ketentuan regional fisheries management organizations, bagi kapal penangkap ikan yang menangkap tuna dan sejenisnya di wilayah konvensi dan/atau kompetensi Regional Fisheries Management Organizations"
+              },
+              {
+                "teks": "11.Memiliki Surat Izin Penempatan Rumpon, bagi yang menempatkan rumpon dan"
+              },
+              {
+                "teks": "12.Memenuhi ketentuan terkait alih muatan, bagi yang diperbolehkan melakukan alih muatan sesuai ketentuan peraturan perundangundangan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Kapal penangkap ikan berukuran di atas 5 (lima) gross tonnage dan"
+              },
+              {
+                "teks": "2. Daerah penangkapan ikan pada WPPNRI di atas 12 (dua belas mil laut dan/atau laut lepas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "2.",
+        "nama_pb_umku": "Surat Izin Kapal Pengangkut Ikan",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "7 Hari",
+        "masa_berlaku": "1 tahun musim penangkapan ikan",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": "Untuk Angkutan Laut Dalam Negeri untuk Barang Khusus",
+            "persyaratan": [
+              {
+                "teks": "1. Memiliki alokasi usaha kapal pengangkut ikan yang tercantum dalam perizinan berusaha"
+              },
+              {
+                "teks": "2. Memiliki Buku Kapal Perikanan dan"
+              },
+              {
+                "teks": "3. Menyampaikan permohonan yang memuat paling sedikit informasi:",
+                "sub": [
+                  {
+                    "teks": "a. Tipe operasi kapal pengangkut ikan"
+                  },
+                  {
+                    "teks": "b. Jenis muatan ikan yang diangkut"
+                  },
+                  {
+                    "teks": "c. Daerah penangkapan ikan"
+                  },
+                  {
+                    "teks": "d. Pelabuhan Muat"
+                  },
+                  {
+                    "teks": "e. Pelabuhan Pangkalan dan"
+                  },
+                  {
+                    "teks": "f. Nama kapal penangkap ikan mitra, untuk yang diperbolehkan melakukan alih muatan sesuai ketentuan peraturan perundangundangan"
+                  }
+                ]
+              },
+              {
+                "teks": "4. Perjanjian kerja sama pengangkutan antara pemilik dengan mitranya, kecuali untuk mengangkut ikan milik sendiri dan"
+              },
+              {
+                "teks": "5. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan sebelum mendapatkan perizinan berusaha"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Memenuhi kelaikan kapal perikanan yang dibuktikan dengan Sertifikat Kelaikan Kapal Perikanan"
+              },
+              {
+                "teks": "2. Memiliki Persetujuan Berlayar, setiap kali akan berlayar"
+              },
+              {
+                "teks": "3. Memiliki Surat Tanda Bukti Lapor Kedatangan Kapal Perikanan, setiap kali kapal tiba di Pelabuhan Pangkalan"
+              },
+              {
+                "teks": "4. Melaporkan jenis dan berat ikan muatan"
+              },
+              {
+                "teks": "5. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan setelah mendapatkan perizinan berusaha"
+              },
+              {
+                "teks": "6. Mengaktifkan transmitter Sistem Pemantauan Kapal Perikanan"
+              },
+              {
+                "teks": "7. Memenuhi ketentuan terkait pengawakan kapal perikanan sesuai ketentuan peraturan perundangundangan"
+              },
+              {
+                "teks": "8. Memuat dan mendaratkan ikan sesuai ketentuan peraturan perundangundangan dan"
+              },
+              {
+                "teks": "9. Memenuhi ketentuan terkait alih muatan, bagi kapal pengangkut ikan yang diperbolehkan melakukan alih muatan sesuai ketentuan peraturan perundangundangan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Kapal pengangkut ikan berukuran di atas 5 (lima) gross tonnage sampai dengan 30 (tiga puluh) gross tonnage (khusus Provinsi Aceh ukuran kapal pengangkut ikan sesuai dengan ketentuan peraturan perundang-undangan mengenai Pemerintahan Aceh) dan"
+              },
+              {
+                "teks": "2. Beroperasi di:",
+                "sub": [
+                  {
+                    "teks": "a. WPPNRI paling jauh 12 (dua belas) mil laut di wilayah administrasi Provinsi yang bersangkutan, untuk Kapal pengangkut ikan yang beroperasi dari daerah penangkapan ikan ke Pelabuhan Pangkalan atau"
+                  },
+                  {
+                    "teks": "b. Wilayah administrasi Provinsi yang bersangkutan untuk kapal pengangkut ikan yang beroperasi antar Pelabuhan Pangkalan"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tier_label": "Untuk Angkutan Laut Dalam Negeri untuk Barang Khusus",
+            "persyaratan": [
+              {
+                "teks": "1. Memiliki alokasi usaha kapal pengangkut ikan yang tercantum dalam perizinan berusaha"
+              },
+              {
+                "teks": "2. Memiliki Buku Kapal Perikanan dan"
+              },
+              {
+                "teks": "3. Menyampaikan permohonan yang memuat paling sedikit informasi:",
+                "sub": [
+                  {
+                    "teks": "a. Tipe operasi kapal pengangkut ikan"
+                  },
+                  {
+                    "teks": "b. Jenis muatan ikan yang diangkut"
+                  },
+                  {
+                    "teks": "c. Daerah penangkapan ikan"
+                  },
+                  {
+                    "teks": "d. Pelabuhan Muat"
+                  },
+                  {
+                    "teks": "e. Pelabuhan Pangkalan dan"
+                  },
+                  {
+                    "teks": "f. Nama kapal penangkap ikan mitra, untuk yang diperbolehkan melakukan alih muatan sesuai ketentuan peraturan perundangundangan"
+                  }
+                ]
+              },
+              {
+                "teks": "4. Perjanjian kerja sama pengangkutan antara pemilik dengan mitranya, kecuali untuk mengangkut ikan milik sendiri dan"
+              },
+              {
+                "teks": "5. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan sebelum mendapatkan perizinan berusaha"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Memenuhi kelaikan kapal perikanan"
+              },
+              {
+                "teks": "2. Memiliki Persetujuan Berlayar, setiap kali akan berlayar"
+              },
+              {
+                "teks": "3. Memiliki Surat Tanda Bukti Lapor Kedatangan Kapal Perikanan, setiap kali kapal tiba di Pelabuhan Pangkalan"
+              },
+              {
+                "teks": "4. Melaporkan jenis dan berat ikan muatan"
+              },
+              {
+                "teks": "5. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan setelah mendapatkan perizinan berusaha"
+              },
+              {
+                "teks": "6. Mengaktifkan transmitter Sistem Pemantauan Kapal Perikanan"
+              },
+              {
+                "teks": "7. Memenuhi ketentuan terkait pengawakan kapal perikanan sesuai ketentuan peraturan perundangundangan"
+              },
+              {
+                "teks": "8. Memuat dan mendaratkan ikan sesuai ketentuan peraturan perundangundangan dan"
+              },
+              {
+                "teks": "9. Memenuhi ketentuan terkait alih muatan, bagi kapal pengangkut ikan yang diperbolehkan melakukan alih muatan sesuai ketentuan peraturan perundangundangan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Kapal pengangkut ikan berukuran di atas 5 (lima) gross tonnage dan"
+              },
+              {
+                "teks": "2. Beroperasi di:",
+                "sub": [
+                  {
+                    "teks": "a. WPPNRI paling jauh 12 mil laut lintas provinsi, di atas 12 (dua belas) mil laut, dan/ atau laut lepas untuk kapal pengangkut ikan yang beroperasi dari daerah penangkapan ikan ke Pelabuhan Pangkalan atau"
+                  },
+                  {
+                    "teks": "b. Antar provinsi, untuk kapal pengangkut ikan yang beroperasi antar Pelabuhan Pangkalan",
+                    "sub": [
+                      {
+                        "teks": "Untuk Angkutan Laut Luar Negeri untuk Barang Khusus:"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "teks": "1. Kapal pengangkut ikan berukuran paling kecil 20 (dua puluh) gross tonnage dan"
+              },
+              {
+                "teks": "2. Beroperasi antarnegara"
+              }
+            ]
+          },
+          {
+            "tier_label": "Untuk Angkutan Laut Luar Negeri untuk Barang Khusus:",
+            "persyaratan": [
+              {
+                "teks": "1. Memiliki alokasi usaha kapal pengangkut ikan yang tercantum dalam perizinan berusaha"
+              },
+              {
+                "teks": "2. Menyampaikan permohonan yang memuat paling sedikit informasi:",
+                "sub": [
+                  {
+                    "teks": "a. Jenis muatan ikan yang diangkut"
+                  },
+                  {
+                    "teks": "b. Pelabuhan pemuat"
+                  },
+                  {
+                    "teks": "c. Pelabuhan Pangkalan"
+                  },
+                  {
+                    "teks": "d. Pelabuhan negara tujuan dan"
+                  },
+                  {
+                    "teks": "e. Daftar nama perusahaan perikanan yang membutuhkan jasa pengangkutan ikan, yang dilengkapi dengan perjanjian kerja sama yang disahkan notaris bagi kapal pengangkut ikan yang mengangkut ikan bukan milik sendiri"
+                  }
+                ]
+              },
+              {
+                "teks": "3. Untuk kapal pengangkut ikan berbendera Indonesia, dilengkapi dengan persyaratan tambahan berupa Buku Kapal Perikanan"
+              },
+              {
+                "teks": "4. Untuk kapal pengangkut ikan berbendera asing dilengkapi dengan persyaratan tambahan:",
+                "sub": [
+                  {
+                    "teks": "a. Surat izin usaha pelayaran (SIUPAL)/surat izin usaha keagenan kapal (SIUPKK)"
+                  },
+                  {
+                    "teks": "b. Surat penunjukan keagenan kapal dari pemilik kapal"
+                  },
+                  {
+                    "teks": "c. Dokumen dari negara asal kapal pengangkut ikan yang memuat informasi:",
+                    "sub": [
+                      {
+                        "teks": "1) Identitas pemilik kapal pengangkut ikan"
+                      },
+                      {
+                        "teks": "2) Identitas kapal pengangkut ikan: dan"
+                      },
+                      {
+                        "teks": "3) Nakhoda dan daftar anak buah kapal yang dilengkapi dengan paspor dan/atau buku pelaut"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "teks": "5. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan sebelum mendapatkan perizinan berusaha"
+              }
+            ],
+            "kewajiban": [],
+            "parameter": []
+          }
+        ]
+      },
+      {
+        "no": "3.",
+        "nama_pb_umku": "Surat Izin Kapal Pendukung Operasi Penangkapan Ikan",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "7 Hari",
+        "masa_berlaku": "1 tahun musim penangkapan ikan",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Memiliki alokasi usaha kapal pendukung operasi penangkapan ikan yang tercantum dalam perizinan berusaha"
+              },
+              {
+                "teks": "2. Memiliki Surat Izin Penangkapan Ikan dalam satu kesatuan usaha yang membutuhkan dukungan operasi penangkapan ikan"
+              },
+              {
+                "teks": "3. Memiliki Buku Kapal Perikanan"
+              },
+              {
+                "teks": "4. Menyampaikan permohonan yang paling sedikit memuat informasi:",
+                "sub": [
+                  {
+                    "teks": "a. Daerah penangkapan ikan"
+                  },
+                  {
+                    "teks": "b. Pelabuhan Pangkalan dan"
+                  },
+                  {
+                    "teks": "c. Nama kapal penangkap ikan yang membutuhkan dukungan operasi penangkapan ikan"
+                  }
+                ]
+              },
+              {
+                "teks": "5. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan sebelum mendapatkan perizinan berusaha"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Memenuhi kelaikan kapal perikanan yang dibuktikan dengan Sertifikat Kelaikan Kapal Perikanan"
+              },
+              {
+                "teks": "2. Memiliki Persetujuan Berlayar, setiap kali akan berlayar"
+              },
+              {
+                "teks": "3. Memiliki Surat Tanda Bukti Lapor Kedatangan Kapal Perikanan, setiap kali kapal tiba di Pelabuhan Pangkalan"
+              },
+              {
+                "teks": "4. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan setelah mendapatkan perizinan berusaha"
+              },
+              {
+                "teks": "5. Mengaktifkan transmitter Sistem Pemantauan Kapal Perikanan dan"
+              },
+              {
+                "teks": "6. Memenuhi ketentuan terkait pengawakan kapal perikanan sesuai ketentuan peraturan perundangundangan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Kapal pendukung operasi penangkapan ikan berukuran di atas 5 (lima) gross tonnage sampai dengan 30 (tiga puluh) gross tonnage",
+                "sub": [
+                  {
+                    "teks": "(khusus Provinsi Aceh ukuran kapal pendukung operasi penangkapan ikan sesuai dengan ketentuan peraturan perundang-undangan mengenai Pemerintahan Aceh) dan"
+                  }
+                ]
+              },
+              {
+                "teks": "2. Beroperasi di WPPNRI paling jauh 12 (dua belas) mil laut di wilayah administrasi provinsi yang bersangkutan"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Memiliki alokasi usaha kapal pendukung operasi penangkapan ikan yang tercantum dalam perizinan berusaha"
+              },
+              {
+                "teks": "2. Memiliki Surat Izin Penangkapan Ikan dalam satu kesatuan usaha yang membutuhkan dukungan operasi penangkapan ikan"
+              },
+              {
+                "teks": "3. Memiliki Buku Kapal Perikanan"
+              },
+              {
+                "teks": "4. Menyampaikan permohonan yang paling sedikit memuat informasi:",
+                "sub": [
+                  {
+                    "teks": "a. Daerah penangkapan ikan"
+                  },
+                  {
+                    "teks": "b. Pelabuhan Pangkalan dan"
+                  },
+                  {
+                    "teks": "c. Nama kapal penangkap ikan yang membutuhkan dukungan operasi penangkapan ikan"
+                  }
+                ]
+              },
+              {
+                "teks": "5. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan sebelum mendapatkan perizinan berusaha"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Memenuhi kelaikan kapal perikanan yang dibuktikan dengan Sertifikat Kelaikan Kapal Perikanan"
+              },
+              {
+                "teks": "2. Memiliki Persetujuan Berlayar, setiap kali akan berlayar"
+              },
+              {
+                "teks": "3. Memiliki Surat Tanda Bukti Lapor Kedatangan Kapal Perikanan, setiap kali kapal tiba di Pelabuhan Pangkalan"
+              },
+              {
+                "teks": "4. Membayar Penerimaan Negara Bukan Pajak atas pemanfaatan sumber daya alam perikanan sesuai ketentuan peraturan perundangundangan, jika Penerimaan Negara Bukan Pajak dikenakan setelah mendapatkan perizinan berusaha"
+              },
+              {
+                "teks": "5. Mengaktifkan transmitter Sistem Pemantauan Kapal Perikanan dan"
+              },
+              {
+                "teks": "6. Memenuhi ketentuan terkait pengawakan kapal perikanan sesuai ketentuan peraturan perundangundangan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Kapal pendukung operasi penangkapan ikan berukuran di atas 5 (lima) gross tonnage dan"
+              },
+              {
+                "teks": "2. Beroperasi di atas 12 (dua belas) mil laut dan/atau laut lepas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "4.",
+        "nama_pb_umku": "Surat Izin Membangun Bangunan dan/atau Instalasi di Perairan",
+        "applies_to_all_kbli": true,
+        "kbli_note": "berlaku untuk seluruh KBLI",
+        "jangka_waktu_penerbitan": "7 Hari",
+        "masa_berlaku": "Selama masa berlaku perizinan berusaha",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Dokumen rencana pembangunan/penempatan bangunan"
+              },
+              {
+                "teks": "2. Bukti pembayaran Penerimaan Negara Bukan Pajak/ retribusi"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "Laporan pelaksanaan pembangunan/ penempatan Bangunan dan/atau Instalasi di Perairan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Wilayah perairan ≤ 12 mil selain kewenangan Menteri dan"
+              },
+              {
+                "teks": "2. Usaha mikro"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [],
+            "kewajiban": [],
+            "parameter": [
+              {
+                "teks": "1. Kawasan perairan >12 mil"
+              },
+              {
+                "teks": "2. Kawasan perairan ≤12 mil dengan kriteria:",
+                "sub": [
+                  {
+                    "teks": "a. Usaha kecil, menengah, atau besar"
+                  },
+                  {
+                    "teks": "b. Kawasan Strategis Nasional"
+                  },
+                  {
+                    "teks": "c. Kawasan Strategis Nasional Tertentu"
+                  },
+                  {
+                    "teks": "d. Kawasan konservasi perairan nasional atau"
+                  },
+                  {
+                    "teks": "e. Kawasan lintas provinsi"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "5.",
+        "nama_pb_umku": "Surat Izin Membongkar Bangunan dan/atau Instalasi di Perairan",
+        "applies_to_all_kbli": true,
+        "kbli_note": "berlaku untuk seluruh KBLI",
+        "jangka_waktu_penerbitan": "7 Hari",
+        "masa_berlaku": "Selama masa berlaku perizinan berusaha",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Dokumen rencana pembangunan/ penempatan Bangunan dan/atau Instalasi di Perairan"
+              },
+              {
+                "teks": "2. Bukti pembayaran Penerimaan Negara Bukan Pajak/ retribusi"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "Laporan pelaksanaan pembongkaran Bangunan dan/atau Instalasi di Perairan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Wilayah perairan ≤ 12 mil selain kewenangan Menteri dan"
+              },
+              {
+                "teks": "2. Usaha mikro"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [],
+            "kewajiban": [],
+            "parameter": [
+              {
+                "teks": "1. Kawasan perairan >12 mil atau"
+              },
+              {
+                "teks": "2. Kawasan perairan ≤12 mil dengan kriteria:",
+                "sub": [
+                  {
+                    "teks": "a. Usaha kecil, menengah, atau besar"
+                  },
+                  {
+                    "teks": "b. Kawasan Strategis Nasional"
+                  },
+                  {
+                    "teks": "c. Kawasan Strategis Nasional Tertentu"
+                  },
+                  {
+                    "teks": "d. Penyertaan Modal Asing"
+                  },
+                  {
+                    "teks": "e. Kawasan konservasi perairan nasional atau"
+                  },
+                  {
+                    "teks": "f. Kawasan lintas provinsi"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "6.",
+        "nama_pb_umku": "Surat Izin Perpanjangan jangka waktu pemanfaatan bangunan dan/atau instalasi di Perairan",
+        "applies_to_all_kbli": true,
+        "kbli_note": "berlaku untuk seluruh KBLI",
+        "jangka_waktu_penerbitan": "7 Hari",
+        "masa_berlaku": "Selama masa berlaku perizinan berusaha",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": "Surat Izin Membangun Bangunan dan/atau Instalasi di Perairan sebelumnya",
+            "persyaratan": [],
+            "kewajiban": [
+              {
+                "teks": "Laporan pemanfaatan Bangunan dan/atau Instalasi di Perairan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Wilayah perairan ≤ 12 mil selain kewenangan Menteri dan"
+              },
+              {
+                "teks": "2. Usaha mikro"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [],
+            "kewajiban": [],
+            "parameter": [
+              {
+                "teks": "1. Kawasan perairan >12 mil atau"
+              },
+              {
+                "teks": "2. Kawasan perairan ≤12 mil di luar kewenangan Menteri dengan kriteria:",
+                "sub": [
+                  {
+                    "teks": "a. Usaha kecil, menengah, atau besar"
+                  },
+                  {
+                    "teks": "b. Kawasan Strategis Nasional"
+                  },
+                  {
+                    "teks": "c. Kawasan Strategis Nasional Tertentu"
+                  },
+                  {
+                    "teks": "d. Kawasan konservasi perairan nasional atau"
+                  },
+                  {
+                    "teks": "e. Kawasan lintas provinsi"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "section_id": "II",
+    "section_title": "STANDARDISASI PRODUK/JASA (C)",
+    "items": [
+      {
+        "no": "7.",
+        "nama_pb_umku": "Sertifikat Penerapan Distribusi Ikan",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Memenuhi standar penerapan distribusi ikan"
+              },
+              {
+                "teks": "2. Surat keterangan mengikuti sosialisasi/bimbingan teknis cara distribusi ikan yang baik"
+              },
+              {
+                "teks": "3. Memiliki panduan cara distribusi ikan yang baik unit usahanya"
+              },
+              {
+                "teks": "4. Laporan hasil penilaian cara distribusi ikan yang baik sesuai ketentuan peraturan perundangundangan"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menerapkan cara distribusi ikan yang baik secara konsisten dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha setiap tahun atau sewaktu-waktu jika diperlukan yang memuat paling sedikit:",
+                "sub": [
+                  {
+                    "teks": "a. Jenis dan kapasitas sarana dan prasarana"
+                  },
+                  {
+                    "teks": "b. Teknologi yang digunakan dalam kegiatan distribusi ikan"
+                  },
+                  {
+                    "teks": "c. Tenaga kerja"
+                  },
+                  {
+                    "teks": "d. Asal dan tujuan distribusi ikan dan"
+                  },
+                  {
+                    "teks": "e. Jenis dan volume ikan"
+                  }
+                ]
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "8.",
+        "nama_pb_umku": "Sertifikasi Cara Budidaya Ikan yang Baik",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Struktur organisasi dan uraian tugas"
+              },
+              {
+                "teks": "2. Data unit pembudidayaan ikan, antara lain:",
+                "sub": [
+                  {
+                    "teks": "a. Data umum"
+                  },
+                  {
+                    "teks": "b. Data budidaya dan produksi"
+                  },
+                  {
+                    "teks": "c. Data personel"
+                  },
+                  {
+                    "teks": "d. Data fasilitas"
+                  },
+                  {
+                    "teks": "e. Gambar tata letak/layout bangunan dan unit pembudidayaan ikan dan"
+                  },
+                  {
+                    "teks": "f. Standar operasional prosedur dan formulir pencatatan budidaya ikan"
+                  }
+                ]
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menerapkan cara budidaya ikan yang baik secara konsisten dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha setiap 6 (enam) bulan sekali atau sewaktu-waktu apabila diperlukan yang memuat paling sedikit:",
+                "sub": [
+                  {
+                    "teks": "a. Identitas pemilik/perusahaan"
+                  },
+                  {
+                    "teks": "b. Teknologi yang digunakan"
+                  },
+                  {
+                    "teks": "c. Jenis sarana dan prasarana yang digunakan"
+                  },
+                  {
+                    "teks": "d. Penggunaan tenaga kerja dan"
+                  },
+                  {
+                    "teks": "e. Perkembangan usaha pembudidayaan ikan"
+                  }
+                ]
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "9.",
+        "nama_pb_umku": "Sertifikat Cara Penanganan Ikan yang Baik",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Sertifikat pelatihan cara penanganan ikan yang baik untuk kegiatan usaha penangkapan dan pengangkutan ikan di laut"
+              },
+              {
+                "teks": "2. Sertifikat Kelaikan Kapal Perikanan"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menerapkan cara penanganan ikan yang baik secara konsisten dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh ukuran Kapal Penangkap Ikan dan Kapal Pengangkut Ikan yang menangkap atau mengangkut jenis ikan tertentu"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "10.",
+        "nama_pb_umku": "Sertifikasi Cara Pembenihan Ikan yang Baik",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Standar operasional prosedur dan formulir pencatatan pembenihan ikan"
+              },
+              {
+                "teks": "2. Gambar layout bangunan dan petakan unit pembenihan ikan"
+              },
+              {
+                "teks": "3. Data struktur organisasi dan uraian tugas"
+              },
+              {
+                "teks": "4. Dokumen yang memuat, antara lain:",
+                "sub": [
+                  {
+                    "teks": "a. Jenis ikan"
+                  },
+                  {
+                    "teks": "b. Sarana dan prasarana yang dimiliki"
+                  },
+                  {
+                    "teks": "c. Teknologi pembenihan yang digunakan dan"
+                  },
+                  {
+                    "teks": "d. Rencana jumlah dan ukuran hasil produksi"
+                  }
+                ]
+              },
+              {
+                "teks": "5. Data Manajer Pengendali Mutu (MPM)"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menerapkan cara pembenihan ikan yang baik secara konsisten dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha pembenihan ikan setiap 6 (enam) bulan sekali atau sewaktu-waktu apabila diperlukan yang memuat paling sedikit:",
+                "sub": [
+                  {
+                    "teks": "a. Standar pelaksanaan usaha dan"
+                  },
+                  {
+                    "teks": "b. Perkembangan kegiatan usaha"
+                  }
+                ]
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "11.",
+        "nama_pb_umku": "Sertifikat Cara Pembuatan Pakan Ikan yang Baik (CPPIB)",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Struktur organisasi dan uraian tugas, meliputi:",
+                "sub": [
+                  {
+                    "teks": "a. Bagian produksi dan"
+                  },
+                  {
+                    "teks": "b. Bagian mutu"
+                  }
+                ]
+              },
+              {
+                "teks": "2. Gambar tata letak ruangan"
+              },
+              {
+                "teks": "3. Formulir data umum produsen pakan ikan yang telah diisi meliputi:",
+                "sub": [
+                  {
+                    "teks": "a. Identitas pemohon"
+                  },
+                  {
+                    "teks": "b. Data bahan pakan ikan"
+                  },
+                  {
+                    "teks": "c. Data produksi"
+                  },
+                  {
+                    "teks": "d. Data proksimat dan"
+                  },
+                  {
+                    "teks": "e. Data SOP"
+                  }
+                ]
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menjaga konsistensi penerapan prinsip-prinsip cara pembuatan pakan ikan yang baik dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "12.",
+        "nama_pb_umku": "Sertifikat Penerapan Program Manajemen Mutu Terpadu/Hazard Analysis and Critical Control Point",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Manual Hazard Analysis and Critical Control Point yang telah divalidasi"
+              },
+              {
+                "teks": "2. Hasil audit internal"
+              },
+              {
+                "teks": "3. Sertifikat Penerapan Program Manajemen Mutu Terpadu/Hazard Analysis and Critical Control Point yang masih berlaku (khusus permohonan penambahan ruang lingkup dan perpanjangan)"
+              },
+              {
+                "teks": "4. Nomor registrasi negara mitra bagi UPI yang mengalami penurunan peringkat Sertifikat Penerapan Program Manajemen Mutu Terpadu/Hazard Analysis and Critical Control Point (khusus permohonan peninjauan ulang peringkat)"
+              },
+              {
+                "teks": "5. Kontrak atau permintaan dari negara tujuan ekspor (khusus permohonan peninjauan ulang peringkat)"
+              },
+              {
+                "teks": "6. Laporan hasil pembinaan"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menjaga konsistensi penerapan Program Persyaratan Dasar (PPD), Sistem Hazard Analysis and Critical Control Point, dan Sistem Ketertelusuran dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "13.",
+        "nama_pb_umku": "Sertifikat Cara Distribusi Obat Ikan yang Baik (CDOIB)",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Gambar site plan gudang dan tata letak (layout) ruangan"
+              },
+              {
+                "teks": "2. Memiliki sarana pengangkutan yang layak dan memadai sesuai jenis sediaan obat ikan"
+              },
+              {
+                "teks": "3. Formulir data dan persyaratan cara distribusi obat ikan yang baik yang telah diisi meliputi:",
+                "sub": [
+                  {
+                    "teks": "a. Identitas pemohon"
+                  },
+                  {
+                    "teks": "b. Persyaratan cara distribusi obat ikan yang baik:",
+                    "sub": [
+                      {
+                        "teks": "1) Manajemen mutu"
+                      },
+                      {
+                        "teks": "2) Organisasi, manajemen dan personalia"
+                      },
+                      {
+                        "teks": "3) Bangunan dan peralatan"
+                      },
+                      {
+                        "teks": "4) Operasional"
+                      },
+                      {
+                        "teks": "5) Penarikan kembali"
+                      },
+                      {
+                        "teks": "6) Transportasi dan"
+                      },
+                      {
+                        "teks": "7) Dokumentasi"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "teks": "4. Personil pernah mendapatkan pelatihan cara distribusi obat ikan yang baik atau surat pernyataan memahami prinsip-prinsip cara distribusi obat ikan yang baik"
+              },
+              {
+                "teks": "5. Untuk distributor memiliki tenaga professional"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menerapkan prinsip-prinsip cara distribusi obat ikan yang baik secara konsisten dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha setiap 6 (enam) bulan sekali atau sewaktu-waktu apabila diperlukan yang memuat paling sedikit:",
+                "sub": [
+                  {
+                    "teks": "a. Standar pelaksanaan usaha dan"
+                  },
+                  {
+                    "teks": "b. Perkembangan kegiatan usaha"
+                  }
+                ]
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "14.",
+        "nama_pb_umku": "Sertifikat Cara Pembuatan Obat Ikan yang Baik (CPOIB)",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Gambar site plan pabrik dan tata letak (layout) ruangan"
+              },
+              {
+                "teks": "2. Formulir data dan persyaratan cara pembuatan obat ikan yang baik yang telah diisi meliputi:",
+                "sub": [
+                  {
+                    "teks": "a. Identitas pemohon"
+                  },
+                  {
+                    "teks": "b. Persyaratan cara pembuatan obat ikan yang baik:",
+                    "sub": [
+                      {
+                        "teks": "1) Manajemen mutu"
+                      },
+                      {
+                        "teks": "2) Personalia"
+                      },
+                      {
+                        "teks": "3) Bangunan dan fasilitas"
+                      },
+                      {
+                        "teks": "4) Peralatan"
+                      },
+                      {
+                        "teks": "5) Sanitasi dan higiene"
+                      },
+                      {
+                        "teks": "6) Produksi"
+                      },
+                      {
+                        "teks": "7) Pengawasan mutu"
+                      },
+                      {
+                        "teks": "8) Inspeksi diri (audit internal) dan audit mutu"
+                      },
+                      {
+                        "teks": "9) Penanganan keluhan terhadap produk, penarikan kembali produk, dan produk kembalian"
+                      },
+                      {
+                        "teks": "10) Dokumentasi dan"
+                      },
+                      {
+                        "teks": "11) Kualifikasi dan validasi"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "teks": "3. Surat pernyataan memiliki tenaga profesional yaitu:",
+                "sub": [
+                  {
+                    "teks": "a. Dokter hewan atau apoteker sebagai penanggung jawab teknis obat ikan, untuk sediaan biologik, farmasetik, premiks, dan/atau obat alami atau"
+                  },
+                  {
+                    "teks": "b. Dokter hewan atau apoteker atau sarjana perikanan atau sarjana biologi sebagai penanggung jawab teknis obat ikan, untuk sediaan probiotik"
+                  }
+                ]
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menerapkan prinsip-prinsip cara pembuatan obat ikan yang baik secara konsisten dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha setiap 6 (enam) bulan sekali atau sewaktu-waktu apabila diperlukan yang memuat paling sedikit:",
+                "sub": [
+                  {
+                    "teks": "a. Standar pelaksanaan usaha dan"
+                  },
+                  {
+                    "teks": "b. Perkembangan kegiatan usaha"
+                  }
+                ]
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "15.",
+        "nama_pb_umku": "Sertifikat Kelayakan Pengolahan",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "4 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Memenuhi standar kelayakan pengolahan"
+              },
+              {
+                "teks": "2. Sertifikat pengolah ikan atau sertifikat keterampilan di bidang keamanan pangan yang setara bagi penanggung jawab mutu"
+              },
+              {
+                "teks": "3. Panduan mutu penerapan cara pengolahan ikan yang baik dan pemenuhan persyaratan Prosedur Standar Operasi Sanitasi"
+              },
+              {
+                "teks": "4. Laporan hasil pembinaan"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menerapkan standar kelayakan pengolahan secara konsisten dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan kegiatan usaha setiap 6 (enam) bulan sekali atau sewaktu-waktu apabila diperlukan yang memuat paling sedikit:",
+                "sub": [
+                  {
+                    "teks": "a. Standar pelaksanaan usaha dan"
+                  },
+                  {
+                    "teks": "b. Perkembangan kegiatan usaha"
+                  }
+                ]
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "16.",
+        "nama_pb_umku": "Sertifikat Pendaftaran Pakan Ikan",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "15 Hari",
+        "masa_berlaku": "5 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Surat pernyataan telah menerapkan prinsip cara pembuatan pakan ikan yang baik"
+              },
+              {
+                "teks": "2. Laporan hasil pengujian mutu (dari laboratorium dalam negeri yang terakreditasi):",
+                "sub": [
+                  {
+                    "teks": "a. Pakan ikan buatan, meliputi:",
+                    "sub": [
+                      {
+                        "teks": "1) Ikan konsumsi, meliputi uji proksimat lengkap, nitrogen non protein, kestabilan pakan dalam air, cemaran mikroba, antibiotik, logam berat, dan melamin atau"
+                      },
+                      {
+                        "teks": "2) Ikan hias, meliputi uji proksimat lengkap, nitrogen non protein, kestabilan pakan dalam air, cemaran mikroba, logam berat, melamin, dan total karotenoid"
+                      }
+                    ]
+                  },
+                  {
+                    "teks": "b. Pakan ikan alami, meliputi uji proksimat lengkap, khusus untuk pakan alami fase telur dormant/kista pengujian hanya dilakukan terhadap:",
+                    "sub": [
+                      {
+                        "teks": "1) Persentase penetasan (hatching percentage)"
+                      },
+                      {
+                        "teks": "2) Efisiensi penetasan (hatching efficiency) dan"
+                      },
+                      {
+                        "teks": "3) Jumlah kista (cysta) per gram"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "teks": "3. Surat pernyataan pengambilan sampel pakan ikan oleh petugas pengambil contoh"
+              },
+              {
+                "teks": "4. Data teknis pakan ikan yang berisi:",
+                "sub": [
+                  {
+                    "teks": "a. Merek, jenis, kode produksi, peruntukan, dan kandungan nutrien pakan ikan, dan"
+                  },
+                  {
+                    "teks": "b. Nama bahan baku pakan ikan, bahan pelengkap, dan imbuhan pakan ikan"
+                  }
+                ]
+              },
+              {
+                "teks": "5. Bagi pakan ikan yang berasal dari luar negeri, harus dilengkapi dengan:",
+                "sub": [
+                  {
+                    "teks": "a. Certificate of good manufacturing practice, international organization for standardization 22000, atau hazard analysis critical control point"
+                  },
+                  {
+                    "teks": "b. Surat keterangan asal atau certificate of origin dari instansi yang berwenang di negara asal"
+                  },
+                  {
+                    "teks": "c. Sertifikat analisa atau Certificate of Analysis dari laboratorium yang telah terakreditasi, paling sedikit memuat hasil uji proksimat lengkap, cemaran mikroba, antibiotik, logam berat, dan melamin"
+                  },
+                  {
+                    "teks": "d. Surat keterangan/publikasi dari pemerintah negara asal yang menyatakan bahwa pakan ikan tersebut sudah dan masih diperdagangkan di negara asal dan"
+                  },
+                  {
+                    "teks": "e. Surat penunjukan dari perusahaan produsen kepada importir"
+                  }
+                ]
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Memiliki sertifikat cara pembuatan pakan ikan yang baik khusus bagi pelaku usaha yang memproduksi pakan ikan di dalam negeri"
+              },
+              {
+                "teks": "2. Menjaga konsistensi mutu pakan ikan"
+              },
+              {
+                "teks": "3. Menyampaikan laporan paling sedikit meliputi:",
+                "sub": [
+                  {
+                    "teks": "a. Jumlah dan jenis pakan ikan yang telah diproduksi dan diedarkan"
+                  },
+                  {
+                    "teks": "b. Jumlah dan jenis pakan ikan yang telah diedarkan, untuk importir"
+                  },
+                  {
+                    "teks": "c. Jumlah dan jenis pakan ikan yang ditarik dari peredaran atau dimusnahkan dan"
+                  },
+                  {
+                    "teks": "d. Harga pakan ikan yang dijual"
+                  }
+                ]
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "17.",
+        "nama_pb_umku": "Sertifikat Pendaftaran Obat Ikan",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "10 Hari",
+        "masa_berlaku": "5 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Laporan hasil pengujian mutu obat ikan"
+              },
+              {
+                "teks": "2. Memiliki sertifikat cara pembuatan obat ikan yang baik khusus bagi produsen obat ikan"
+              },
+              {
+                "teks": "3. Dokumen teknis obat ikan yang meliputi:",
+                "sub": [
+                  {
+                    "teks": "a. Formulir a (komposisi obat ikan)"
+                  },
+                  {
+                    "teks": "b. Formulir b (cara pembuatan obat ikan)"
+                  },
+                  {
+                    "teks": "c. Formulir c (pemeriksaan obat ikan)"
+                  },
+                  {
+                    "teks": "d. Formulir d (pemeriksaan bahan baku obat ikan)"
+                  },
+                  {
+                    "teks": "e. Formulir e (pemeriksaan stabilitas)"
+                  },
+                  {
+                    "teks": "f. Formulir f (daya farmakologi)"
+                  },
+                  {
+                    "teks": "g. Formulir g (publikasi ilmiah/uji lapang)"
+                  },
+                  {
+                    "teks": "h. Formulir h (keterangan tentang wadah, bungkus, dan tutup)"
+                  },
+                  {
+                    "teks": "i. Formulir i (keterangan tentang penandaan) dan"
+                  },
+                  {
+                    "teks": "j. Formulir j (keterangan lainnya untuk obat ikan yang berasal dari luar negeri) meliputi:",
+                    "sub": [
+                      {
+                        "teks": "1) Surat keterangan asal (certificate of origin)"
+                      },
+                      {
+                        "teks": "2) Surat keterangan sudah diperjualbelikan (certificate of free sale)"
+                      },
+                      {
+                        "teks": "3) Certificate of good manufacturing practice (gmp)"
+                      },
+                      {
+                        "teks": "4) Sertifikat bukan produk rekayasa genetika (certificate non genetically modified organism), untuk obat ikan sediaan biologik yang bukan produk rekayasa genetika dan"
+                      },
+                      {
+                        "teks": "5) Surat penunjukan keagenan atau distributor (letter of appointment) dari produsen obat ikan di luar negeri kepada importir obat ikan di indonesia"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "teks": "4. Laporan hasil pengujian lapangan, untuk obat ikan yang memerlukan pengujian lapangan dan"
+              },
+              {
+                "teks": "5. Memiliki sertifikat keamanan hayati produk rekayasa genetik dari komisi keamanan hayati, untuk obat ikan yang zat aktifnya atau salah satu zat aktifnya merupakan produk rekayasa genetika/genetically modified organism (GMO)"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Menyampaikan laporan paling sedikit meliputi:",
+                "sub": [
+                  {
+                    "teks": "a. Jumlah dan jenis obat ikan yang telah diproduksi dan diedarkan, untuk pembuatan obat ikan di dalam negeri"
+                  },
+                  {
+                    "teks": "b. Jumlah dan jenis obat ikan yang telah diedarkan, untuk pemasukan obat ikan dari luar negeri dan"
+                  },
+                  {
+                    "teks": "c. Jumlah dan jenis obat ikan yang ditarik dari peredaran atau dimusnahkan"
+                  }
+                ]
+              },
+              {
+                "teks": "2. Menjaga konsistensi mutu obat ikan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "section_id": "III",
+    "section_title": "KELANCARAN KEGIATAN USAHA (D)",
+    "items": [
+      {
+        "no": "18.",
+        "nama_pb_umku": "Surat Izin Biofarmakologi dan Bioteknologi Laut",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "21 Hari",
+        "masa_berlaku": "5 tahun",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": "Memenuhi standar Izin Biofarmakologi dan Bioteknologi Laut",
+            "persyaratan": [],
+            "kewajiban": [
+              {
+                "teks": "1. Memenuhi standar izin Biofarmakologi dan Bioteknologi Laut dan"
+              },
+              {
+                "teks": "2. Menyampaikan laporan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Wilayah perairan ≤ 12 mil selain kewenangan Menteri dan"
+              },
+              {
+                "teks": "2. Usaha mikro"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [],
+            "kewajiban": [],
+            "parameter": [
+              {
+                "teks": "1. Kawasan perairan >12 mil atau"
+              },
+              {
+                "teks": "2. Kawasan perairan ≤12 mil dengan kriteria:",
+                "sub": [
+                  {
+                    "teks": "a. Usaha kecil, menengah, atau besar"
+                  },
+                  {
+                    "teks": "b. Kawasan Strategis Nasional"
+                  },
+                  {
+                    "teks": "c. Kawasan Strategis Nasional Tertentu"
+                  },
+                  {
+                    "teks": "d. Kawasan konservasi perairan nasional atau"
+                  },
+                  {
+                    "teks": "e. Kawasan lintas provinsi"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "19.",
+        "nama_pb_umku": "Tanda Daftar Kegiatan Penangkapan Ikan di Kawasan Konservasi",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "30 Hari",
+        "masa_berlaku": "1 tahun",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": "Standar Tanda Daftar Kegiatan Penangkapan Ikan di Kawasan Konservasi",
+            "persyaratan": [],
+            "kewajiban": [
+              {
+                "teks": "1. Memenuhi standar Tanda Daftar Kegiatan Penangkapan Ikan di Kawasan Konservasi"
+              },
+              {
+                "teks": "2. Menyampaikan laporan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Kawasan Konservasi Daerah"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [],
+            "kewajiban": [],
+            "parameter": []
+          }
+        ]
+      },
+      {
+        "no": "20.",
+        "nama_pb_umku": "Surat Izin Pelaksanaan Reklamasi",
+        "applies_to_all_kbli": true,
+        "kbli_note": "berlaku untuk seluruh KBLI",
+        "jangka_waktu_penerbitan": "21 Hari",
+        "masa_berlaku": "5 tahun",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Dokumen rencana reklamasi"
+              },
+              {
+                "teks": "2. Bukti pembayaran Penerimaan Negara Bukan Pajak/retribusi"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "1. Laporan kegiatan reklamasi"
+              },
+              {
+                "teks": "2. Menggunakan material hasil pengelolaan sedimentasi di laut sesuai dengan ketentuan peraturan perundangundangan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Wilayah perairan ≤ 12 mil selain kewenangan Menteri dan"
+              },
+              {
+                "teks": "2. Usaha mikro"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [],
+            "kewajiban": [],
+            "parameter": [
+              {
+                "teks": "1. Kawasan perairan >12 mil"
+              },
+              {
+                "teks": "2. Kawasan perairan ≤12 mil dengan kriteria:",
+                "sub": [
+                  {
+                    "teks": "a. Usaha kecil, menengah, atau besar"
+                  },
+                  {
+                    "teks": "b. Kawasan Strategis Nasional"
+                  },
+                  {
+                    "teks": "c. Kawasan Strategis Nasional Tertentu"
+                  },
+                  {
+                    "teks": "d. Kawasan konservasi perairan nasional atau"
+                  },
+                  {
+                    "teks": "e. Kawasan lintas provinsi"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "21.",
+        "nama_pb_umku": "Surat Izin Wisata Bahari",
+        "applies_to_all_kbli": false,
+        "kbli_note": null,
+        "jangka_waktu_penerbitan": "14 Hari",
+        "masa_berlaku": "10 tahun",
+        "kewenangan": "Gubernur",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Dokumen rencana usaha wisata"
+              },
+              {
+                "teks": "2. Bukti pembayaran Penerimaan Negara Bukan Pajak/retribusi"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "Laporan pelaksanaan usaha"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "1. Wilayah perairan ≤12 mil, diluar kewenangan Menteri dan"
+              },
+              {
+                "teks": "2. Usaha mikro"
+              }
+            ]
+          },
+          {
+            "tier_label": null,
+            "persyaratan": [],
+            "kewajiban": [],
+            "parameter": [
+              {
+                "teks": "1. Kawasan perairan >12 mil atau"
+              },
+              {
+                "teks": "2. Kawasan perairan ≤12 mil dengan kriteria:",
+                "sub": [
+                  {
+                    "teks": "a. Usaha kecil, menengah, atau besar"
+                  },
+                  {
+                    "teks": "b. Kawasan Strategis Nasional"
+                  },
+                  {
+                    "teks": "c. Kawasan Strategis Nasional Tertentu"
+                  },
+                  {
+                    "teks": "d. Penyertaan Modal Asing"
+                  },
+                  {
+                    "teks": "e. Kawasan konservasi perairan nasional atau"
+                  },
+                  {
+                    "teks": "f. Kawasan lintas provinsi"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "no": "22.",
+        "nama_pb_umku": "Surat Izin Pelaksanaan Reklamasi Hasil Pengawasan",
+        "applies_to_all_kbli": true,
+        "kbli_note": "berlaku untuk seluruh KBLI",
+        "jangka_waktu_penerbitan": "30 Hari",
+        "masa_berlaku": "2 tahun",
+        "kewenangan": "Menteri/ Kepala Badan",
+        "tiers": [
+          {
+            "tier_label": null,
+            "persyaratan": [
+              {
+                "teks": "1. Bukti pemenuhan sanksi administratif"
+              },
+              {
+                "teks": "2. Dokumen evaluasi hasil reklamasi"
+              },
+              {
+                "teks": "3. Bukti pembayaran Penerimaan Negara Bukan Pajak"
+              }
+            ],
+            "kewajiban": [
+              {
+                "teks": "Laporan pemenuhan rekomendasi perbaikan"
+              }
+            ],
+            "parameter": [
+              {
+                "teks": "Seluruh"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

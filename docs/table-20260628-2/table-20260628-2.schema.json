@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:id:table-20260628-2",
+  "title": "PB-UMKU Sections (table-20260628-2)",
+  "description": "Array of sections, each containing PB-UMKU licence entries extracted from kkp2.xlsx Sheet1. Numbered lists use the kkp-licensing family-canonical recursive Item {teks, sub} idiom.",
+  "type": "array",
+  "items": { "$ref": "#/$defs/Section" },
+
+  "$defs": {
+
+    "Item": {
+      "type": "object",
+      "description": "One node in a numbered list (persyaratan, kewajiban, or parameter). Recursive. Reuses the kkp-licensing family canonical idiom: the full line (numbering prefix included) lives in `teks`; nested levels go in `sub`.",
+      "required": ["teks"],
+      "additionalProperties": false,
+      "properties": {
+        "teks": { "type": "string", "minLength": 1 },
+        "sub": { "type": "array", "items": { "$ref": "#/$defs/Item" } }
+      }
+    },
+
+    "Tier": {
+      "type": "object",
+      "description": "One authority/scope block within an Entry. Entries with no tier-divider rows have a single Tier with tier_label null.",
+      "required": ["tier_label", "persyaratan", "kewajiban", "parameter"],
+      "additionalProperties": false,
+      "properties": {
+        "tier_label": {
+          "description": "Heading text that labels this scope block (e.g. 'Untuk Angkutan Laut Dalam Negeri...', 'Gubernur') or null when the entry has only one implicit tier.",
+          "type": ["string", "null"]
+        },
+        "persyaratan": {
+          "description": "Nested requirements list from Col C for this tier.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/Item" },
+          "minItems": 0
+        },
+        "kewajiban": {
+          "description": "Nested obligations list from Col E for this tier.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/Item" },
+          "minItems": 0
+        },
+        "parameter": {
+          "description": "Nested parameter list from Col G for this tier.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/Item" },
+          "minItems": 0
+        }
+      }
+    },
+
+    "Entry": {
+      "type": "object",
+      "description": "One PB-UMKU licence entry inside a section.",
+      "required": [
+        "no",
+        "nama_pb_umku",
+        "applies_to_all_kbli",
+        "kbli_note",
+        "jangka_waktu_penerbitan",
+        "masa_berlaku",
+        "kewenangan",
+        "tiers"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "no": {
+          "description": "Entry number from Col A, Arabic-numeral form (e.g. '1.').",
+          "type": "string",
+          "pattern": "^\\d+\\.$",
+          "minLength": 1
+        },
+        "nama_pb_umku": {
+          "description": "Licence name from Col B with leading '*' stripped.",
+          "type": "string",
+          "minLength": 1
+        },
+        "applies_to_all_kbli": {
+          "description": "True when Col B carried the '*' prefix indicating the licence applies to all KBLI.",
+          "type": "boolean",
+          "default": false
+        },
+        "kbli_note": {
+          "description": "The note qualifier from Col B when present, as plain text (parens stripped). Null when absent.",
+          "type": ["string", "null"]
+        },
+        "jangka_waktu_penerbitan": {
+          "description": "Issuance period from Col D (first occurrence per entry).",
+          "type": "string",
+          "enum": ["4 Hari", "7 Hari", "10 Hari", "14 Hari", "15 Hari", "21 Hari", "30 Hari"]
+        },
+        "masa_berlaku": {
+          "description": "Validity period from Col F (first occurrence per entry; soft-hyphen artefacts removed).",
+          "type": "string",
+          "minLength": 1
+        },
+        "kewenangan": {
+          "description": "Issuing authority from Col H; first occurrence per entry taken.",
+          "type": "string",
+          "enum": ["Menteri/ Kepala Badan", "Gubernur"]
+        },
+        "tiers": {
+          "description": "One or more scope blocks. Single-tier entries (most) have exactly one element with tier_label null.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/Tier" },
+          "minItems": 1
+        }
+      }
+    },
+
+    "Section": {
+      "type": "object",
+      "description": "A Roman-numeral section wrapper grouping related entries.",
+      "required": ["section_id", "section_title", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "section_id": {
+          "description": "Roman-numeral identifier extracted from Col A (e.g. 'I', 'II').",
+          "type": "string",
+          "pattern": "^[IVX]+$",
+          "minLength": 1
+        },
+        "section_title": {
+          "description": "Full section heading text from Col A with the Roman numeral and period stripped.",
+          "type": "string",
+          "minLength": 1
+        },
+        "items": {
+          "description": "PB-UMKU entries belonging to this section.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/Entry" },
+          "minItems": 0
+        }
+      }
+    }
+
+  }
+}

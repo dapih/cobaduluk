@@ -1,0 +1,812 @@
+{
+  "workbook": {
+    "file": "docs/table-20260628-1/table-20260628-1.xlsx",
+    "sheets": [
+      {
+        "name": "KKP1",
+        "max_row": 1479,
+        "max_col": 13
+      }
+    ]
+  },
+  "sheet": {
+    "name": "KKP1",
+    "dimensions": {
+      "max_row": 1479,
+      "max_col": 13,
+      "scanned_rows": 1479
+    },
+    "truncated": false,
+    "header_row": 2,
+    "merged_cells": {
+      "count": 0,
+      "ranges": []
+    },
+    "blank_row_gaps": {
+      "count": 85,
+      "rows": [
+        10,
+        44,
+        78,
+        112,
+        124,
+        158,
+        192,
+        215,
+        238,
+        258,
+        259,
+        265,
+        266,
+        270,
+        271,
+        277,
+        281,
+        282,
+        288,
+        292,
+        293,
+        299,
+        303,
+        304,
+        310,
+        314,
+        315,
+        321,
+        330,
+        331
+      ]
+    },
+    "columns": [
+      {
+        "header": "No",
+        "fill_rate": 0.064,
+        "nonempty": 94,
+        "distinct": 94,
+        "inferred_type": "int",
+        "type_mix": {
+          "int": 94
+        },
+        "max_len": 2,
+        "top_values": [
+          {
+            "value": "1",
+            "count": 1
+          },
+          {
+            "value": "2",
+            "count": 1
+          },
+          {
+            "value": "3",
+            "count": 1
+          },
+          {
+            "value": "4",
+            "count": 1
+          },
+          {
+            "value": "5",
+            "count": 1
+          },
+          {
+            "value": "6",
+            "count": 1
+          },
+          {
+            "value": "7",
+            "count": 1
+          },
+          {
+            "value": "8",
+            "count": 1
+          }
+        ],
+        "column": "A"
+      },
+      {
+        "header": "Kode KBLI",
+        "fill_rate": 0.064,
+        "nonempty": 94,
+        "distinct": 94,
+        "inferred_type": "int",
+        "type_mix": {
+          "int": 59,
+          "str": 35
+        },
+        "max_len": 5,
+        "top_values": [
+          {
+            "value": "3111",
+            "count": 1
+          },
+          {
+            "value": "3112",
+            "count": 1
+          },
+          {
+            "value": "3113",
+            "count": 1
+          },
+          {
+            "value": "3114",
+            "count": 1
+          },
+          {
+            "value": "3115",
+            "count": 1
+          },
+          {
+            "value": "3116",
+            "count": 1
+          },
+          {
+            "value": "3117",
+            "count": 1
+          },
+          {
+            "value": "3118",
+            "count": 1
+          }
+        ],
+        "column": "B"
+      },
+      {
+        "header": "Judul KBLI",
+        "fill_rate": 0.064,
+        "nonempty": 94,
+        "distinct": 90,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 94
+        },
+        "max_len": 112,
+        "top_values": [
+          {
+            "value": "Perdagangan Eceran Kaki Lima dan Los Pa…",
+            "count": 3
+          },
+          {
+            "value": "Pembesaran Ikan Air Tawar di Karamba Ja…",
+            "count": 2
+          },
+          {
+            "value": "Jasa Sarana Produksi Budidaya Ikan Air …",
+            "count": 2
+          },
+          {
+            "value": "Penangkapan Pisces/ Ikan Bersirip di La…",
+            "count": 1
+          },
+          {
+            "value": "Penangkapan Crusta-cea di Laut",
+            "count": 1
+          },
+          {
+            "value": "Penangkapan Mollusca di Laut",
+            "count": 1
+          },
+          {
+            "value": "Penangkapan/ Pengambilan Tumbuhan Air d…",
+            "count": 1
+          },
+          {
+            "value": "Penangkapan/ Pengambilan Induk/ Benih I…",
+            "count": 1
+          }
+        ],
+        "column": "C"
+      },
+      {
+        "header": "Ruang Lingkup",
+        "fill_rate": 0.083,
+        "nonempty": 123,
+        "distinct": 35,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 123
+        },
+        "max_len": 584,
+        "top_values": [
+          {
+            "value": "Seluruh",
+            "count": 50
+          },
+          {
+            "value": "Kelompok ini mencakup usaha atau kegiat…",
+            "count": 33
+          },
+          {
+            "value": "Kelompok ini tidak mencakup pengambil-a…",
+            "count": 5
+          },
+          {
+            "value": "Contoh ikan bersirip yang termasuk kelo…",
+            "count": 2
+          },
+          {
+            "value": "Contoh Mollusca yang masuk dalam kelomp…",
+            "count": 2
+          },
+          {
+            "value": "Kelompok ini mencakup kegiatan usaha pe…",
+            "count": 2
+          },
+          {
+            "value": "Kelompok ini tidak mencakup penangkapan…",
+            "count": 1
+          },
+          {
+            "value": "Kelompok ini tidak mencakup Penangkapan…",
+            "count": 1
+          }
+        ],
+        "column": "D"
+      },
+      {
+        "header": "Skala Usaha",
+        "fill_rate": 0.201,
+        "nonempty": 297,
+        "distinct": 9,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 297
+        },
+        "max_len": 13,
+        "top_values": [
+          {
+            "value": "Besar",
+            "count": 72
+          },
+          {
+            "value": "Menengah",
+            "count": 68
+          },
+          {
+            "value": "Kecil",
+            "count": 61
+          },
+          {
+            "value": "Mikro",
+            "count": 60
+          },
+          {
+            "value": "Seluruh",
+            "count": 30
+          },
+          {
+            "value": "- Mene-ngah",
+            "count": 2
+          },
+          {
+            "value": "- Menengah",
+            "count": 2
+          },
+          {
+            "value": "- Kecil",
+            "count": 1
+          }
+        ],
+        "column": "E"
+      },
+      {
+        "header": "Tingkat Risiko",
+        "fill_rate": 0.112,
+        "nonempty": 165,
+        "distinct": 5,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 165
+        },
+        "max_len": 15,
+        "top_values": [
+          {
+            "value": "Menengah Rendah",
+            "count": 73
+          },
+          {
+            "value": "Menengah Tinggi",
+            "count": 41
+          },
+          {
+            "value": "Tinggi",
+            "count": 39
+          },
+          {
+            "value": "Rendah",
+            "count": 10
+          },
+          {
+            "value": "Menegah Rendah",
+            "count": 2
+          }
+        ],
+        "column": "F"
+      },
+      {
+        "header": "Perizinan Berusaha",
+        "fill_rate": 0.112,
+        "nonempty": 165,
+        "distinct": 3,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 165
+        },
+        "max_len": 27,
+        "top_values": [
+          {
+            "value": "NIB dan Sertifikat Standar",
+            "count": 116
+          },
+          {
+            "value": "NIB dan Izin",
+            "count": 39
+          },
+          {
+            "value": "NIB",
+            "count": 10
+          }
+        ],
+        "column": "G"
+      },
+      {
+        "header": "Persyaratan",
+        "fill_rate": 0.428,
+        "nonempty": 632,
+        "distinct": 61,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 632
+        },
+        "max_len": 341,
+        "top_values": [
+          {
+            "value": "-",
+            "count": 83
+          },
+          {
+            "value": "1. Rencana kegiatan usaha",
+            "count": 22
+          },
+          {
+            "value": "2. Rencana tahapan kegiatan",
+            "count": 22
+          },
+          {
+            "value": "3. Rencana teknologi yang digunakan",
+            "count": 22
+          },
+          {
+            "value": "4. Sarana usaha yang dimiliki",
+            "count": 22
+          },
+          {
+            "value": "5. Rencana pengadaan sarana usaha",
+            "count": 22
+          },
+          {
+            "value": "6. Rencana volume produksi setiap tahap…",
+            "count": 22
+          },
+          {
+            "value": "7. Rencana pembiayaan",
+            "count": 22
+          }
+        ],
+        "column": "H"
+      },
+      {
+        "header": "Jangka Waktu Penerbitan",
+        "fill_rate": 0.118,
+        "nonempty": 174,
+        "distinct": 9,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 174
+        },
+        "max_len": 8,
+        "top_values": [
+          {
+            "value": "Otomatis",
+            "count": 82
+          },
+          {
+            "value": "3 Hari",
+            "count": 34
+          },
+          {
+            "value": "17 Hari",
+            "count": 19
+          },
+          {
+            "value": "5 Hari",
+            "count": 13
+          },
+          {
+            "value": "7 Hari",
+            "count": 9
+          },
+          {
+            "value": "4 Hari",
+            "count": 7
+          },
+          {
+            "value": "14 Hari",
+            "count": 6
+          },
+          {
+            "value": "15 Hari",
+            "count": 3
+          }
+        ],
+        "column": "I"
+      },
+      {
+        "header": "Kewajiban",
+        "fill_rate": 0.622,
+        "nonempty": 919,
+        "distinct": 150,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 919
+        },
+        "max_len": 338,
+        "top_values": [
+          {
+            "value": "2. Memiliki Sertifikat Penerapan PMMT/ …",
+            "count": 30
+          },
+          {
+            "value": "a. Jenis dan kapasitas sarana dan prasa…",
+            "count": 28
+          },
+          {
+            "value": "c. Penggunaan tenaga kerja yang meliput…",
+            "count": 27
+          },
+          {
+            "value": "b. Perkembangan omzet dan aset",
+            "count": 26
+          },
+          {
+            "value": "d. Asal bahan baku, wilayah distribusi …",
+            "count": 26
+          },
+          {
+            "value": "e. Jenis dan volume bahan baku dan",
+            "count": 26
+          },
+          {
+            "value": "f. Jenis dan volume produk yang dihasil…",
+            "count": 26
+          },
+          {
+            "value": "1. Memiliki SKP paling lama 3 (tiga) bu…",
+            "count": 22
+          }
+        ],
+        "column": "J"
+      },
+      {
+        "header": "PB UMKU",
+        "fill_rate": 0.144,
+        "nonempty": 213,
+        "distinct": 47,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 213
+        },
+        "max_len": 108,
+        "top_values": [
+          {
+            "value": "-",
+            "count": 36
+          },
+          {
+            "value": "- Sertifikat Penerapan Program Manajeme…",
+            "count": 13
+          },
+          {
+            "value": "Sertifikat cara budi daya ikan yang baik",
+            "count": 12
+          },
+          {
+            "value": "- Pertimbangan teknis pembebasan bea ma…",
+            "count": 11
+          },
+          {
+            "value": "- Sertifikat Tingkat Kom-ponen Dalam Ne…",
+            "count": 11
+          },
+          {
+            "value": "- Surat Persetujuan Penilaian TKDN Peng…",
+            "count": 10
+          },
+          {
+            "value": "- Izin Penerapan Program Manajemen Risi…",
+            "count": 10
+          },
+          {
+            "value": "- Sertifikat Ke-layakan Pengo-lahan (SK…",
+            "count": 9
+          }
+        ],
+        "column": "K"
+      },
+      {
+        "header": "Parameter",
+        "fill_rate": 0.322,
+        "nonempty": 475,
+        "distinct": 90,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 475
+        },
+        "max_len": 229,
+        "top_values": [
+          {
+            "value": "Seluruh",
+            "count": 67
+          },
+          {
+            "value": "2. Menggunakan teknologi sederhana, sem…",
+            "count": 59
+          },
+          {
+            "value": "1. Lokasi usaha berada di dalam satu da…",
+            "count": 30
+          },
+          {
+            "value": "1. Lokasi usaha berada di lintas kabupa…",
+            "count": 29
+          },
+          {
+            "value": "Seluruh PMDN",
+            "count": 28
+          },
+          {
+            "value": "1. Lokasi usaha berada di lintas provin…",
+            "count": 22
+          },
+          {
+            "value": "1. Di laut sampai dengan 12 (dua belas)…",
+            "count": 14
+          },
+          {
+            "value": "2. Di kawasan konservasi yang dikelola …",
+            "count": 12
+          }
+        ],
+        "column": "L"
+      },
+      {
+        "header": "Kewenangan",
+        "fill_rate": 0.265,
+        "nonempty": 392,
+        "distinct": 13,
+        "inferred_type": "str",
+        "type_mix": {
+          "str": 392
+        },
+        "max_len": 21,
+        "top_values": [
+          {
+            "value": "Gubernur",
+            "count": 95
+          },
+          {
+            "value": "Menteri/",
+            "count": 76
+          },
+          {
+            "value": "Kepala Badan",
+            "count": 76
+          },
+          {
+            "value": "Bupati/",
+            "count": 56
+          },
+          {
+            "value": "Wali Kota",
+            "count": 43
+          },
+          {
+            "value": "Menteri/ Kepala Badan",
+            "count": 15
+          },
+          {
+            "value": "Wali kota",
+            "count": 10
+          },
+          {
+            "value": "Bupati/Wali Kota",
+            "count": 8
+          }
+        ],
+        "column": "M"
+      }
+    ],
+    "sample_rows": [
+      {
+        "row": 3,
+        "cells": [
+          "1",
+          "3111",
+          "Penangkapan Pisces/ Ikan Bersirip di Laut",
+          "Kelompok ini mencakup usaha atau kegiatan penangkapan pisce…",
+          "Mikro",
+          "Menengah Rendah",
+          "NIB dan Sertifikat Standar",
+          "-",
+          "Otomatis",
+          "Bagi yang menggunakan kapal penangkap ikan:",
+          "- Tanda Daftar Kegiatan Penangkapan Ikan di Kawasan Konserv…",
+          "1. Kapal pe-nangkap ikan ber-ukuran sampai dengan 5 (lima) …",
+          "Gubernur"
+        ]
+      },
+      {
+        "row": 4,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "1. Memiliki Buku Kapal Perikanan",
+          "- Surat Izin penangkapan Ikan",
+          "2. Daerah penangkapan ikan pada WPPNRI paling jauh 12 (dua …",
+          ""
+        ]
+      },
+      {
+        "row": 5,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "2. Memiliki Persetujuan Berlayar",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 6,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "3. Melaporkan ikan hasil tangkapan",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 7,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "4. Memenuhi ketentuan terkait pengawakan kapal perikanan se…",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 8,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "5. Memiliki Tanda Daftar Kegiatan penangkapan Ikan di Kawas…",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 9,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "6. Memiliki Surat Izin Penempatan Rumpon, bagi yang menempa…",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 11,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "Bagi yang tidak menggunakan kapal penangkap ikan:",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 12,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "1. Melaporkan ikan hasil tangkapan dan",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "row": 13,
+        "cells": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "2. Menyampaikan informasi:",
+          "",
+          "",
+          ""
+        ]
+      }
+    ]
+  }
+}

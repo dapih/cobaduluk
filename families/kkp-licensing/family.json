@@ -1,0 +1,134 @@
+{
+  "name": "kkp-licensing",
+  "created": "2026-06-28",
+  "canonical_version": 1,
+  "canonical_source": "table-20260628-1",
+  "canonical_schema": "family.schema.json",
+  "members": [
+    {
+      "job_id": "table-20260628-1",
+      "schema": "docs/table-20260628-1/table-20260628-1.schema.json",
+      "parser": "docs/table-20260628-1/table-20260628-1.parser.py",
+      "added": "2026-06-28",
+      "fingerprint": {
+        "features": {
+          "ncol": 13,
+          "max_row": 1479,
+          "min_fill": 0.064,
+          "rows_per_entry": 15.6,
+          "num_styles": 2,
+          "numbering_cols": 3,
+          "enum_cols": 5,
+          "code_cols": 2,
+          "longtext_cols": 6,
+          "merged": 0,
+          "gap_density": 0.057,
+          "fill_buckets": [
+            4,
+            5,
+            3,
+            1,
+            0
+          ],
+          "headers": [
+            "no",
+            "kode kbli",
+            "judul kbli",
+            "ruang lingkup",
+            "skala usaha",
+            "tingkat risiko",
+            "perizinan berusaha",
+            "persyaratan",
+            "jangka waktu penerbitan",
+            "kewajiban",
+            "pb umku",
+            "parameter",
+            "kewenangan"
+          ]
+        },
+        "vector": [
+          0.3076923076923077,
+          0.38461538461538464,
+          0.23076923076923078,
+          0.07692307692307693,
+          0.0,
+          0.5,
+          1.0,
+          0.6666666666666666,
+          1.0,
+          1.0,
+          0.5700000000000001
+        ]
+      },
+      "built_against": 1
+    },
+    {
+      "job_id": "table-20260628-2",
+      "schema": "docs/table-20260628-2/table-20260628-2.schema.json",
+      "parser": "docs/table-20260628-2/table-20260628-2.parser.py",
+      "added": "2026-06-28",
+      "fingerprint": {
+        "features": {
+          "ncol": 8,
+          "max_row": 298,
+          "min_fill": 0.084,
+          "rows_per_entry": 11.9,
+          "num_styles": 2,
+          "numbering_cols": 4,
+          "enum_cols": 1,
+          "code_cols": 0,
+          "longtext_cols": 3,
+          "merged": 0,
+          "gap_density": 0.101,
+          "fill_buckets": [
+            4,
+            1,
+            2,
+            1,
+            0
+          ],
+          "headers": [
+            "no",
+            "nomeklatur pb umku",
+            "persyaratan",
+            "jangka waktu penerbitan",
+            "kewajiban",
+            "masa berlaku",
+            "parameter",
+            "kewenangan"
+          ]
+        },
+        "vector": [
+          0.5,
+          0.125,
+          0.25,
+          0.125,
+          0.0,
+          0.5,
+          0.25,
+          0.0,
+          0.6,
+          1.0,
+          1.0
+        ]
+      },
+      "built_against": 1
+    }
+  ],
+  "fingerprint": {
+    "vector": [
+      0.403846,
+      0.254808,
+      0.240385,
+      0.100962,
+      0.0,
+      0.5,
+      0.625,
+      0.333333,
+      0.8,
+      1.0,
+      0.785
+    ],
+    "n_members": 2
+  }
+}
