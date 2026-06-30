@@ -10,40 +10,31 @@ Convert one complex Excel table into validated, schema-backed JSON — with a da
 - **Surfaces issues, doesn't silently "fix" them.** Risky cleanups (aggressive de-hyphenation, trimming conjunctions) are opt-in and reported, not applied behind your back.
 - **General.** No domain logic baked in — it works on any complex table.
 
-## Prerequisites
-
-- Python 3.9+
-- `pip install -r requirements.txt`
-
 ## Install
 
-**Recommended:** [INSTALL.md](INSTALL.md) — marketplace and one-command installs per tool.
+**Prerequisites:** Python 3.9+ · Git
 
-```text
-# Claude Code
-/plugin marketplace add dapih/cobaduluk
-/plugin install excel-to-json@cobaduluk
+| Your tool | One step |
+|---|---|
+| **Claude Code** | `/plugin marketplace add dapih/cobaduluk` then `/plugin install excel-to-json@cobaduluk` |
+| **Cursor, Codex, Kilo, …** | Run `install.sh` from [INSTALL.md](INSTALL.md) (clone + setup in one go) |
 
-# Cursor, Codex, Kilo, OpenCode, Antigravity, OpenClaw, Hermes, 60+ tools
-npx skills add dapih/cobaduluk --skill excel-to-json --agent cursor -y
-git clone https://github.com/dapih/cobaduluk.git tools/excel-to-json
-cd tools/excel-to-json && pip install -r requirements.txt && python scripts/link_skill_discovery.py
-```
+Full guide: [INSTALL.md](INSTALL.md)
 
 Verify after install:
 
 ```bash
-python scripts/verify_install.py
+python tools/excel-to-json/scripts/verify_install.py
 ```
 
-| Tool | Entry |
+| Tool | How to run |
 |---|---|
-| Claude Code | `/excel-to-json:run` via marketplace above |
-| Cursor / Codex / OpenCode | `.agents/skills/` or `.cursor/skills/` + clone for scripts |
-| Kilo | `/excel-to-json-run` and related commands in `.kilo/commands/` |
-| Antigravity | `.agents/workflows/excel-to-json-run.md` |
+| Claude Code | `/excel-to-json:run file.xlsx` |
+| Cursor / Codex / OpenCode | Ask: “Convert this Excel to JSON” |
+| Kilo | `/excel-to-json-run` |
+| Antigravity | `/excel-to-json-run` workflow |
 
-Legacy manual install paths: [INSTALL.md](INSTALL.md). Job outputs go under `docs/` in your project root.
+Job outputs go under `docs/` in your project root.
 
 ## The pipeline
 
