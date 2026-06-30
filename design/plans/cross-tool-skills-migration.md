@@ -119,7 +119,7 @@ Add [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) at repo
       "name": "excel-to-json",
       "description": "Convert complex Excel tables into validated, schema-backed JSON",
       "version": "0.1.0",
-      "author": { "name": "Davi Muammar", "email": "khadafi@gmail.com" },
+      "author": { "name": "Davi Muammar" },
       "homepage": "https://github.com/dapih/cobaduluk",
       "source": "."
     }
