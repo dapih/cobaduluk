@@ -17,7 +17,7 @@ Live status for the [cross-tool skills migration plan](plans/cross-tool-skills-m
 | **M4** | Workflow adapters (Kilo + Antigravity) | Commands reference resolver | **done** | 2026-06-30 |
 | **M5** | Public release (LICENSE, tag v0.1.0) | `verify_install.py` pass | **done** | 2026-06-30 |
 | **M6** | Smoke matrix complete (8 tools) | All rows pass or documented workaround | **done** | 2026-06-30 |
-| **M7** | skills.sh indexed | `npx skills add` telemetry run | pending | — |
+| **M7** | skills.sh indexed | `npx skills add` telemetry run | **done** | 2026-06-30 |
 
 Do not mark a milestone **done** until its gate passes.
 
@@ -61,6 +61,18 @@ Run after M1–M3. Record tool version and install path in the session log.
 ## Session log (append-only)
 
 Newest entries at the top. Capture: tool version, install path, result, root cause, change made, follow-up.
+
+### 2026-06-30 — M7 complete
+
+- **Attempted:** Seed skills.sh index via telemetry install from temp project dir.
+- **Environment:** Windows 10; skills CLI (npm `skills@1.5.14` via npx); Cursor CLI detected.
+- **Command:** `npx skills add dapih/cobaduluk --skill excel-to-json --all -y` (cwd: `%TEMP%\etj-m7-*`, not plugin root)
+- **Result:** success
+- **Verified:**
+  - Install exit 0; skill copied to `.agents/skills/excel-to-json/SKILL.md` in temp dir
+  - Listing live: [skills.sh/dapih/cobaduluk/excel-to-json](https://skills.sh/dapih/cobaduluk/excel-to-json) — First Seen: Today; Gen Agent Trust Hub + Snyk: Pass
+  - Install command on page: `npx skills add https://github.com/dapih/cobaduluk --skill excel-to-json`
+- **Follow-up:** Optional `git tag v0.1.0` (CP5); manual runtime smoke for Claude Code / Hermes when those CLIs are available
 
 ### 2026-06-30 — M6 complete
 

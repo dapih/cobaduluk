@@ -39,7 +39,7 @@ isProject: false
 
 ## Resume guide
 
-**Status:** M5 complete · **Next milestone: M6** (manual smoke test matrix) · **M7** after public repo + `npx skills add` telemetry
+**Status:** M0–M7 complete · **Remaining:** CP5 `git tag v0.1.0`; optional manual runtime smoke (Claude Code, Hermes)
 
 | Item | Location |
 |---|---|
@@ -305,7 +305,7 @@ Track in [`design/cross-tool-compat.md`](design/cross-tool-compat.md):
 | **M4** | Workflow adapters (Kilo + Antigravity) | Commands reference resolver | pending |
 | **M5** | Public release (LICENSE, tag v0.1.0) | `verify_install.py` pass | pending |
 | **M6** | Smoke matrix complete (8 tools) | All rows pass or documented workaround | pending |
-| **M7** | skills.sh indexed | `npx skills add` telemetry run | pending |
+| **M7** | skills.sh indexed | `npx skills add` telemetry run | **done** | 2026-06-30 |
 
 **Checkpoints** (do not advance milestone until checkpoint passes):
 

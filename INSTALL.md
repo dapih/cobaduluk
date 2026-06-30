@@ -92,7 +92,7 @@ npx skills add dapih/cobaduluk --skill excel-to-json --agent hermes-agent -y
 npx skills add dapih/cobaduluk --skill excel-to-json --all -y
 ```
 
-**skills.sh listing:** after the repo is public, run one install yourself — telemetry adds it to [skills.sh](https://skills.sh). No separate submission form.
+**skills.sh listing:** [skills.sh/dapih/cobaduluk/excel-to-json](https://skills.sh/dapih/cobaduluk/excel-to-json) — seeded 2026-06-30 via `npx skills add dapih/cobaduluk --skill excel-to-json --all -y`. No separate submission form.
 
 Browse skills via the **Skills.sh** VS Code extension (`AbelMak/skills-sh`).
 
