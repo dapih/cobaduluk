@@ -16,68 +16,17 @@ Mirrors created (relative to plugin root):
 from __future__ import annotations
 
 import argparse
-import os
-import shutil
 import sys
 from pathlib import Path
 
-MIRRORS = (
-    ".agents/skills/excel-to-json",
-    ".cursor/skills/excel-to-json",
-    ".kilo/skills/excel-to-json",
-    ".opencode/skills/excel-to-json",
-)
-CANONICAL = Path("skills/excel-to-json")
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from install_adapters import install_plugin_dev_mirrors
 
 
 def plugin_root(explicit: str | None) -> Path:
     if explicit:
         return Path(explicit).resolve()
     return Path(__file__).resolve().parent.parent
-
-
-def link_exists(path: Path, target: Path) -> bool:
-    if not path.exists():
-        return False
-    try:
-        return path.resolve() == target.resolve()
-    except OSError:
-        return False
-
-
-def create_link(link: Path, target: Path, dry_run: bool, replace_copies: bool) -> None:
-    link.parent.mkdir(parents=True, exist_ok=True)
-    if link.exists() or link.is_symlink():
-        if link_exists(link, target):
-            print(f"OK  {link} -> {target}")
-            return
-        if link.is_dir() and not link.is_symlink():
-            if not replace_copies:
-                raise RuntimeError(
-                    f"{link} exists and is not a link to {target} "
-                    f"(re-run with --replace-copies after npx skills add copied into repo)"
-                )
-            if dry_run:
-                print(f"REMOVE copy {link}")
-            else:
-                shutil.rmtree(link)
-        elif not dry_run:
-            link.unlink()
-    if dry_run:
-        print(f"LINK {link} -> {target}")
-        return
-    if os.name == "nt":
-        import subprocess
-
-        subprocess.run(
-            ["cmd", "/c", "mklink", "/J", str(link), str(target)],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-    else:
-        link.symlink_to(target, target_is_directory=True)
-    print(f"OK  {link} -> {target}")
 
 
 def main() -> None:
@@ -91,15 +40,17 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    if args.dry_run:
+        print("DRY RUN: would link plugin dev mirrors under", plugin_root(args.root))
+        return
+
     root = plugin_root(args.root)
-    target = (root / CANONICAL).resolve()
-    skill_md = target / "SKILL.md"
+    skill_md = root / "skills/excel-to-json/SKILL.md"
     if not skill_md.is_file():
         print(f"ERROR: canonical skill missing: {skill_md}", file=sys.stderr)
         sys.exit(1)
 
-    for rel in MIRRORS:
-        create_link(root / rel, target, args.dry_run, args.replace_copies)
+    install_plugin_dev_mirrors(root, replace_copies=args.replace_copies)
 
 
 if __name__ == "__main__":

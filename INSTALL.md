@@ -1,14 +1,14 @@
 # Install excel-to-json
 
-Pick **one path** below. You only need Python 3.9+ and Git.
+Pick **one path** below. You need **Python 3.9+**, **Git**, and (for most agents) a **project folder** where your spreadsheets live.
 
 ---
 
 ## Which tool do you use?
 
-### Claude Code → marketplace (easiest)
+### Claude Code
 
-No clone. Everything installs in one step inside Claude Code:
+No clone. Install inside Claude Code:
 
 ```text
 /plugin marketplace add dapih/cobaduluk
@@ -17,17 +17,19 @@ No clone. Everything installs in one step inside Claude Code:
 
 Then run `/excel-to-json:run path/to/file.xlsx`.
 
-**Project-level plugin** (optional): enable in `.claude/settings.json`:
+---
 
-```json
-{ "enabledPlugins": { "excel-to-json@cobaduluk": true } }
-```
+### Cursor (marketplace plugin)
+
+This repo includes [`.cursor-plugin/`](.cursor-plugin/) — the **official Cursor plugin manifest** (same role as `.claude-plugin/` for Claude Code). Submit or install via [Cursor marketplace](https://cursor.com/marketplace) when listed.
+
+For local / nested use, run **bootstrap** below — it installs `.cursor/skills/` and `.cursor/rules/` at your **project root**.
 
 ---
 
 ### Cursor, Codex, Kilo, OpenCode, Antigravity, OpenClaw, Windsurf, …
 
-**One command** from your **project root** (where your app or spreadsheets live):
+**One command** from your **project root**:
 
 **macOS / Linux**
 
@@ -41,47 +43,73 @@ curl -fsSL https://raw.githubusercontent.com/dapih/cobaduluk/main/install.sh | b
 irm https://raw.githubusercontent.com/dapih/cobaduluk/main/install.ps1 | iex
 ```
 
-**Or without curl** (same result):
+**Or without curl:**
 
 ```bash
 git clone --depth 1 https://github.com/dapih/cobaduluk.git tools/excel-to-json
 python tools/excel-to-json/scripts/bootstrap.py
 ```
 
-That single flow:
+Bootstrap will:
 
-1. Clones the plugin into `tools/excel-to-json/` (scripts, skill, workflows)
-2. Installs Python dependencies (`openpyxl`, `jsonschema`)
-3. Links the skill for your agent (`.cursor/skills/`, `.agents/skills/`, etc.)
-4. Runs a verification check
+1. Install Python dependencies (`openpyxl`, `jsonschema`)
+2. Detect your OS (Windows junction vs macOS/Linux symlink; copy fallback)
+3. Install **per-agent adapters at your project root** (not only inside `tools/excel-to-json/`)
+4. Write `.excel-to-json.json` (plugin path for `resolve_plugin_root.py`)
+5. Run verification
 
-**You do not need `npx skills add`** when you use this path — the clone already includes the skill.
+**Choose agents explicitly (optional):**
 
-**Then:** open the project in your agent and say something like *“Convert this Excel file to JSON”* or *“Run the excel-to-json pipeline on `data/report.xlsx`”*.
+```bash
+python tools/excel-to-json/scripts/bootstrap.py --agents cursor,kilo,antigravity
+python tools/excel-to-json/scripts/bootstrap.py --agents all
+```
 
-| Tool | After install |
+| Agent | What bootstrap installs at **project root** |
 |---|---|
-| **Cursor** | Skill auto-loaded; rule at `.cursor/rules/excel-to-json.mdc` when repo is workspace root, or skill mirror under `tools/excel-to-json/.cursor/skills/` |
-| **Codex / OpenCode** | Skill at `tools/excel-to-json/.agents/skills/excel-to-json/` |
-| **Kilo** | `/excel-to-json-run`, `/excel-to-json-inspect`, … in `tools/excel-to-json/.kilo/commands/` |
-| **Antigravity** | Workflow `tools/excel-to-json/.agents/workflows/excel-to-json-run.md` |
+| **Cursor** | `.cursor/skills/excel-to-json/`, `.cursor/rules/excel-to-json.mdc` |
+| **Codex / OpenClaw** | `.agents/skills/excel-to-json/` |
+| **OpenCode** | `.opencode/skills/excel-to-json/` |
+| **Antigravity** | `.agents/skills/` + `.agents/workflows/excel-to-json-run.md` |
+| **Kilo** | `.kilo/skills/`, `.kilo/commands/excel-to-json-*.md`, `.kilo/kilo.jsonc` stub |
 
-**Where outputs go:** `docs/<job-id>/` under **your project root**, not inside `tools/excel-to-json/`.
+**Where outputs go:** `docs/<job-id>/` under **your project root**.
+
+---
+
+## Optional: skills.sh (`npx skills`)
+
+Telemetry / skill-only copy — **not sufficient alone** (no Python scripts):
+
+```bash
+npx skills add dapih/cobaduluk --skill excel-to-json --agent cursor -y
+python tools/excel-to-json/scripts/bootstrap.py --replace-copies
+```
+
+Or during bootstrap:
+
+```bash
+python tools/excel-to-json/scripts/bootstrap.py --with-skills-cli
+```
+
+Use **`skills`** (plural), not `npx skill`.
+
+Listing: [skills.sh/dapih/cobaduluk/excel-to-json](https://skills.sh/dapih/cobaduluk/excel-to-json)
 
 ---
 
 ## Already cloned?
 
-From the plugin folder:
-
-```bash
-python scripts/bootstrap.py
-```
-
-From your project root (nested layout):
+From **project root** (nested layout):
 
 ```bash
 python tools/excel-to-json/scripts/bootstrap.py
+```
+
+From plugin folder (when workspace is the repo itself):
+
+```bash
+python scripts/bootstrap.py --agents all
 ```
 
 ---
@@ -92,52 +120,37 @@ python tools/excel-to-json/scripts/bootstrap.py
 python tools/excel-to-json/scripts/verify_install.py
 ```
 
-Should print `OK: install verification passed`.
-
 ---
 
-## Optional: skills.sh (`npx skills`)
+## Environment overrides
 
-Use this **only** if you want the skill text in an agent directory **without** cloning the repo.
+**Windows (PowerShell):**
 
-```bash
-npx skills add dapih/cobaduluk --skill excel-to-json --agent cursor -y
+```powershell
+$env:EXCEL_TO_JSON_ROOT = "C:\path\to\my-project\tools\excel-to-json"
 ```
 
-Important:
-
-- Use **`skills`** (plural), not `npx skill` — that is a different tool.
-- Skill-only install **does not include Python scripts**. Conversions will fail until you also run the [one-command install](#cursor-codex-kilo-opencode-antigravity-openclaw-windsurf-) above.
-- Listing: [skills.sh/dapih/cobaduluk/excel-to-json](https://skills.sh/dapih/cobaduluk/excel-to-json)
-
----
-
-## Other tools
-
-| Tool | Install |
-|---|---|
-| **Hermes** | `hermes skills tap add dapih/cobaduluk` then `hermes skills install dapih/cobaduluk/excel-to-json` — pair with [full install](#cursor-codex-kilo-opencode-antigravity-openclaw-windsurf-) for scripts |
-| **GitHub Copilot** | `gh skill install dapih/cobaduluk --skill excel-to-json` (gh ≥ 2.90) + [full install](#cursor-codex-kilo-opencode-antigravity-openclaw-windsurf-) for scripts |
-
----
-
-## Troubleshooting
-
-**`npx skill` error: “Expected exactly one package specifier”**  
-You ran `npx skill` (singular). Use `npx skills` or skip it and use the [one-command install](#cursor-codex-kilo-opencode-antigravity-openclaw-windsurf-).
-
-**Agent can’t find scripts**  
-Plugin must live at `tools/excel-to-json/` (or set `EXCEL_TO_JSON_ROOT`):
+**macOS / Linux:**
 
 ```bash
 export EXCEL_TO_JSON_ROOT=/path/to/my-project/tools/excel-to-json
 ```
 
-**Skill mirrors missing after clone on Windows**
+Bootstrap writes `.excel-to-json.json` at project root so `resolve_plugin_root.py` finds the plugin automatically.
+
+---
+
+## Troubleshooting
+
+**Skill copies instead of links (after `npx skills add`)**
 
 ```bash
-python tools/excel-to-json/scripts/link_skill_discovery.py --replace-copies
+python tools/excel-to-json/scripts/bootstrap.py --replace-copies
 ```
+
+**Junction/symlink failed on Windows**
+
+Bootstrap falls back to copy; or set `EXCEL_TO_JSON_FORCE_COPY=1` to force copy.
 
 **SSH clone fails (Claude Code marketplace)**
 

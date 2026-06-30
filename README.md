@@ -17,14 +17,56 @@ Convert one complex Excel table into validated, schema-backed JSON — with a da
 | Your tool | One step |
 |---|---|
 | **Claude Code** | `/plugin marketplace add dapih/cobaduluk` then `/plugin install excel-to-json@cobaduluk` |
-| **Cursor, Codex, Kilo, …** | Run `install.sh` from [INSTALL.md](INSTALL.md) (clone + setup in one go) |
+| **Cursor (marketplace)** | Install from [Cursor marketplace](https://cursor.com/marketplace) when listed (manifest in [`.cursor-plugin/`](.cursor-plugin/)) |
+| **Cursor, Codex, Kilo, … (local)** | Run `install.sh` from [INSTALL.md](INSTALL.md) (clone + bootstrap) |
 
 Full guide: [INSTALL.md](INSTALL.md)
+
+### Bootstrap (local / nested install)
+
+For any agent except Claude Code marketplace, clone the repo into your project (default `tools/excel-to-json`) and run bootstrap once from your **project root**:
+
+```bash
+git clone --depth 1 https://github.com/dapih/cobaduluk.git tools/excel-to-json
+python tools/excel-to-json/scripts/bootstrap.py
+```
+
+Bootstrap installs Python deps, writes **per-agent adapters at your project root** (not only inside the clone), and creates `.excel-to-json.json` so `resolve_plugin_root.py` finds the plugin from any subdirectory.
+
+| Flag | Purpose |
+|---|---|
+| `--agents auto` | Detect agents from project layout / PATH (default) |
+| `--agents all` | Cursor, Codex, OpenCode, Antigravity, Kilo, OpenClaw |
+| `--agents cursor,kilo` | Explicit subset |
+| `--clone --dest tools/excel-to-json` | Shallow-clone then bootstrap in one step |
+| `--replace-copies` | Overwrite existing skill copies (e.g. after `npx skills add`) |
+| `--with-skills-cli` | Optional: also run `npx skills add` for skills.sh telemetry |
+| `--skip-verify` | Skip `verify_install.py` (not recommended) |
+
+**OS behavior:** Windows uses directory junctions; macOS/Linux use symlinks; copy fallback if linking fails.
+
+| Agent | Bootstrap writes at **project root** |
+|---|---|
+| Cursor | `.cursor/skills/excel-to-json/`, `.cursor/rules/excel-to-json.mdc` |
+| Codex / OpenClaw | `.agents/skills/excel-to-json/` |
+| OpenCode | `.opencode/skills/excel-to-json/` |
+| Antigravity | `.agents/skills/` + `.agents/workflows/excel-to-json-run.md` |
+| Kilo | `.kilo/skills/`, `.kilo/commands/excel-to-json-*.md`, `.kilo/kilo.jsonc` stub |
+
+### Plugin manifests
+
+| Tool | Manifest folder | Role |
+|---|---|---|
+| Claude Code | [`.claude-plugin/`](.claude-plugin/) | Marketplace catalog + plugin metadata |
+| Cursor | [`.cursor-plugin/`](.cursor-plugin/) | Same role for Cursor marketplace |
+
+Both point at the repo root (`"source": "."`). Local bootstrap is still recommended for nested clones and multi-agent setups.
 
 Verify after install:
 
 ```bash
 python tools/excel-to-json/scripts/verify_install.py
+python tools/excel-to-json/scripts/smoke_test_compat.py
 ```
 
 | Tool | How to run |
@@ -89,7 +131,9 @@ One table per job. Multiple sheets/tables → multiple jobs.
 ## Layout
 
 ```
-.claude-plugin/                 plugin.json + marketplace.json
+.claude-plugin/                 Claude Code marketplace (plugin.json + marketplace.json)
+.cursor-plugin/                 Cursor marketplace (same layout)
+.excel-to-json.json             written at user project root by bootstrap (plugin path marker)
 .agents/skills/                 cross-tool skill mirror
 .agents/workflows/              Antigravity workflows
 .cursor/skills/                 Cursor skill mirror
@@ -97,14 +141,14 @@ One table per job. Multiple sheets/tables → multiple jobs.
 commands/                       Claude Code slash commands
 agents/                         structure-analyst, schema-designer, parser-builder, dq-reviewer
 skills/excel-to-json/           canonical SKILL.md + references/
-scripts/                        pipeline + verify_install.py, validate_marketplace.py
+scripts/                        pipeline + bootstrap.py, install_adapters.py, verify_install.py
 templates/                      log, data-quality, summary, schema-summary
 rules/                          default normalization + DQ configs
 workflows/full-pipeline.md      canonical step order
 design/                         reuse, roadmap, cross-tool-compat
 memory/learnings.md             cross-job learnings
 families/                       promoted family canonicals
-INSTALL.md                      marketplace install (start here)
+INSTALL.md                      install guide (start here)
 CONTRIBUTING.md                 developer / agent maintainer guide
 ```
 
