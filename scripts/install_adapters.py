@@ -429,7 +429,11 @@ def install_antigravity_workflow_with_rel(
 
 
 def install_plugin_dev_mirrors(plugin_root: Path, *, replace_copies: bool = False) -> None:
-    """Repo-dev mirrors under plugin root (committed junctions in cobaduluk source)."""
+    """Skill mirrors under plugin root (junction/symlink to canonical skill).
+
+    Git checkouts ship duplicate skill trees; replace them so validate_marketplace
+    and agents see a single canonical skill path.
+    """
     target = (plugin_root / CANONICAL_SKILL).resolve()
     for rel in (
         ".agents/skills/excel-to-json",
@@ -437,7 +441,11 @@ def install_plugin_dev_mirrors(plugin_root: Path, *, replace_copies: bool = Fals
         ".kilo/skills/excel-to-json",
         ".opencode/skills/excel-to-json",
     ):
-        link_directory(plugin_root / rel, target, replace_copies=replace_copies)
+        link = plugin_root / rel
+        force = replace_copies
+        if not force and link.exists() and not link_exists(link, target):
+            force = True
+        link_directory(link, target, replace_copies=force)
 
 
 def run_skills_cli(project_root: Path, agents: list[str]) -> None:

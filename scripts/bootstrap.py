@@ -12,7 +12,7 @@ What it does:
     1. Optional shallow git clone into --dest
     2. pip install -r requirements.txt
     3. Per-agent adapters at project root (OS-aware links; see install_adapters.py)
-    4. Plugin-internal dev mirrors when project root == plugin root
+    4. Plugin-internal dev mirrors inside the clone (always; required for verify)
     5. verify_install.py
 
 Exit: 0 success, 1 failure.
@@ -103,9 +103,8 @@ def bootstrap(
         plugin_rel=plugin_rel,
     )
 
-    if project_root.resolve() == plugin_root_path.resolve():
-        print("-> plugin dev mirrors (repo checkout)")
-        install_plugin_dev_mirrors(plugin_root_path, replace_copies=replace_copies)
+    print("-> plugin dev mirrors (inside clone)")
+    install_plugin_dev_mirrors(plugin_root_path, replace_copies=replace_copies)
 
     if with_skills_cli:
         print("-> optional skills.sh telemetry")
