@@ -12,6 +12,7 @@ Exit: 0 all structural checks pass, 1 failure.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import subprocess
 import sys
@@ -20,6 +21,8 @@ import textwrap
 from pathlib import Path
 
 CANONICAL_SKILL = Path("skills/excel-to-json/SKILL.md")
+NESTED_PLUGIN_REL = "tools/excel-to-json"
+BOOTSTRAP_AGENTS = ("cursor", "codex", "opencode", "antigravity", "kilo", "openclaw")
 
 TOOL_CHECKS: dict[str, dict] = {
     "claude-code": {
@@ -31,7 +34,12 @@ TOOL_CHECKS: dict[str, dict] = {
         "min_commands": 8,
     },
     "cursor": {
-        "paths": (".cursor/skills/excel-to-json/SKILL.md", ".cursor/rules/excel-to-json.mdc"),
+        "paths": (
+            ".cursor/skills/excel-to-json/SKILL.md",
+            ".cursor/rules/excel-to-json.mdc",
+            ".cursor-plugin/marketplace.json",
+            ".cursor-plugin/plugin.json",
+        ),
         "rule_max_lines": 20,
         "rule_must_contain": "load skill",
     },
@@ -61,7 +69,34 @@ TOOL_CHECKS: dict[str, dict] = {
     },
     "hermes": {
         "paths": ("skills/excel-to-json/SKILL.md", "INSTALL.md"),
-        "file_must_contain": [("INSTALL.md", "hermes skills tap add")],
+        "file_must_contain": [("INSTALL.md", "npx skills add")],
+    },
+}
+
+
+# Paths bootstrap.py writes at the *user project root* (--agents all).
+PROJECT_BOOTSTRAP_CHECKS: dict[str, dict] = {
+    "cursor": {
+        "paths": (".cursor/skills/excel-to-json/SKILL.md", ".cursor/rules/excel-to-json.mdc"),
+        "rule_max_lines": 20,
+        "rule_must_contain": "load skill",
+    },
+    "codex": {"paths": (".agents/skills/excel-to-json/SKILL.md",)},
+    "opencode": {"paths": (".opencode/skills/excel-to-json/SKILL.md",)},
+    "antigravity": {
+        "paths": (
+            ".agents/skills/excel-to-json/SKILL.md",
+            ".agents/workflows/excel-to-json-run.md",
+        ),
+    },
+    "openclaw": {"paths": (".agents/skills/excel-to-json/SKILL.md",)},
+    "kilo": {
+        "paths": (
+            ".kilo/skills/excel-to-json/SKILL.md",
+            ".kilo/kilo.jsonc",
+            ".kilo/commands/excel-to-json-run.md",
+        ),
+        "min_kilo_commands": 6,
     },
 }
 
@@ -100,9 +135,15 @@ def read_skill_frontmatter(root: Path) -> tuple[str, str]:
     return name.group(1).strip(), desc.group(1).strip()
 
 
-def check_tool(root: Path, tool: str, spec: dict) -> list[str]:
+def check_tool(
+    root: Path,
+    tool: str,
+    spec: dict,
+    *,
+    canon_root: Path | None = None,
+) -> list[str]:
     errors: list[str] = []
-    canon = canonical(root)
+    canon = canonical(canon_root or root)
 
     for rel in spec.get("paths", ()):
         p = root / rel
@@ -155,34 +196,90 @@ def run_subprocess(root: Path, script: str, *args: str) -> None:
         raise RuntimeError(f"{script} failed:\n{proc.stdout}\n{proc.stderr}")
 
 
-def nested_install(root: Path) -> None:
+def link_plugin_into_project(project: Path, nested: Path, plugin_root: Path) -> None:
+    nested.parent.mkdir(parents=True, exist_ok=True)
+    if sys.platform == "win32":
+        subprocess.run(
+            ["cmd", "/c", "mklink", "/J", str(nested), str(plugin_root)],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+    else:
+        nested.symlink_to(plugin_root, target_is_directory=True)
+
+
+def nested_bootstrap_smoke(plugin_root: Path) -> list[str]:
+    """Simulate nested install (junction/symlink) + bootstrap --agents all.
+
+    Validates:
+      - .excel-to-json.json pluginRoot is the logical nested path (not a resolved relpath)
+      - per-agent adapters at the simulated project root
+      - resolve_plugin_root.py from the project cwd
+    """
+    errors: list[str] = []
     with tempfile.TemporaryDirectory() as tmp:
         project = Path(tmp) / "my-app"
-        nested = project / "tools" / "excel-to-json"
-        nested.parent.mkdir(parents=True)
-
-        # Junction/symlink whole plugin into nested path (Windows junction)
-        if sys.platform == "win32":
-            subprocess.run(
-                ["cmd", "/c", "mklink", "/J", str(nested), str(root)],
-                check=True,
-                capture_output=True,
-                text=True,
-            )
-        else:
-            nested.symlink_to(root, target_is_directory=True)
+        nested = project / NESTED_PLUGIN_REL
+        link_plugin_into_project(project, nested, plugin_root)
 
         proc = subprocess.run(
+            [
+                sys.executable,
+                str(nested / "scripts" / "bootstrap.py"),
+                "--agents",
+                "all",
+                "--skip-verify",
+            ],
+            cwd=str(project),
+            capture_output=True,
+            text=True,
+        )
+        if proc.returncode != 0:
+            errors.append(
+                f"nested bootstrap failed (exit {proc.returncode}):\n{proc.stdout}\n{proc.stderr}"
+            )
+            return errors
+
+        marker = project / ".excel-to-json.json"
+        if not marker.is_file():
+            errors.append("nested bootstrap: missing .excel-to-json.json")
+        else:
+            try:
+                data = json.loads(marker.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                errors.append(f"nested bootstrap: invalid .excel-to-json.json: {exc}")
+                data = {}
+            if data.get("pluginRoot") != NESTED_PLUGIN_REL:
+                errors.append(
+                    f"nested bootstrap: pluginRoot={data.get('pluginRoot')!r} "
+                    f"!= {NESTED_PLUGIN_REL!r}"
+                )
+            installed = sorted(data.get("agents") or [])
+            if installed != sorted(BOOTSTRAP_AGENTS):
+                errors.append(
+                    f"nested bootstrap: agents={installed!r} != {sorted(BOOTSTRAP_AGENTS)!r}"
+                )
+
+        for tool, spec in PROJECT_BOOTSTRAP_CHECKS.items():
+            errors.extend(check_tool(project, tool, spec, canon_root=plugin_root))
+
+        resolver = subprocess.run(
             [sys.executable, str(nested / "scripts" / "resolve_plugin_root.py")],
             cwd=str(project),
             capture_output=True,
             text=True,
         )
-        if proc.returncode != 0 or Path(proc.stdout.strip()) != root:
-            raise RuntimeError(
-                f"nested resolver failed from {project}: "
-                f"code={proc.returncode} out={proc.stdout!r} err={proc.stderr!r}"
+        if resolver.returncode != 0:
+            errors.append(
+                f"nested resolver failed: code={resolver.returncode} err={resolver.stderr!r}"
             )
+        elif Path(resolver.stdout.strip()) != plugin_root.resolve():
+            errors.append(
+                f"nested resolver: {resolver.stdout.strip()!r} != {plugin_root.resolve()!r}"
+            )
+
+    return errors
 
 
 def probe_cli(name: str) -> str | None:
@@ -232,12 +329,14 @@ def main() -> None:
         failures.append(str(exc))
 
     if args.nested:
-        try:
-            nested_install(root)
-            print("OK  nested install resolver")
-        except (RuntimeError, subprocess.CalledProcessError) as exc:
-            failures.append(f"nested install: {exc}")
-            print(f"FAIL nested install: {exc}")
+        nested_errors = nested_bootstrap_smoke(root)
+        if nested_errors:
+            failures.extend(nested_errors)
+            print("FAIL nested bootstrap")
+            for e in nested_errors:
+                print(f"      {e}")
+        else:
+            print("OK  nested bootstrap (project adapters + resolver)")
 
     for cli in ("hermes", "codex", "cursor", "npx"):
         found = probe_cli(cli)

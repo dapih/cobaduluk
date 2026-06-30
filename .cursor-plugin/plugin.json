@@ -1,0 +1,13 @@
+{
+  "name": "excel-to-json",
+  "version": "0.1.0",
+  "description": "Convert complex Excel tables into validated, schema-backed JSON through a deterministic, token-frugal pipeline.",
+  "author": {
+    "name": "Davi Muammar"
+  },
+  "keywords": ["excel", "xlsx", "json", "json-schema", "etl", "data-quality", "conversion"],
+  "skills": "skills",
+  "rules": ".cursor/rules",
+  "agents": "agents",
+  "commands": "commands"
+}

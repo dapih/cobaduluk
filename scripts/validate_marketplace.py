@@ -32,6 +32,8 @@ KILO_COMMANDS = (
     ".kilo/commands/excel-to-json-review.md",
 )
 AGENTS_WORKFLOWS = (".agents/workflows/excel-to-json-run.md",)
+CURSOR_PLUGIN = Path(".cursor-plugin/plugin.json")
+CURSOR_MARKETPLACE = Path(".cursor-plugin/marketplace.json")
 
 
 def plugin_root(explicit: str | None) -> Path:
@@ -112,6 +114,17 @@ def validate_marketplace(root: Path) -> None:
 
     if not (root / SKILL_PATH).is_file():
         fail(f"missing canonical skill: {SKILL_PATH.as_posix()}")
+
+    if not (root / CURSOR_PLUGIN).is_file():
+        fail(f"missing Cursor plugin manifest: {CURSOR_PLUGIN.as_posix()}")
+    if not (root / CURSOR_MARKETPLACE).is_file():
+        fail(f"missing Cursor marketplace manifest: {CURSOR_MARKETPLACE.as_posix()}")
+    cursor_plugin = load_json(root / CURSOR_PLUGIN)
+    if cursor_plugin.get("name") != plugin_manifest.get("name"):
+        fail(
+            f".cursor-plugin/plugin.json name {cursor_plugin.get('name')!r} "
+            f"!= plugin.json name {plugin_manifest.get('name')!r}"
+        )
 
     canonical = (root / SKILL_PATH).resolve()
     for mirror in DISCOVERY_MIRRORS:
