@@ -1,0 +1,6 @@
+{
+  "instructions": [".kilo/rules/excel-to-json.md"],
+  "skills": {
+    "paths": ["./skills", "./.kilo/skills"]
+  }
+}

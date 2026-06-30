@@ -9,9 +9,13 @@ color: yellow
 You write and refine `docs/<job>/<job>.parser.py`, producing `docs/<job>/<job>.json`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/parsing-patterns.md` and `normalization-rules.md`, plus the mapping in `log-<job>.md` and the schema. Load prior learnings first — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags normalization,structure,tooling` — and apply the matching normalization/structure decisions.
 
 ## Write a small, reviewable parser
-- Import shared helpers; keep only table-specific shape in the parser. The job folder is in the user's project, **not** under the plugin, so write the **absolute** resolved `${CLAUDE_PLUGIN_ROOT}/scripts` path literally (do not derive it relative to the parser file):
+- Before writing the parser, resolve the plugin root and embed the scripts path literally:
+  ```bash
+  python "<path-to-plugin>/scripts/resolve_plugin_root.py"
+  ```
+- Import shared helpers; keep only table-specific shape in the parser. The job folder is in the user's project, **not** under the plugin:
   ```python
-  import sys; sys.path.insert(0, r"<resolved ${CLAUDE_PLUGIN_ROOT}>/scripts")
+  import sys; sys.path.insert(0, r"<resolver output>/scripts")
   from parser_lib import clean, dehyphenate, nest_by_pattern, dedupe, as_int_str, write_json
   ```
 - Apply hyphenation per the table: `dehyphenate(clean(v))` by default; `dehyphenate(clean(v), merge_no_space=True)` when the inspect samples show intra-word line-break hyphens (reduplication stays protected).

@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "id": "001",
+      "name": "Sample Widget",
+      "variants": [
+        {
+          "tier": "standard",
+          "regions": ["North", "South"],
+          "notes": [
+            {
+              "teks": "1. Assembly required",
+              "sub": [
+                { "teks": "a. Tools included" },
+                { "teks": "b. Estimated time 20 minutes" }
+              ]
+            },
+            { "teks": "2. Warranty 12 months" }
+          ]
+        },
+        {
+          "tier": "premium",
+          "regions": ["North"],
+          "notes": [
+            { "teks": "1. Pre-assembled" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "002",
+      "name": "Sample Gadget",
+      "variants": [
+        {
+          "tier": "basic",
+          "regions": ["East", "West"],
+          "notes": []
+        }
+      ]
+    }
+  ]
+}

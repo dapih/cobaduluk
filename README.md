@@ -12,42 +12,38 @@ Convert one complex Excel table into validated, schema-backed JSON — with a da
 
 ## Prerequisites
 
-- Python 3.9+ on PATH
-- `pip install openpyxl jsonschema`
+- Python 3.9+
+- `pip install -r requirements.txt`
 
 ## Install
 
-The plugin root is this folder (the one containing `workflows/full-pipeline.md`). Place it wherever your AI tool can reach it, then follow the per-tool setup below.
+**Recommended:** [INSTALL.md](INSTALL.md) — marketplace and one-command installs per tool.
 
-**Prerequisites:** Python 3.9+ · `pip install openpyxl jsonschema`
+```text
+# Claude Code
+/plugin marketplace add dapih/cobaduluk
+/plugin install excel-to-json@cobaduluk
 
-### Claude Code
-
-**Option A — global** (available in all projects): copy the whole folder into the Claude plugins cache and enable it:
+# Cursor, Codex, Kilo, OpenCode, Antigravity, OpenClaw, Hermes, 60+ tools
+npx skills add dapih/cobaduluk --skill excel-to-json --agent cursor -y
+git clone https://github.com/dapih/cobaduluk.git tools/excel-to-json
+cd tools/excel-to-json && pip install -r requirements.txt && python scripts/link_skill_discovery.py
 ```
-~/.claude/plugins/cache/local/excel-to-json/0.1.0/
+
+Verify after install:
+
+```bash
+python scripts/verify_install.py
 ```
-Add to `~/.claude/settings.json`: `"enabledPlugins": { "excel-to-json@local": true }`
 
-**Option B — project-level**: copy into `my-project/.claude/plugins/excel-to-json/` and add the same `enabledPlugins` entry to `my-project/.claude/settings.json`.
+| Tool | Entry |
+|---|---|
+| Claude Code | `/excel-to-json:run` via marketplace above |
+| Cursor / Codex / OpenCode | `.agents/skills/` or `.cursor/skills/` + clone for scripts |
+| Kilo | `/excel-to-json-run` and related commands in `.kilo/commands/` |
+| Antigravity | `.agents/workflows/excel-to-json-run.md` |
 
-> If the paths above don't work, open the plugin folder itself as your working directory — Claude Code auto-loads from CWD. Commands appear as `/excel-to-json:<command>`; assets resolve via `${CLAUDE_PLUGIN_ROOT}`.
-
-### Cursor
-
-Copy or clone this folder anywhere inside your project. Cursor reads `.cursor/rules/excel-to-json.mdc` (already included) automatically when you reference Excel/JSON conversion. No further configuration needed.
-
-### Kilo Code
-
-Copy or clone this folder inside your project. Kilo Code reads `.kilocode/rules/excel-to-json.md` (already included). Enable it in Kilo Code's rules panel if required.
-
-### Codex CLI · Opencode · Antigravity CLI
-
-These tools read `AGENTS.md` from the project root. Point them at this folder as the working directory (or copy `AGENTS.md` into your project root). The full pipeline context and constraints are already in `AGENTS.md`.
-
----
-
-For all non-Claude-Code tools, scripts resolve to `<git rev-parse --show-toplevel>/scripts/`. Job outputs always go into `docs/` in the working directory.
+Legacy manual install paths: [INSTALL.md](INSTALL.md). Job outputs go under `docs/` in your project root.
 
 ## The pipeline
 
@@ -102,17 +98,23 @@ One table per job. Multiple sheets/tables → multiple jobs.
 ## Layout
 
 ```
-.claude-plugin/plugin.json      manifest
-commands/                       8 entry-point commands
+.claude-plugin/                 plugin.json + marketplace.json
+.agents/skills/                 cross-tool skill mirror
+.agents/workflows/              Antigravity workflows
+.cursor/skills/                 Cursor skill mirror
+.kilo/commands/                 Kilo slash commands
+commands/                       Claude Code slash commands
 agents/                         structure-analyst, schema-designer, parser-builder, dq-reviewer
-skills/excel-to-json/           SKILL.md + references/ (patterns, schema, normalization, DQ, conventions, examples)
-scripts/                        inspect_xlsx, validate_json, dq_check, parser_lib, fingerprint, match_profile, promote_family, conformance, learnings
-templates/                      log, data-quality, summary, schema-summary report templates
-rules/                          default normalization + DQ-check configs (tunable per job)
+skills/excel-to-json/           canonical SKILL.md + references/
+scripts/                        pipeline + verify_install.py, validate_marketplace.py
+templates/                      log, data-quality, summary, schema-summary
+rules/                          default normalization + DQ configs
 workflows/full-pipeline.md      canonical step order
-design/reuse.md                 same-family reuse design (fingerprint, families, tiers)
-memory/learnings.md             cross-job, domain-agnostic learnings
-families/                       promoted family canonicals (created by /promote)
+design/                         reuse, roadmap, cross-tool-compat
+memory/learnings.md             cross-job learnings
+families/                       promoted family canonicals
+INSTALL.md                      marketplace install (start here)
+CONTRIBUTING.md                 developer / agent maintainer guide
 ```
 
 ## Scripts (also usable standalone)
@@ -132,3 +134,7 @@ python scripts/learnings.py      --tags structure,tooling   # or: --lint --entry
 
 - `parser_lib.dehyphenate(..., merge_no_space=True)` repairs intra-word line-break hyphens (`pe-nangkap`→`penangkap`) while `protect_reduplication=True` keeps reduplications (`undang-undang`) intact — useful for Indonesian/Malay and other reduplicating languages.
 - For many independent tables, run separate jobs in parallel (e.g. via your agent swarm). Within a single table, parsing is deterministic and needs no parallelism.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

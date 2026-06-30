@@ -1,0 +1,9 @@
+{
+  "skills": [
+    {
+      "name": "excel-to-json",
+      "description": "Convert complex Excel/xlsx tables into validated, schema-backed JSON with a token-frugal inspect → schema → parse → validate pipeline.",
+      "files": ["skills/excel-to-json/SKILL.md"]
+    }
+  ]
+}

@@ -2,6 +2,16 @@
 
 The ordered procedure the `run` command follows. Each step names the tool that does it and whether it is a confirmation gate. Techniques for each step live in the skill references; this file is the *order of operations*.
 
+## Plugin root
+
+Resolve once per session before running scripts:
+
+```bash
+PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+```
+
+Claude Code: `${CLAUDE_PLUGIN_ROOT}` is set by the harness (use it when available). Other tools: invoke `resolve_plugin_root.py` by path to your clone, or set `EXCEL_TO_JSON_ROOT`. See `INSTALL.md`.
+
 Legend: 🤖 = deterministic script · 🧠 = agent (judgment) · ⛔ = confirmation gate (skip only in `--autonomous`).
 
 | # | Step | Tool | Gate | Output |
@@ -28,7 +38,7 @@ Legend: 🤖 = deterministic script · 🧠 = agent (judgment) · ⛔ = confirma
 
 ## Reuse from a past family (step 2c)
 After inspect, score the new table against the promoted-family store:
-`python "${CLAUDE_PLUGIN_ROOT}/scripts/match_profile.py" docs/<job>/<job>.inspect.json`
+`python "$PLUGIN_ROOT/scripts/match_profile.py" docs/<job>/<job>.inspect.json`
 Matching is by structural fingerprint, not headers (see `design/reuse.md`). Act on the verdict — **always confirm before reusing**:
 - **near-duplicate** (cosine ≥ ~0.95): offer to clone the family canonical schema and the matched member's parser, re-pointing columns; parser-builder then adapts and validates.
 - **same family** (~0.65–0.95): offer to warm-start the schema from the canonical; structure-analyst aligns field names to it and schema-designer adapts the `$defs` / hierarchy.
@@ -37,7 +47,7 @@ Reuse never skips a gate — the parser still proves row conservation and the in
 
 ## Family conformance & evolution (medium tier, step 4b)
 On a same-family match, once the schema is drafted, quantify how this table differs from the canonical:
-`python "${CLAUDE_PLUGIN_ROOT}/scripts/conformance.py" docs/<job>/<job>.inspect.json --name <family> --job-schema docs/<job>/<job>.schema.json`
+`python "$PLUGIN_ROOT/scripts/conformance.py" docs/<job>/<job>.inspect.json --name <family> --job-schema docs/<job>/<job>.schema.json`
 It reports header, structural-feature, and schema `$def`/field deltas vs the **canonical member**, plus an advisory verdict (`conforms` / `same-family-with-delta` / `divergent`). Use it for the **evolve-or-keep** decision (a ⛔ gate — manual, at the user's discretion):
 - **KEEP** — the delta is table-specific; handle it in this job only. Optionally register the table as a member without changing the canonical: `promote_family.py <job> --name <family> --force`.
 - **EVOLVE** — the delta should become the family standard; adopt this job's schema as a new canonical version: `promote_family.py <job> --name <family> --force --evolve` (bumps `canonical_version`).
