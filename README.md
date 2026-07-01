@@ -18,26 +18,38 @@ Convert one complex Excel table into validated, schema-backed JSON — with a da
 |---|---|
 | **Claude Code** | `/plugin marketplace add dapih/cobaduluk` then `/plugin install excel-to-json@cobaduluk` |
 | **Cursor (marketplace)** | Install from [Cursor marketplace](https://cursor.com/marketplace) when listed (manifest in [`.cursor-plugin/`](.cursor-plugin/)) |
-| **Cursor, Codex, Kilo, … (local)** | Run `install.sh` from [INSTALL.md](INSTALL.md) (clone + bootstrap) |
+| **Cursor, Codex, Kilo, … (local)** | Run `install.sh` / `install.ps1` from [INSTALL.md](INSTALL.md) (interactive clone + bootstrap) |
 
 Full guide: [INSTALL.md](INSTALL.md)
 
+### One-command install (interactive)
+
+From your **project root** — prompts for which agents to configure (Cursor, Kilo, Codex, …):
+
+**macOS / Linux:** `curl -fsSL https://raw.githubusercontent.com/dapih/cobaduluk/main/install.sh | bash`
+
+**Windows (PowerShell):** `irm https://raw.githubusercontent.com/dapih/cobaduluk/main/install.ps1 | iex`
+
+Non-interactive: `install.ps1 -NonInteractive` or `NON_INTERACTIVE=1 bash install.sh`
+
 ### Bootstrap (local / nested install)
 
-For any agent except Claude Code marketplace, clone the repo into your project (default `excel-to-json`) and run bootstrap once from your **project root**:
+For any agent except Claude Code marketplace, clone the repo into your project (default `excel-to-json/`) and run bootstrap once from your **project root**:
 
 ```bash
 git clone --depth 1 https://github.com/dapih/cobaduluk.git excel-to-json
-python excel-to-json/scripts/bootstrap.py
+python excel-to-json/scripts/bootstrap.py --interactive
 ```
 
-Bootstrap installs Python deps, writes **per-agent adapters at your project root** (not only inside the clone), and creates `.excel-to-json.json` so `resolve_plugin_root.py` finds the plugin from any subdirectory.
+Bootstrap installs Python deps, writes **per-agent adapters at your project root** (not inside the clone), strips duplicate skill mirrors from `excel-to-json/`, and creates `.excel-to-json.json` so `resolve_plugin_root.py` finds the plugin from any subdirectory.
 
 | Flag | Purpose |
 |---|---|
-| `--agents auto` | Detect agents from project layout / PATH (default) |
+| `--interactive` | Prompt for agents and scope (default when using `install.ps1` / `install.sh`) |
+| `--non-interactive` | Skip prompts; use `--agents` below |
+| `--agents auto` | Detect agents from project layout / PATH (non-interactive default) |
 | `--agents all` | Cursor, Codex, OpenCode, Antigravity, Kilo, OpenClaw |
-| `--agents cursor,kilo` | Explicit subset |
+| `--agents cursor,kilo` | Explicit subset (use for Kilo if VS Code extension is not on PATH) |
 | `--clone --dest excel-to-json` | Shallow-clone then bootstrap in one step |
 | `--replace-copies` | Overwrite existing skill copies (e.g. after `npx skills add`) |
 | `--with-skills-cli` | Optional: also run `npx skills add` for skills.sh telemetry |
@@ -53,6 +65,19 @@ Bootstrap installs Python deps, writes **per-agent adapters at your project root
 | Antigravity | `.agents/skills/` + `.agents/workflows/excel-to-json-run.md` |
 | Kilo | `.kilo/skills/`, `.kilo/commands/excel-to-json-*.md`, `.kilo/kilo.jsonc` stub |
 
+**User project layout** (after bootstrap):
+
+```
+your-project/
+  excel-to-json/              plugin clone (scripts, workflows, Python)
+  .cursor/  .kilo/  .agents/  agent adapters (project root only)
+  .opencode/                  (if selected)
+  .excel-to-json.json         plugin path marker
+  docs/                       job outputs
+```
+
+Agent tools do **not** read dot-folders inside `excel-to-json/` — only at project root. Kilo Code uses `.kilo/` (not `.kilocode/`).
+
 ### Plugin manifests
 
 | Tool | Manifest folder | Role |
@@ -65,15 +90,15 @@ Both point at the repo root (`"source": "."`). Local bootstrap is still recommen
 Verify after install:
 
 ```bash
-python excel-to-json/scripts/verify_install.py
+python excel-to-json/scripts/verify_install.py --root excel-to-json --project-root .
 python excel-to-json/scripts/smoke_test_compat.py
 ```
 
 | Tool | How to run |
 |---|---|
 | Claude Code | `/excel-to-json:run file.xlsx` |
-| Cursor / Codex / OpenCode | Ask: “Convert this Excel to JSON” |
-| Kilo | `/excel-to-json-run` |
+| Cursor / Codex / OpenCode | Ask: “Convert this Excel to JSON” (natural language; not a `/excel-to-json` slash command) |
+| Kilo | `/excel-to-json-run` (select Kilo in the install prompt, or `--agents kilo`) |
 | Antigravity | `/excel-to-json-run` workflow |
 
 Job outputs go under `docs/` in your project root.
@@ -128,16 +153,17 @@ docs/table-YYYYMMDD-HHMM<am|pm>/
 ```
 One table per job. Multiple sheets/tables → multiple jobs.
 
-## Layout
+## Layout (plugin repository)
+
+Paths below are inside the **cobaduluk** checkout (`excel-to-json/` when nested in your project). After bootstrap, agent adapters also appear at **your project root** — see [Install](#install).
 
 ```
 .claude-plugin/                 Claude Code marketplace (plugin.json + marketplace.json)
 .cursor-plugin/                 Cursor marketplace (same layout)
-.excel-to-json.json             written at user project root by bootstrap (plugin path marker)
-.agents/skills/                 cross-tool skill mirror
-.agents/workflows/              Antigravity workflows
-.cursor/skills/                 Cursor skill mirror
-.kilo/commands/                 Kilo slash commands
+.agents/skills/                 skill mirror (dev checkout; stripped from nested clone)
+.agents/workflows/              Antigravity workflow templates
+.cursor/skills/                 skill mirror (dev checkout)
+.kilo/commands/                 Kilo slash command templates
 commands/                       Claude Code slash commands
 agents/                         structure-analyst, schema-designer, parser-builder, dq-reviewer
 skills/excel-to-json/           canonical SKILL.md + references/
@@ -151,6 +177,8 @@ families/                       promoted family canonicals
 INSTALL.md                      install guide (start here)
 CONTRIBUTING.md                 developer / agent maintainer guide
 ```
+
+At **user project root** after bootstrap: `excel-to-json/`, `.excel-to-json.json`, `.cursor/`, `.kilo/`, `.agents/`, `.opencode/` (as selected), and `docs/` for job output.
 
 ## Scripts (also usable standalone)
 

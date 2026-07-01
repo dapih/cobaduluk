@@ -31,7 +31,7 @@ Do not mark a milestone **done** until its gate passes.
 | **CP2** | `python scripts/verify_install.py` → exit 0 | **pass** | 2026-06-30 |
 | **CP3** | Nested install test — clone into test project, run inspect from parent dir | **pass** | resolver via script path from parent CWD (2026-06-30) |
 | **CP4** | Update session log with test results | **pass** | M6 session log + `smoke_test_compat.py` (2026-06-30) |
-| **CP5** | Git tag + README marketplace section reviewed | partial | README done; run `git tag v0.1.0` when ready to publish |
+| **CP5** | Git tag + README marketplace section reviewed | partial | README + INSTALL updated; `git tag v0.1.0` when ready (gh release blocked on auth) |
 
 ---
 
@@ -42,25 +42,42 @@ Run after M1–M3. Record tool version and install path in the session log.
 | Tool | Marketplace install command | Trigger | Pass criteria | Status |
 |---|---|---|---|---|
 | Claude Code | `/plugin marketplace add dapih/cobaduluk` + `/plugin install excel-to-json@cobaduluk` | `/excel-to-json:inspect` | Plugin root resolves | **structural pass** — manifest + 8 commands; runtime needs Claude Code session |
-| Cursor | `npx skills add dapih/cobaduluk --skill excel-to-json --agent cursor -y` + full clone | natural language | Skill loads, resolver OK | **pass (local)** — `npx skills add . --list` finds skill; nested copy to `.agents/skills/`; rule + mirror OK in this workspace |
+| Cursor | `install.sh` / `install.ps1` (or bootstrap) **or** `npx skills add … --agent cursor` + `--replace-copies` | natural language | Skill at **project root** `.cursor/skills/`, no duplicate in `excel-to-json/` | **pass (local)** — bootstrap + nested smoke; marketplace manifest in `.cursor-plugin/` |
 | Codex | `npx skills add … --agent codex -y` + full clone | `$excel-to-json` | `.agents/skills/` found | **structural pass** — mirror + AGENTS.md; Codex CLI not on PATH |
 | OpenCode | `npx skills add … --agent opencode -y` + full clone | skill tool | Listed in skill tool | **structural pass** — `.opencode/skills/` mirror |
 | Antigravity | `npx skills add … --agent antigravity -y` + full clone | workflow/skill | Skill loads | **structural pass** — `.agents/skills/` + `excel-to-json-run` workflow |
 | OpenClaw | `npx skills add … --agent openclaw -y` + full clone | skill load | `skills/` found | **structural pass** — canonical + `.agents/` mirror |
-| Kilo Code | `npx skills add … --agent kilo -y` + full clone | `/run` command | `.kilo/skills/` found | **structural pass** — 6 commands + `kilo.jsonc`; Kilo runtime not tested |
+| Kilo Code | bootstrap `--agents kilo` (or interactive install) **or** `npx skills add … --agent kilo` + bootstrap | `/excel-to-json-run` | `.kilo/` at **project root** | **structural pass** — 6 commands + `kilo.jsonc`; extension not auto-detected from PATH |
 | Hermes | `hermes skills tap add dapih/cobaduluk` + install | `/excel-to-json` | Skill in `~/.hermes/skills/` | **structural pass** — INSTALL.md tap docs; Hermes CLI not on PATH |
 
 **Automated gate:** `python scripts/smoke_test_compat.py` (structural checks for all 8 + nested resolver).
 
 **Workarounds documented:**
+- **Recommended install:** `install.sh` / `install.ps1` from project root (interactive bootstrap). Clones to `excel-to-json/`, writes adapters at project root, strips duplicate mirrors inside clone.
+- Do **not** rely on `npx skills add` alone — copies skill only, no Python scripts. Use bootstrap or `--replace-copies` after skills CLI.
 - Do **not** run `npx skills add .` from plugin repo root — it copies into `.agents/skills/` and breaks junction mirrors. Use a nested test project, or restore with `python scripts/link_skill_discovery.py --replace-copies`.
-- Until scripts are committed and tagged, nested `git clone dapih/cobaduluk` may miss untracked files (`scripts/resolve_plugin_root.py`, etc.). Remote `npx skills add dapih/cobaduluk --list` works (repo is on GitHub).
+- Legacy path `tools/excel-to-json/` — move to `excel-to-json/` at project root and re-run bootstrap.
 
 ---
 
 ## Session log (append-only)
 
 Newest entries at the top. Capture: tool version, install path, result, root cause, change made, follow-up.
+
+### 2026-06-29 — Bootstrap installers + Cursor marketplace manifest
+
+- **Attempted:** OS-aware per-agent install at project root; interactive `install.ps1` / `install.sh`; `.cursor-plugin/` manifest; nested bootstrap smoke test.
+- **Environment:** Windows 10; Python 3.x; junction/symlink/copy fallback in `install_adapters.py`.
+- **Result:** success (merged to `main`)
+- **Change made:**
+  - [`scripts/install_adapters.py`](../scripts/install_adapters.py), [`scripts/install_prompt.py`](../scripts/install_prompt.py) — interactive agent selection; adapters at user project root
+  - [`scripts/bootstrap.py`](../scripts/bootstrap.py) — `--interactive` / `--non-interactive`; strip nested discovery mirrors; shallow walk for `pluginRoot` on Windows
+  - [`install.ps1`](../install.ps1), [`install.sh`](../install.sh) — default clone path `excel-to-json/`; interactive by default
+  - [`.cursor-plugin/`](../.cursor-plugin/) — Cursor marketplace manifest (parallel to `.claude-plugin/`)
+  - [`scripts/smoke_test_compat.py`](../scripts/smoke_test_compat.py) — nested bootstrap gate (copytree, project-root adapters, no `excel-to-json/.cursor/skills`)
+  - [`README.md`](../README.md), [`INSTALL.md`](../INSTALL.md), [`skills/README.md`](../skills/README.md) — install docs aligned
+- **Verified:** nested bootstrap smoke; resolver from project CWD; duplicate-skill strip when plugin physically under project
+- **Follow-up:** `git tag v0.1.0` + GitHub release when `gh auth login` available; user-global scope still not implemented (prompt documents project-only)
 
 ### 2026-06-30 — M7 complete
 

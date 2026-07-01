@@ -77,9 +77,16 @@ Resolve every WARN before appending. Never append raw without the lint gate.
 
 ```bash
 pip install -r requirements.txt
-python scripts/link_skill_discovery.py      # if discovery mirrors missing
+python scripts/link_skill_discovery.py      # if discovery mirrors missing (dev checkout only)
 python scripts/validate_marketplace.py
 python scripts/verify_install.py
+python scripts/smoke_test_compat.py         # includes nested bootstrap gate
+```
+
+Nested install smoke (from a temp project):
+
+```bash
+python scripts/smoke_test_compat.py
 ```
 
 Tag releases as `v0.1.0` (match `.claude-plugin/plugin.json` version). See [INSTALL.md](INSTALL.md) for marketplace publish steps.

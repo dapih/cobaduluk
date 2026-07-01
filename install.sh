@@ -4,6 +4,7 @@
 #   curl -fsSL https://raw.githubusercontent.com/dapih/cobaduluk/main/install.sh | bash
 # Or:
 #   bash install.sh [dest]
+# Non-interactive: NON_INTERACTIVE=1 bash install.sh
 set -euo pipefail
 
 DEST="${1:-excel-to-json}"
