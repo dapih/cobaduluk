@@ -93,7 +93,7 @@ Row count is not the cost driver, parser complexity is. See [design/pipeline-tok
 
 ## How it works
 
-Before the model writes any code, it studies the inspect report: a fill-rate profile per column and the merged-cell ranges. That's enough to work out the table's shape without reading a single row of data. A column with a low fill rate and a monotonic number usually marks a new entry. One with a similarly low fill rate but a small, repeating set of values usually marks a sub-group sitting between the entry and its details. A text column mixing `1.`, `a.`, and `1)` prefixes is a numbered tree, modeled as a recursive `{teks, sub[]}` node rather than three unrelated columns. That's structural inference, and it transfers cleanly to a completely different table next time.
+Before the model writes any code, it studies the inspect report: a fill-rate profile per column and the merged-cell ranges. That's enough to work out the table's shape without reading a single row of data. A column with a low fill rate and a monotonic number usually marks a new entry. One with a similarly low fill rate but a small, repeating set of values usually marks a sub-group sitting between the entry and its details. A text column mixing `1.`, `a.`, and `1)` prefixes is a numbered tree, modeled as a recursive `{teks, sub[]}` node rather than three unrelated columns. The structural inference transfers cleanly to a completely different table next time.
 
 That reasoning becomes a JSON Schema built to fail loudly. Setting `additionalProperties: false` turns a stray field from the parser into a hard error instead of silent drift. Codes and IDs are typed as strings with a `pattern`, so a leading zero survives instead of being eaten by automatic number coercion. Enums only appear where the inspect report shows a small, genuinely closed set of values. The schema itself gets checked against the JSON Schema meta-schema first, so a malformed schema shows up as a schema error rather than a wall of confusing instance errors.
 
@@ -140,11 +140,11 @@ Reuse is opt-in and never skips the gates: the parser still proves row conservat
 
 ## It learns from every table, not just the ones like it
 
-Reuse, described above, matches tables that share a structure. This section covers something separate: a set of heuristics that sharpens with every job, regardless of the table's subject.
+Reuse feature does not only matches tables that share a structure, it also covers a set of heuristics that sharpens with every job, regardless of the table's subject.
 
 Take one example: a merged cell returns its value only in the top-left cell of the range, so continuation rows read as blank by design. That observation gets generalized, stripped of column letters, field names, and job IDs, then checked against existing entries for near-duplicates. Once you confirm it, it's appended to a plain-text file: `memory/learnings.md`. The next table you convert starts already knowing it.
 
-Each entry is plain text you can open and edit yourself, added only through an explicit approval step. Every agent reads just the slice tagged for its role before it starts reasoning: the parser-builder pulls normalization and structure notes, the schema-designer pulls schema and structure notes. That keeps the store useful for years without bloating any single run's context, so token-frugality holds even as history accumulates.
+Each entry is plain text you can open and edit yourself, added only through an explicit approval step. Every agent reads just the slice tagged for its role: the parser-builder pulls normalization and structure notes, the schema-designer pulls schema and structure notes. That keeps the store useful without bloating any single run's context, so token-efficiency holds even as usage accumulates.
 
 Details in [memory/README.md](memory/README.md).
 
