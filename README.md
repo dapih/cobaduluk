@@ -93,6 +93,14 @@ Row count is not the cost driver, parser complexity is. See [design/pipeline-tok
 
 ## How it works
 
+The model is not just checking its own homework, it is reading the table the way an analyst would, before it writes a single line of code.
+
+The inspect report hands it structural signals, not data: a fill-rate profile for every column, the merged-cell ranges, the blank-row gaps. From those alone, the model reasons out the table's shape. A column that's populated on only one row in every ten, holding a monotonic number? That's an entry boundary. A column with the same low fill rate but a small, repeating set of categorical values? That's a sub-group level sitting between the entry and its details. A text column where some cells start `1.`, others `a.`, others `1)`? That's a numbered tree wearing a spreadsheet disguise, and it gets modeled as a recursive `{teks, sub[]}` node, not three flat, disconnected columns. None of this is domain knowledge about licensing tables or product catalogs, it's structural inference, which is exactly why the same reasoning holds up on the next table, whatever it happens to be about.
+
+That reasoning becomes a JSON Schema, and the schema is written to fail loudly. `additionalProperties: false` turns a stray field the parser emits into an error instead of quiet drift. Codes and IDs are typed as strings with a `pattern`, so a leading zero survives instead of being eaten by "helpful" number coercion. Enums are only used where the inspect report shows a genuinely closed, small set of values, never guessed. And the schema is checked against the JSON Schema meta-schema itself before it's allowed to check anything else, so a malformed schema fails as a schema error, not a confusing pile of instance errors.
+
+Then the guard rails close the loop. Every validation failure is triaged as one of exactly two things: the parser misread the source, or the schema is stricter than the source actually is, never "delete the inconsistent row and move on." And after every run, the parser prints its own accounting: rows seen in, entries and detail items out. If the numbers don't reconcile, that's a bug to fix, not a rounding error to shrug at.
+
 ```mermaid
 flowchart LR
   prepare --> inspect --> map --> schema --> parse --> validate --> dq[data-quality] --> summary
@@ -131,6 +139,16 @@ Tables that share a structure do not have to be converted from scratch. After in
 - **no match:** convert from scratch.
 
 Reuse is opt-in and never skips the gates: the parser still proves row conservation and the instance still validates. Details in [design/reuse.md](design/reuse.md).
+
+## It learns from every table, not just the ones like it
+
+Reuse (above) matches tables that share a structure. This is different: it's a running set of heuristics that gets sharper with every job, regardless of what the table is about.
+
+When a job uncovers something worth remembering, for instance that a merged cell only returns its value in the top-left cell of the range, so continuation rows read as blank by design, that observation doesn't die with the job. It's generalized, stripped of anything table-specific (column letters, field names, job IDs), linted for near-duplicates against what's already recorded, confirmed with you, and appended to a plain-text store: `memory/learnings.md`. The next table you convert, however unrelated, benefits from it.
+
+This is not a model fine-tuning itself or weights changing. It's closer to a lab notebook: durable, readable, auditable notes that each agent consults before it starts reasoning, filtered to only what's relevant to its job (the parser-builder reads normalization and structure notes; the schema-designer reads schema and structure notes) so the store can grow for years without bloating any single run's context or breaking the token-frugality promise above.
+
+Details in [memory/README.md](memory/README.md).
 
 ## Output: the job folder
 
