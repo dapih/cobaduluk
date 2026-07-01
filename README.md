@@ -140,11 +140,11 @@ Reuse is opt-in and never skips the gates: the parser still proves row conservat
 
 ## It learns from every table, not just the ones like it
 
-Reuse (above) matches tables that share a structure. This is different: it's a running set of heuristics that gets sharper with every job, regardless of what the table is about.
+Reuse, described above, matches tables that share a structure. This section covers something separate: a set of heuristics that sharpens with every job, regardless of the table's subject.
 
-When a job uncovers something worth remembering, for instance that a merged cell only returns its value in the top-left cell of the range, so continuation rows read as blank by design, that observation doesn't die with the job. It's generalized, stripped of anything table-specific (column letters, field names, job IDs), linted for near-duplicates against what's already recorded, confirmed with you, and appended to a plain-text store: `memory/learnings.md`. The next table you convert, however unrelated, benefits from it.
+Take one example: a merged cell returns its value only in the top-left cell of the range, so continuation rows read as blank by design. That observation gets generalized, stripped of column letters, field names, and job IDs, then checked against existing entries for near-duplicates. Once you confirm it, it's appended to a plain-text file: `memory/learnings.md`. The next table you convert starts already knowing it.
 
-This is not a model fine-tuning itself or weights changing. It's closer to a lab notebook: durable, readable, auditable notes that each agent consults before it starts reasoning, filtered to only what's relevant to its job (the parser-builder reads normalization and structure notes; the schema-designer reads schema and structure notes) so the store can grow for years without bloating any single run's context or breaking the token-frugality promise above.
+Each entry is plain text you can open and edit yourself, added only through an explicit approval step. Every agent reads just the slice tagged for its role before it starts reasoning: the parser-builder pulls normalization and structure notes, the schema-designer pulls schema and structure notes. That keeps the store useful for years without bloating any single run's context, so token-frugality holds even as history accumulates.
 
 Details in [memory/README.md](memory/README.md).
 
