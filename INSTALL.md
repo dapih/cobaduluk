@@ -53,10 +53,17 @@ python excel-to-json/scripts/bootstrap.py
 Bootstrap will:
 
 1. Install Python dependencies (`openpyxl`, `jsonschema`)
-2. Detect your OS (Windows junction vs macOS/Linux symlink; copy fallback)
-3. Install **per-agent adapters at your project root** (not only inside `excel-to-json/`)
-4. Write `.excel-to-json.json` (plugin path for `resolve_plugin_root.py`)
-5. Run verification
+2. **Prompt for agents and scope** (unless `--non-interactive`)
+3. Detect your OS (Windows junction vs macOS/Linux symlink; copy fallback)
+4. Install **per-agent adapters at your project root** — not inside `excel-to-json/`
+5. Write `.excel-to-json.json` (plugin path for `resolve_plugin_root.py`)
+6. Run verification
+
+**Non-interactive (CI or repeat installs):**
+
+```bash
+python excel-to-json/scripts/bootstrap.py --non-interactive --agents cursor,kilo
+```
 
 **Choose agents explicitly (optional):**
 
@@ -72,6 +79,8 @@ python excel-to-json/scripts/bootstrap.py --agents all
 | **OpenCode** | `.opencode/skills/excel-to-json/` |
 | **Antigravity** | `.agents/skills/` + `.agents/workflows/excel-to-json-run.md` |
 | **Kilo** | `.kilo/skills/`, `.kilo/commands/excel-to-json-*.md`, `.kilo/kilo.jsonc` stub |
+
+**Layout:** `excel-to-json/` holds scripts and workflows. Agent tools read **dot-folders at project root** (`.cursor/`, `.kilo/`, `.agents/`, `.opencode/`) — not inside the clone. There is no `.kilocode/` folder; Kilo Code uses `.kilo/`.
 
 **Where outputs go:** `docs/<job-id>/` under **your project root**.
 

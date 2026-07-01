@@ -58,7 +58,32 @@ def fail(msg: str) -> None:
     sys.exit(1)
 
 
-def validate_marketplace(root: Path) -> None:
+def validate_discovery_mirrors(
+    search_root: Path,
+    canonical: Path,
+    *,
+    require_all: bool = True,
+) -> int:
+    checked = 0
+    for mirror in DISCOVERY_MIRRORS:
+        mirror_skill = search_root / mirror / "SKILL.md"
+        if not mirror_skill.is_file():
+            if require_all:
+                fail(
+                    f"missing discovery mirror: {search_root.name}/{mirror}/SKILL.md "
+                    f"(run bootstrap or scripts/link_skill_discovery.py)"
+                )
+            continue
+        checked += 1
+        try:
+            if mirror_skill.resolve() != canonical:
+                fail(f"discovery mirror does not point to canonical skill: {mirror}")
+        except OSError as exc:
+            fail(f"cannot resolve discovery mirror {mirror}: {exc}")
+    return checked
+
+
+def validate_marketplace(root: Path, project_root: Path | None = None) -> None:
     marketplace_path = root / ".claude-plugin" / "marketplace.json"
     plugin_path = root / ".claude-plugin" / "plugin.json"
 
@@ -127,15 +152,9 @@ def validate_marketplace(root: Path) -> None:
         )
 
     canonical = (root / SKILL_PATH).resolve()
-    for mirror in DISCOVERY_MIRRORS:
-        mirror_skill = root / mirror / "SKILL.md"
-        if not mirror_skill.is_file():
-            fail(f"missing discovery mirror: {mirror}/SKILL.md (run scripts/link_skill_discovery.py)")
-        try:
-            if mirror_skill.resolve() != canonical:
-                fail(f"discovery mirror does not point to canonical skill: {mirror}")
-        except OSError as exc:
-            fail(f"cannot resolve discovery mirror {mirror}: {exc}")
+    nested = project_root is not None and project_root.resolve() != root.resolve()
+    mirror_root = project_root if nested else root
+    checked = validate_discovery_mirrors(mirror_root, canonical, require_all=not nested)
 
     for cmd in KILO_COMMANDS:
         if not (root / cmd).is_file():
@@ -153,7 +172,8 @@ def validate_marketplace(root: Path) -> None:
 
     print(f"OK: marketplace valid ({marketplace['name']}, {len(plugins)} plugin(s))")
     print(f"    plugin: {plugin_manifest['name']}@{plugin_manifest['version']}")
-    print(f"    discovery mirrors: {len(DISCOVERY_MIRRORS)} linked")
+    where = "project root" if nested else "plugin root"
+    print(f"    discovery mirrors: {checked} checked ({where})")
     print(f"    kilo commands: {len(KILO_COMMANDS)}, agents workflows: {len(AGENTS_WORKFLOWS)}")
 
 
@@ -163,8 +183,13 @@ def main() -> None:
         "--root",
         help="Plugin root (default: parent of scripts/)",
     )
+    parser.add_argument(
+        "--project-root",
+        help="User project root for nested install (discovery mirrors checked here)",
+    )
     args = parser.parse_args()
-    validate_marketplace(plugin_root(args.root))
+    proj = Path(args.project_root).resolve() if args.project_root else None
+    validate_marketplace(plugin_root(args.root), proj)
 
 
 if __name__ == "__main__":

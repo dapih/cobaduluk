@@ -14,4 +14,9 @@ if [[ ! -f "$DEST/scripts/bootstrap.py" ]]; then
   git clone --depth 1 "$REPO" "$DEST"
 fi
 
-python "$DEST/scripts/bootstrap.py"
+BOOTSTRAP_ARGS=()
+if [[ "${NON_INTERACTIVE:-0}" != "1" ]]; then
+  BOOTSTRAP_ARGS+=(--interactive)
+fi
+
+python "$DEST/scripts/bootstrap.py" "${BOOTSTRAP_ARGS[@]}"

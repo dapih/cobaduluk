@@ -119,14 +119,22 @@ def check_learnings_lint(root: Path) -> None:
         raise RuntimeError("learnings lint probe returned FAIL")
 
 
-def verify(root: Path) -> None:
+def verify(root: Path, project_root: Path | None = None) -> None:
     check_python()
     print("OK  Python", sys.version.split()[0])
     check_deps()
     print("OK  dependencies")
     run_script(sys.executable, root / "scripts" / "resolve_plugin_root.py")
     print("OK  resolve_plugin_root.py")
-    run_script(sys.executable, root / "scripts" / "validate_marketplace.py", "--root", str(root))
+    validate_args = [sys.executable, str(root / "scripts" / "validate_marketplace.py"), "--root", str(root)]
+    if project_root is not None:
+        validate_args.extend(["--project-root", str(project_root)])
+    proc = subprocess.run(validate_args, capture_output=True, text=True)
+    if proc.returncode != 0:
+        print(proc.stdout, end="")
+        print(proc.stderr, file=sys.stderr, end="")
+        raise RuntimeError("validate_marketplace.py exited {}".format(proc.returncode))
+    print(proc.stdout, end="")
     print("OK  validate_marketplace.py")
     check_sample_job(root)
     print(f"OK  sample job {SAMPLE_JOB}")
@@ -137,10 +145,12 @@ def verify(root: Path) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Verify excel-to-json install.")
     parser.add_argument("--root", help="Plugin root (default: parent of scripts/)")
+    parser.add_argument("--project-root", help="User project root (nested install)")
     args = parser.parse_args()
     root = plugin_root(args.root)
+    proj = Path(args.project_root).resolve() if args.project_root else None
     try:
-        verify(root)
+        verify(root, proj)
     except RuntimeError as exc:
         print(f"FAIL: {exc}", file=sys.stderr)
         sys.exit(1)

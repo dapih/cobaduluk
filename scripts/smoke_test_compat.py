@@ -197,16 +197,17 @@ def run_subprocess(root: Path, script: str, *args: str) -> None:
 
 
 def link_plugin_into_project(project: Path, nested: Path, plugin_root: Path) -> None:
+    """Simulate user install with a real directory copy (not junction to plugin repo)."""
     nested.parent.mkdir(parents=True, exist_ok=True)
-    if sys.platform == "win32":
-        subprocess.run(
-            ["cmd", "/c", "mklink", "/J", str(nested), str(plugin_root)],
-            check=True,
-            capture_output=True,
-            text=True,
-        )
-    else:
-        nested.symlink_to(plugin_root, target_is_directory=True)
+    if nested.exists():
+        import shutil
+        shutil.rmtree(nested)
+    import shutil
+    shutil.copytree(
+        plugin_root,
+        nested,
+        ignore=shutil.ignore_patterns(".git", "__pycache__", "debug-*.log"),
+    )
 
 
 def nested_bootstrap_smoke(plugin_root: Path) -> list[str]:
@@ -262,7 +263,13 @@ def nested_bootstrap_smoke(plugin_root: Path) -> list[str]:
                 )
 
         for tool, spec in PROJECT_BOOTSTRAP_CHECKS.items():
-            errors.extend(check_tool(project, tool, spec, canon_root=plugin_root))
+            errors.extend(check_tool(project, tool, spec, canon_root=nested))
+
+        if (nested / ".cursor/skills").exists():
+            errors.append(
+                "nested bootstrap: excel-to-json/.cursor/skills should not exist "
+                "(adapters belong at project root only)"
+            )
 
         resolver = subprocess.run(
             [sys.executable, str(nested / "scripts" / "resolve_plugin_root.py")],
@@ -274,9 +281,9 @@ def nested_bootstrap_smoke(plugin_root: Path) -> list[str]:
             errors.append(
                 f"nested resolver failed: code={resolver.returncode} err={resolver.stderr!r}"
             )
-        elif Path(resolver.stdout.strip()) != plugin_root.resolve():
+        elif Path(resolver.stdout.strip()) != nested.resolve():
             errors.append(
-                f"nested resolver: {resolver.stdout.strip()!r} != {plugin_root.resolve()!r}"
+                f"nested resolver: {resolver.stdout.strip()!r} != {nested.resolve()!r}"
             )
 
     return errors

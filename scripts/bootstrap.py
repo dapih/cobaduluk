@@ -103,23 +103,28 @@ def bootstrap(
         plugin_rel=plugin_rel,
     )
 
-    print("-> plugin dev mirrors (inside clone)")
-    install_plugin_dev_mirrors(plugin_root_path, replace_copies=replace_copies)
+    install_plugin_dev_mirrors(
+        plugin_root_path,
+        project_root=project_root,
+        replace_copies=replace_copies,
+    )
+
+    nested = project_root.resolve() != plugin_root_path.resolve()
 
     if with_skills_cli:
         print("-> optional skills.sh telemetry")
         run_skills_cli(project_root, agents)
 
     if not skip_verify:
-        run_step(
-            "verify install",
-            [
-                sys.executable,
-                str(plugin_root_path / "scripts" / "verify_install.py"),
-                "--root",
-                str(plugin_root_path),
-            ],
-        )
+        verify_cmd = [
+            sys.executable,
+            str(plugin_root_path / "scripts" / "verify_install.py"),
+            "--root",
+            str(plugin_root_path),
+        ]
+        if nested:
+            verify_cmd.extend(["--project-root", str(project_root)])
+        run_step("verify install", verify_cmd)
 
 
 def print_next_steps(
@@ -199,6 +204,16 @@ def main() -> None:
         action="store_true",
         help="Skip verify_install.py (not recommended)",
     )
+    parser.add_argument(
+        "--interactive",
+        action="store_true",
+        help="Prompt for agents and install scope (used by install.ps1 / install.sh)",
+    )
+    parser.add_argument(
+        "--non-interactive",
+        action="store_true",
+        help="Skip prompts; use --agents auto detection",
+    )
     args = parser.parse_args()
 
     project_root = (args.project_root or Path.cwd()).resolve()
@@ -224,7 +239,12 @@ def main() -> None:
         sys.exit(1)
 
     try:
-        agents = parse_agents(args.agents, project_root)
+        agents_spec = args.agents
+        if args.interactive and not args.non_interactive:
+            from install_prompt import run_interactive_setup
+
+            agents_spec, _scope = run_interactive_setup()
+        agents = parse_agents(agents_spec, project_root)
         plugin_rel = logical_plugin_rel_from_script(
             Path(__file__), project_root, plugin_root_path
         )

@@ -438,12 +438,58 @@ def install_antigravity_workflow_with_rel(
     print(f"OK  {dest}")
 
 
-def install_plugin_dev_mirrors(plugin_root: Path, *, replace_copies: bool = False) -> None:
-    """Skill mirrors under plugin root (junction/symlink to canonical skill).
+def _remove_path(path: Path) -> None:
+    if not path.exists() and not path.is_symlink():
+        return
+    if path.is_symlink():
+        path.unlink()
+        return
+    if path.is_dir():
+        try:
+            path.rmdir()  # Windows junctions and empty dirs
+        except OSError:
+            shutil.rmtree(path)
+        return
+    path.unlink()
 
-    Git checkouts ship duplicate skill trees; replace them so validate_marketplace
-    and agents see a single canonical skill path.
-    """
+
+def plugin_is_under_project(project_root: Path, plugin_root: Path) -> bool:
+    """True when plugin checkout is a real path inside project (not a junction to elsewhere)."""
+    try:
+        plugin_root.resolve().relative_to(project_root.resolve())
+        return True
+    except ValueError:
+        return False
+
+
+def strip_nested_plugin_discovery_dirs(plugin_root: Path) -> None:
+    """Remove agent discovery mirrors from plugin clone (nested install uses project root)."""
+    plugin_root = plugin_root.resolve()
+    _remove_path(plugin_root / ".cursor/skills")
+    _remove_path(plugin_root / ".opencode")
+    _remove_path(plugin_root / ".kilo/skills")
+    _remove_path(plugin_root / ".agents/skills/excel-to-json")
+    print("OK  stripped nested discovery mirrors from plugin clone")
+
+
+def install_plugin_dev_mirrors(
+    plugin_root: Path,
+    *,
+    project_root: Path | None = None,
+    replace_copies: bool = False,
+) -> None:
+    """Skill mirrors under plugin root for dev checkout; strip duplicates in physical nested clones."""
+    nested = (
+        project_root is not None
+        and project_root.resolve() != plugin_root.resolve()
+    )
+    if nested and project_root is not None and plugin_is_under_project(project_root, plugin_root):
+        strip_nested_plugin_discovery_dirs(plugin_root)
+        return
+    if nested:
+        print("OK  nested install: skip plugin-internal discovery mirrors (adapters at project root)")
+        return
+
     target = (plugin_root / CANONICAL_SKILL).resolve()
     for rel in (
         ".agents/skills/excel-to-json",
@@ -511,8 +557,12 @@ def main() -> None:
             agents,
             replace_copies=args.replace_copies,
         )
-        if args.plugin_dev_mirrors or project_root == plugin_root:
-            install_plugin_dev_mirrors(plugin_root, replace_copies=args.replace_copies)
+        nested = project_root.resolve() != plugin_root.resolve()
+        install_plugin_dev_mirrors(
+            plugin_root,
+            project_root=project_root,
+            replace_copies=args.replace_copies,
+        )
         if args.with_skills_cli:
             run_skills_cli(project_root, agents)
     except (RuntimeError, ValueError) as exc:

@@ -2,10 +2,11 @@
 # Usage (from your project root):
 #   irm https://raw.githubusercontent.com/dapih/cobaduluk/main/install.ps1 | iex
 # Or:
-#   .\install.ps1 [-Dest excel-to-json]
+#   .\install.ps1 [-Dest excel-to-json] [-NonInteractive]
 
 param(
-    [string]$Dest = "excel-to-json"
+    [string]$Dest = "excel-to-json",
+    [switch]$NonInteractive
 )
 
 $ErrorActionPreference = "Stop"
@@ -16,4 +17,9 @@ if (-not (Test-Path "$Dest/scripts/bootstrap.py")) {
     git clone --depth 1 $Repo $Dest
 }
 
-python "$Dest/scripts/bootstrap.py"
+$bootstrapArgs = @()
+if (-not $NonInteractive) {
+    $bootstrapArgs += "--interactive"
+}
+
+python "$Dest/scripts/bootstrap.py" @bootstrapArgs
