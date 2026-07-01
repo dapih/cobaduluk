@@ -9,7 +9,7 @@
     {
       "name": "excel-to-json",
       "description": "Convert complex Excel tables into validated, schema-backed JSON through a deterministic, token-frugal pipeline.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Davi Muammar"
       },

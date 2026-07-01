@@ -1,6 +1,6 @@
 {
   "name": "excel-to-json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Convert complex Excel tables into validated, schema-backed JSON through a deterministic, token-frugal pipeline. AI analyzes structure, authors the schema, and writes a per-table parser; generated Python does all row-level work so the full table never enters the context window.",
   "author": {
     "name": "Davi Muammar"

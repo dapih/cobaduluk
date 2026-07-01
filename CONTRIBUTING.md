@@ -89,4 +89,4 @@ Nested install smoke (from a temp project):
 python scripts/smoke_test_compat.py
 ```
 
-Tag releases as `v0.1.0` (match `.claude-plugin/plugin.json` version). See [INSTALL.md](INSTALL.md) for marketplace publish steps.
+Tag releases as `v0.1.x` (match `.claude-plugin/plugin.json` version). See [INSTALL.md](INSTALL.md) for marketplace publish steps.
