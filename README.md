@@ -1,4 +1,4 @@
-# excel-to-json
+# Convert Excel Table to JSON
 
 Convert one complex Excel table into validated, schema-backed JSON — with a data-quality review and standardized reports. Built for **token frugality**: deterministic Python does all row-level work; the model only analyzes structure, authors the schema, writes the parser, and reviews samples. A 3,000-row table costs about the same model tokens as a 30-row one.
 
