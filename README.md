@@ -1,203 +1,160 @@
-# Excel to JSON Conversion Skills
+# excel-to-json
 
-Convert one complex Excel table into validated, schema-backed JSON — with a data-quality review and standardized reports. Built for **token frugality**: deterministic Python does all row-level work; the model only analyzes structure, authors the schema, writes the parser, and reviews samples. A 3,000-row table costs about the same model tokens as a 30-row one.
+An AI agent skill that converts large, complex Excel tables into clean, validated JSON, and refines the result with a data-quality review, all while spending model tokens frugally.
+
+The trick: your AI agent never reads the spreadsheet. It reads a compact structure report, writes a small Python parser, and lets that parser process every row. A 3,000-row table costs about the same in model tokens as a 30-row one.
+
+Works in Claude Code, Cursor, Codex, Kilo, OpenCode, Antigravity, and other agents that support skills.
 
 ## Why it's different
 
-- **Code does the work, the model supervises.** The full table and the full JSON never enter the context window. The model reads a compact structure report and writes a small parser; Python parses every row.
-- **Never drops a row.** The parser proves `rows in → entries out` on every run.
+- **Code does the work, the model supervises.** The full table and the full JSON never enter the context window. The model reads a compact report and writes a small parser; Python parses every row.
+- **Never drops a row.** The parser proves `rows in` equals `entries out` on every run.
 - **Schema-first.** Every conversion is backed by a JSON Schema (Draft 2020-12) and validated to zero errors.
-- **Surfaces issues, doesn't silently "fix" them.** Risky cleanups (aggressive de-hyphenation, trimming conjunctions) are opt-in and reported, not applied behind your back.
-- **General.** No domain logic baked in — it works on any complex table.
+- **Surfaces issues instead of silently "fixing" them.** Risky cleanups (aggressive de-hyphenation, trimming conjunctions) are opt-in and reported, never applied behind your back.
+- **General.** No domain logic baked in, so it works on any complex table.
 
-## Install
+## Quickstart
 
-**Prerequisites:** Python 3.9+ · Git
+**Prerequisites:** Python 3.9 or newer, and Git.
 
-| Your tool | One step |
-|---|---|
-| **Claude Code** | `/plugin marketplace add dapih/cobaduluk` then `/plugin install excel-to-json@cobaduluk` |
-| **Cursor (marketplace)** | Install from [Cursor marketplace](https://cursor.com/marketplace) when listed (manifest in [`.cursor-plugin/`](.cursor-plugin/)) |
-| **Cursor, Codex, Kilo, … (local)** | Run `install.sh` / `install.ps1` from [INSTALL.md](INSTALL.md) (interactive clone + bootstrap) |
+**Claude Code** (no clone needed):
 
-Full guide: [INSTALL.md](INSTALL.md)
+```text
+/plugin marketplace add dapih/cobaduluk
+/plugin install excel-to-json@cobaduluk
+/excel-to-json:run path/to/your-file.xlsx
+```
 
-### One-command install (interactive)
-
-From your **project root** — prompts for which agents to configure (Cursor, Kilo, Codex, …):
-
-**macOS / Linux:** `curl -fsSL https://raw.githubusercontent.com/dapih/cobaduluk/main/install.sh | bash`
-
-**Windows (PowerShell):** `irm https://raw.githubusercontent.com/dapih/cobaduluk/main/install.ps1 | iex`
-
-Non-interactive: `install.ps1 -NonInteractive` or `NON_INTERACTIVE=1 bash install.sh`
-
-### Bootstrap (local / nested install)
-
-For any agent except Claude Code marketplace, clone the repo into your project (default `excel-to-json/`) and run bootstrap once from your **project root**:
+**Any other agent** (Cursor, Codex, Kilo, OpenCode, Antigravity), run once from your project root:
 
 ```bash
-git clone --depth 1 https://github.com/dapih/cobaduluk.git excel-to-json
-python excel-to-json/scripts/bootstrap.py --interactive
+# macOS / Linux
+curl -fsSL https://raw.githubusercontent.com/dapih/cobaduluk/main/install.sh | bash
 ```
 
-Bootstrap installs Python deps, writes **per-agent adapters at your project root** (not inside the clone), strips duplicate skill mirrors from `excel-to-json/`, and creates `.excel-to-json.json` so `resolve_plugin_root.py` finds the plugin from any subdirectory.
-
-| Flag | Purpose |
-|---|---|
-| `--interactive` | Prompt for agents and scope (default when using `install.ps1` / `install.sh`) |
-| `--non-interactive` | Skip prompts; use `--agents` below |
-| `--agents auto` | Detect agents from project layout / PATH (non-interactive default) |
-| `--agents all` | Cursor, Codex, OpenCode, Antigravity, Kilo, OpenClaw |
-| `--agents cursor,kilo` | Explicit subset (use for Kilo if VS Code extension is not on PATH) |
-| `--clone --dest excel-to-json` | Shallow-clone then bootstrap in one step |
-| `--replace-copies` | Overwrite existing skill copies (e.g. after `npx skills add`) |
-| `--with-skills-cli` | Optional: also run `npx skills add` for skills.sh telemetry |
-| `--skip-verify` | Skip `verify_install.py` (not recommended) |
-
-**OS behavior:** Windows uses directory junctions; macOS/Linux use symlinks; copy fallback if linking fails.
-
-| Agent | Bootstrap writes at **project root** |
-|---|---|
-| Cursor | `.cursor/skills/excel-to-json/`, `.cursor/rules/excel-to-json.mdc` |
-| Codex / OpenClaw | `.agents/skills/excel-to-json/` |
-| OpenCode | `.opencode/skills/excel-to-json/` |
-| Antigravity | `.agents/skills/` + `.agents/workflows/excel-to-json-run.md` |
-| Kilo | `.kilo/skills/`, `.kilo/commands/excel-to-json-*.md`, `.kilo/kilo.jsonc` stub |
-
-**User project layout** (after bootstrap):
-
-```
-your-project/
-  excel-to-json/              plugin clone (scripts, workflows, Python)
-  .cursor/  .kilo/  .agents/  agent adapters (project root only)
-  .opencode/                  (if selected)
-  .excel-to-json.json         plugin path marker
-  docs/                       job outputs
+```powershell
+# Windows (PowerShell)
+irm https://raw.githubusercontent.com/dapih/cobaduluk/main/install.ps1 | iex
 ```
 
-Agent tools do **not** read dot-folders inside `excel-to-json/` — only at project root. Kilo Code uses `.kilo/` (not `.kilocode/`).
+Then ask your agent, in plain language: "Convert this Excel to JSON." Full options, flags, and troubleshooting are in [INSTALL.md](INSTALL.md).
 
-### Plugin manifests
+## Example
 
-| Tool | Manifest folder | Role |
-|---|---|---|
-| Claude Code | [`.claude-plugin/`](.claude-plugin/) | Marketplace catalog + plugin metadata |
-| Cursor | [`.cursor-plugin/`](.cursor-plugin/) | Same role for Cursor marketplace |
+A complex table is rarely a neat grid. Header cells are filled only on the first row of each entry, sub-rows continue the one above, and notes carry their own numbered sub-levels:
 
-Both point at the repo root (`"source": "."`). Local bootstrap is still recommended for nested clones and multi-agent setups.
+| No | Code | Name          | Tier     | Region | Note                 |
+|----|------|---------------|----------|--------|----------------------|
+| 1  | 001  | Sample Widget | standard | North  | 1. Assembly required |
+|    |      |               |          | South  | a. Tools included    |
+|    |      |               | premium  | North  | 1. Pre-assembled     |
 
-Verify after install:
+The pipeline turns that into hierarchical, validated JSON, grouping variants under each item and nesting the numbered notes:
 
-```bash
-python excel-to-json/scripts/verify_install.py --root excel-to-json --project-root .
-python excel-to-json/scripts/smoke_test_compat.py
+```json
+{
+  "items": [
+    {
+      "id": "001",
+      "name": "Sample Widget",
+      "variants": [
+        {
+          "tier": "standard",
+          "regions": ["North", "South"],
+          "notes": [
+            {
+              "teks": "1. Assembly required",
+              "sub": [{ "teks": "a. Tools included" }]
+            }
+          ]
+        },
+        { "tier": "premium", "regions": ["North"], "notes": [{ "teks": "1. Pre-assembled" }] }
+      ]
+    }
+  ]
+}
 ```
 
-| Tool | How to run |
-|---|---|
-| Claude Code | `/excel-to-json:run file.xlsx` |
-| Cursor / Codex / OpenCode | Ask: “Convert this Excel to JSON” (natural language; not a `/excel-to-json` slash command) |
-| Kilo | `/excel-to-json-run` (select Kilo in the install prompt, or `--agents kilo`) |
-| Antigravity | `/excel-to-json-run` workflow |
+A runnable, synthetic schema-and-instance pair lives in [skills/excel-to-json/references/examples/](skills/excel-to-json/references/examples/).
 
-Job outputs go under `docs/` in your project root.
+## What it costs (real measured run)
 
-## The pipeline
+A regulatory licensing table with **1,392 rows** converted into **94 entries, 145 risk-groups, and 243 authority-groups**, none dropped. The resulting `instance.json` was **380 kB (about 95,000 tokens)**, and **none of it ever entered the model context**.
 
+| Metric                        | Value                    |
+|-------------------------------|--------------------------|
+| Source rows                   | 1,392                    |
+| Output JSON size              | 380 kB (about 95k tokens)|
+| JSON tokens seen by the model | 0                        |
+| Total model tokens for the run| about 32k                |
+
+Row count is not the cost driver, parser complexity is. See [design/pipeline-token-analysis.md](design/pipeline-token-analysis.md).
+
+## How it works
+
+```mermaid
+flowchart LR
+  prepare --> inspect --> map --> schema --> parse --> validate --> dq[data-quality] --> summary
 ```
-prepare → inspect → map → schema → parse → validate → data-quality → summary
-```
 
-| Step | Tool | What it does |
-|---|---|---|
-| inspect | `scripts/inspect_xlsx.py` | Compact structure report: sheets, header, column profiles, samples, gaps |
-| map | `structure-analyst` agent | Proposes column→field mapping + hierarchy (you confirm) |
-| schema | `schema-designer` agent | Authors/refines the Draft 2020-12 schema |
-| parse | `parser-builder` agent | Writes `<job>.parser.py` (imports `parser_lib`), iterates to 0 errors |
-| validate | `scripts/validate_json.py` | Schema validation gate |
-| review | `dq-reviewer` agent | Runs `scripts/dq_check.py`, writes the data-quality report |
+| Step         | Done by                    | What it does                                                        |
+|--------------|----------------------------|---------------------------------------------------------------------|
+| inspect      | `scripts/inspect_xlsx.py`  | Compact structure report: sheets, header, column profiles, samples  |
+| map          | `structure-analyst` agent  | Proposes column-to-field mapping plus hierarchy (you confirm)       |
+| schema       | `schema-designer` agent    | Authors or refines the Draft 2020-12 schema                         |
+| parse        | `parser-builder` agent     | Writes `<job>.parser.py`, then iterates to zero errors              |
+| validate     | `scripts/validate_json.py` | Schema-validation gate                                              |
+| data-quality | `dq-reviewer` agent        | Runs `scripts/dq_check.py`, writes the data-quality report          |
 
 ## Commands
 
-| Command                              | Purpose                                                                    |                       |
-| --------------------------------------| ----------------------------------------------------------------------------| -----------------------|
-| `/excel-to-json:run <file.xlsx>`     | Full pipeline (pauses at confirmation gates; `--autonomous` to skip)       |                       |
-| `/excel-to-json:new-job <file.xlsx>` | Create the `docs/<job>/` folder and move the input in                      |                       |
-| `/excel-to-json:inspect <file\       | job>`                                                                      | Structure report only |
-| `/excel-to-json:schema <job>`        | Create / refine / validate a schema (`--from-instance`, `--validate-only`) |                       |
-| `/excel-to-json:convert <job>`       | Generate the parser and the JSON instance                                  |                       |
-| `/excel-to-json:validate <job>`      | Validate instance vs schema                                                |                       |
-| `/excel-to-json:review <job>`        | Data-quality review + report                                               |                       |
-| `/excel-to-json:promote <job> [family]` | Promote a clean job to a reusable family (structural match → reuse)      |                       |
+| Command                                  | Purpose                                                              |
+|------------------------------------------|----------------------------------------------------------------------|
+| `/excel-to-json:run <file.xlsx>`         | Full pipeline; pauses at confirmation gates (`--autonomous` to skip) |
+| `/excel-to-json:new-job <file.xlsx>`     | Create the `docs/<job>/` folder and move the input in                |
+| `/excel-to-json:inspect <file or job>`   | Structure report only                                                |
+| `/excel-to-json:schema <job>`            | Create, refine, or validate a schema                                 |
+| `/excel-to-json:convert <job>`           | Generate the parser and the JSON instance                            |
+| `/excel-to-json:validate <job>`          | Validate instance against schema                                     |
+| `/excel-to-json:review <job>`            | Data-quality review plus report                                      |
+| `/excel-to-json:promote <job> [family]`  | Promote a clean job to a reusable family                             |
 
-Each step is independently runnable — do the whole pipeline or just the part you need (e.g. "make a schema for this existing JSON" → `schema <job> --from-instance`).
+Each step is independently runnable. Do the whole pipeline, or just the part you need (for example, "make a schema for this existing JSON" with `schema <job> --from-instance`). In agents other than Claude Code, ask in plain language instead of using slash commands.
 
-## Reuse across same-family tables
+## Reuse across similar tables
 
-Tables that share a structure don't have to be converted from scratch. After inspecting a new table, the pipeline fingerprints it **structurally — not by header text** and matches it against families you've promoted from past jobs:
+Tables that share a structure do not have to be converted from scratch. After inspecting a new table, the pipeline fingerprints it **structurally, not by header text**, and matches it against families you have promoted from past jobs:
 
-- **near-duplicate** → offer to clone the family's schema + parser, re-pointing columns;
-- **same family** → warm-start the schema from the family canonical, then adapt;
-- **no match** → convert from scratch.
+- **near-duplicate:** offer to clone the family's schema and parser, re-pointing columns;
+- **same family:** warm-start the schema from the family canonical, then adapt;
+- **no match:** convert from scratch.
 
-Reuse is opt-in (you confirm) and never skips the gates — the parser still proves row conservation and the instance still validates. Promote a finished job with `/excel-to-json:promote <job> [family]`; the store lives in `families/` at your project root. As a family grows, its match key becomes the **centroid** of its members, a **conformance** diff shows how a new table differs from the canonical, and the canonical is **versioned** (`--evolve` to adopt a new standard; members record what they were built against). See [design/reuse.md](design/reuse.md).
+Reuse is opt-in and never skips the gates: the parser still proves row conservation and the instance still validates. Details in [design/reuse.md](design/reuse.md).
 
-## Job folder (in your project root)
+## Output: the job folder
 
-```
-docs/table-YYYYMMDD-HHMM<am|pm>/
-  <job>.xlsx  <job>.inspect.md/.json  <job>.schema.json  <job>.json  <job>.parser.py
-  <job>.dq.md/.json
-  log-<job>.md  data-quality-<job>.md  summary-<job>.md
-```
-One table per job. Multiple sheets/tables → multiple jobs.
-
-## Layout (plugin repository)
-
-Paths below are inside the **cobaduluk** checkout (`excel-to-json/` when nested in your project). After bootstrap, agent adapters also appear at **your project root** — see [Install](#install).
+Every conversion lives in one self-contained folder under `docs/` in your project root:
 
 ```
-.claude-plugin/                 Claude Code marketplace (plugin.json + marketplace.json)
-.cursor-plugin/                 Cursor marketplace (same layout)
-.agents/skills/                 skill mirror (dev checkout; stripped from nested clone)
-.agents/workflows/              Antigravity workflow templates
-.cursor/skills/                 skill mirror (dev checkout)
-.kilo/commands/                 Kilo slash command templates
-commands/                       Claude Code slash commands
-agents/                         structure-analyst, schema-designer, parser-builder, dq-reviewer
-skills/excel-to-json/           canonical SKILL.md + references/
-scripts/                        pipeline + bootstrap.py, install_adapters.py, verify_install.py
-templates/                      log, data-quality, summary, schema-summary
-rules/                          default normalization + DQ configs
-workflows/full-pipeline.md      canonical step order
-design/                         reuse, roadmap, cross-tool-compat
-memory/learnings.md             cross-job learnings
-families/                       promoted family canonicals
-INSTALL.md                      install guide (start here)
-CONTRIBUTING.md                 developer / agent maintainer guide
+docs/table-YYYYMMDD-HHMMam/
+  table.xlsx            source table
+  table.inspect.md      structure report (and .json)
+  table.schema.json     JSON Schema (Draft 2020-12)
+  table.json            the converted instance
+  table.parser.py       generated parser (reproduces the instance)
+  table.dq.md           data-quality findings (and .json)
+  summary-table.md      human-readable summary and field map
 ```
 
-At **user project root** after bootstrap: `excel-to-json/`, `.excel-to-json.json`, `.cursor/`, `.kilo/`, `.agents/`, `.opencode/` (as selected), and `docs/` for job output.
+One table per job. Multiple sheets or tables become multiple jobs.
 
-## Scripts (also usable standalone)
+## Learn more
 
-```
-python scripts/inspect_xlsx.py   <file.xlsx> [--sheet NAME] [--out PREFIX]
-python scripts/validate_json.py  <schema.json> <instance.json> [--counts]
-python scripts/dq_check.py       <instance.json> [--rules rules.json] [--out PREFIX]
-python scripts/fingerprint.py    <job.inspect.json> [--out PREFIX]
-python scripts/match_profile.py  <job.inspect.json> [--families DIR] [--top N]
-python scripts/promote_family.py <job-id> --name <family> [--force] [--evolve]
-python scripts/conformance.py    <job.inspect.json> --name <family> [--job-schema PATH]
-python scripts/learnings.py      --tags structure,tooling   # or: --lint --entry '...'
-```
-
-## Notes
-
-- `parser_lib.dehyphenate(..., merge_no_space=True)` repairs intra-word line-break hyphens (`pe-nangkap`→`penangkap`) while `protect_reduplication=True` keeps reduplications (`undang-undang`) intact — useful for Indonesian/Malay and other reduplicating languages.
-- For many independent tables, run separate jobs in parallel (e.g. via your agent swarm). Within a single table, parsing is deterministic and needs no parallelism.
+- [INSTALL.md](INSTALL.md) install for every supported agent, flags, troubleshooting
+- [CONTRIBUTING.md](CONTRIBUTING.md) repository layout, standalone scripts, developer workflow
+- [skills/excel-to-json/SKILL.md](skills/excel-to-json/SKILL.md) the skill the agent actually reads
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE).

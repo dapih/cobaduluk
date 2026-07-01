@@ -1,7 +1,7 @@
 {
   "name": "excel-to-json",
   "version": "0.1.1",
-  "description": "Convert complex Excel tables into validated, schema-backed JSON through a deterministic, token-frugal pipeline.",
+  "description": "An AI agent skill that converts large, complex Excel tables into clean, validated JSON, and refines the result with a data-quality review, all while spending model tokens frugally. The AI analyzes structure, authors the schema, and writes a per-table parser; generated Python does all row-level work, so the full table never enters the context window.",
   "author": {
     "name": "Davi Muammar"
   },
