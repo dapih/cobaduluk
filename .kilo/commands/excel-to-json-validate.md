@@ -5,7 +5,7 @@ description: Validate a job JSON instance against its JSON Schema.
 Validate: **$ARGUMENTS**
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 - Job id → `docs/<job>/<job>.json` vs `docs/<job>/<job>.schema.json`.

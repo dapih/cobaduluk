@@ -8,6 +8,6 @@ alwaysApply: false
 For Excel/xlsx → JSON tasks, **load skill `excel-to-json`** and follow [`workflows/full-pipeline.md`](../../workflows/full-pipeline.md).
 
 - Skill: [`skills/excel-to-json/SKILL.md`](../../skills/excel-to-json/SKILL.md) (also at `.cursor/skills/excel-to-json/SKILL.md`)
-- Plugin root: `python tools/excel-to-json/scripts/resolve_plugin_root.py` (or `EXCEL_TO_JSON_ROOT`; Claude Code uses `${CLAUDE_PLUGIN_ROOT}`)
+- Plugin root: `python scripts/resolve_plugin_root.py` (or `EXCEL_TO_JSON_ROOT`; Claude Code uses `${CLAUDE_PLUGIN_ROOT}`)
 - **Never** read the full `.xlsx` or `.json` into context — only the inspect report
 - All gates in the workflow are mandatory unless the user explicitly skips them

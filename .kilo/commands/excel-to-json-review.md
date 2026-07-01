@@ -5,7 +5,7 @@ description: Data-quality review and report with proposed fixes (not auto-applie
 Data-quality review for job: **$ARGUMENTS**
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 Precondition: `docs/<job>/<job>.json` exists (ideally schema-valid).

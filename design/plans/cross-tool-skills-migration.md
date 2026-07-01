@@ -53,7 +53,7 @@ isProject: false
 
 **Locked decisions (do not re-debate unless you ask to change them):**
 - Skills-first + Claude Code plugin as distribution wrapper (not either/or)
-- Nested install in user projects (`my-app/tools/excel-to-json/`) — not standalone-only
+- Nested install in user projects (`my-app/excel-to-json/`) — not standalone-only
 - Marketplace-first install via GitHub URL (`/plugin marketplace add`, `npx skills add`, Hermes tap)
 - Compat learnings → `design/cross-tool-compat.md`; pipeline learnings → `memory/learnings.md` (unchanged)
 
@@ -90,7 +90,7 @@ flowchart LR
     ghRaw[Direct GitHub URL per tool]
   end
   subgraph installed [User project]
-    nested[my-app/tools/excel-to-json/]
+    nested[my-app/excel-to-json/]
     skillDir[.agents/skills/excel-to-json]
     claudePlugin[.claude/plugins/]
   end
@@ -183,7 +183,7 @@ Create [`INSTALL.md`](INSTALL.md) — marketplace-first, copy-paste ready:
 | **Cursor / Codex / OpenCode / Antigravity / OpenClaw / Kilo / 60+** | — | `npx skills add dapih/cobaduluk --skill excel-to-json --agent <agent> -y` + `git clone` for scripts |
 | **Hermes** | `hermes skills tap add dapih/cobaduluk` | `hermes skills install dapih/cobaduluk/excel-to-json` |
 | **GitHub Copilot** | — | `gh skill install dapih/cobaduluk --skill excel-to-json` (gh ≥ 2.90) |
-| **Manual fallback** | — | `git clone https://github.com/dapih/cobaduluk.git tools/excel-to-json` |
+| **Manual fallback** | — | `git clone https://github.com/dapih/cobaduluk.git excel-to-json` |
 
 Also add [`skills/README.md`](skills/README.md) pointing to INSTALL.md (convention for skills.sh discovery).
 
@@ -213,7 +213,7 @@ Users can browse [skills.sh](https://skills.sh) via the **Skills.sh** VS Code ex
 
 ## Phase 1 — Fix plugin root resolution (blocking for nested install)
 
-You chose **nested install** (`my-app/tools/excel-to-json/`). Current `git rev-parse --show-toplevel` → `my-app` root, not plugin root. Breaks scripts.
+You chose **nested install** (`my-app/excel-to-json/`). Current `git rev-parse --show-toplevel` → `my-app` root, not plugin root. Breaks scripts.
 
 **Add [`scripts/resolve_plugin_root.py`](scripts/resolve_plugin_root.py):**
 
@@ -311,7 +311,7 @@ Track in [`design/cross-tool-compat.md`](design/cross-tool-compat.md):
 
 - **CP1:** `python scripts/validate_marketplace.py` → exit 0
 - **CP2:** `python scripts/verify_install.py` → exit 0
-- **CP3:** Nested install test — clone into `/tmp/test-app/tools/excel-to-json`, run inspect from parent dir
+- **CP3:** Nested install test — clone into `/tmp/test-app/excel-to-json`, run inspect from parent dir
 - **CP4:** Update compat doc session log with results
 - **CP5:** Git tag + README marketplace section reviewed
 

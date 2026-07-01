@@ -2,11 +2,11 @@
 bootstrap.py - one-shot setup after clone (or clone + setup in one go).
 
 Usage (from user project root — recommended):
-    python tools/excel-to-json/scripts/bootstrap.py
-    python tools/excel-to-json/scripts/bootstrap.py --agents cursor,kilo
+    python excel-to-json/scripts/bootstrap.py
+    python excel-to-json/scripts/bootstrap.py --agents cursor,kilo
 
 Usage (clone + setup):
-    python tools/excel-to-json/scripts/bootstrap.py --clone --dest tools/excel-to-json
+    python excel-to-json/scripts/bootstrap.py --clone --dest excel-to-json
 
 What it does:
     1. Optional shallow git clone into --dest
@@ -36,7 +36,7 @@ from install_adapters import (
     run_skills_cli,
 )
 
-DEFAULT_DEST = "tools/excel-to-json"
+DEFAULT_DEST = "excel-to-json"
 REPO_URL = "https://github.com/dapih/cobaduluk.git"
 MARKER = Path("scripts/resolve_plugin_root.py")
 
@@ -212,7 +212,7 @@ def main() -> None:
         plugin_root_path = plugin_root(args.root)
     elif not is_plugin_root(plugin_root_path):
         print(
-            "ERROR: run from a cloned checkout, or pass --clone --dest tools/excel-to-json",
+            "ERROR: run from a cloned checkout, or pass --clone --dest excel-to-json",
             file=sys.stderr,
         )
         print(

@@ -5,7 +5,7 @@ description: Generate the parser and JSON instance; iterate to zero schema error
 Convert the table to JSON for job: **$ARGUMENTS**
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 Preconditions: `docs/<job>/<job>.xlsx`, `<job>.inspect.*`, and `<job>.schema.json` must exist. If schema missing, stop — run `/excel-to-json-schema <job>` first.

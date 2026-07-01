@@ -20,7 +20,7 @@ When the user asks to convert Excel to JSON (or any pipeline stage), **load skil
 Resolve plugin root once:
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 Claude Code sets `${CLAUDE_PLUGIN_ROOT}`. Override: `export EXCEL_TO_JSON_ROOT=/path/to/clone`.

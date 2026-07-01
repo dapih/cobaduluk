@@ -6,7 +6,7 @@
 #   bash install.sh [dest]
 set -euo pipefail
 
-DEST="${1:-tools/excel-to-json}"
+DEST="${1:-excel-to-json}"
 REPO="https://github.com/dapih/cobaduluk.git"
 
 if [[ ! -f "$DEST/scripts/bootstrap.py" ]]; then

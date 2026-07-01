@@ -5,7 +5,7 @@ description: Run the full Excel→JSON conversion pipeline on one table (Antigra
 When the user invokes this workflow with **$ARGUMENTS** (path to `.xlsx`, optional `--sheet NAME`, optional `--autonomous`):
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 1. Load skill **`excel-to-json`** from `$PLUGIN_ROOT/skills/excel-to-json/SKILL.md`.

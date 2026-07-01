@@ -5,7 +5,7 @@ description: Inspect an Excel workbook structure (compact report, not full sheet
 Inspect: **$ARGUMENTS**
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 1. If argument is an existing `docs/<job-id>/`, use `docs/<job-id>/<job-id>.xlsx` and `--out docs/<job-id>/<job-id>`.

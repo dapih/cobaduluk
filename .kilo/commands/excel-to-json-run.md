@@ -5,7 +5,7 @@ description: Run the full Excel→JSON pipeline (prepare → inspect → map →
 Orchestrate a complete conversion for: **$ARGUMENTS**
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 Load skill `excel-to-json` from `$PLUGIN_ROOT/skills/excel-to-json/SKILL.md` and follow `$PLUGIN_ROOT/workflows/full-pipeline.md` exactly.

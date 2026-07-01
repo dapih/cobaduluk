@@ -2,10 +2,10 @@
 # Usage (from your project root):
 #   irm https://raw.githubusercontent.com/dapih/cobaduluk/main/install.ps1 | iex
 # Or:
-#   .\install.ps1 [-Dest tools/excel-to-json]
+#   .\install.ps1 [-Dest excel-to-json]
 
 param(
-    [string]$Dest = "tools/excel-to-json"
+    [string]$Dest = "excel-to-json"
 )
 
 $ErrorActionPreference = "Stop"

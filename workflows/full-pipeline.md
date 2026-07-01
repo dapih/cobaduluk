@@ -7,7 +7,7 @@ The ordered procedure the `run` command follows. Each step names the tool that d
 Resolve once per session before running scripts:
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 Claude Code: `${CLAUDE_PLUGIN_ROOT}` is set by the harness (use it when available). Other tools: invoke `resolve_plugin_root.py` by path to your clone, or set `EXCEL_TO_JSON_ROOT`. See `INSTALL.md`.

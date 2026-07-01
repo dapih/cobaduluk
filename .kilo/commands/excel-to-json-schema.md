@@ -5,7 +5,7 @@ description: Create, refine, or validate a JSON Schema for a conversion job.
 Schema work for job: **$ARGUMENTS**
 
 ```bash
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 Follow `$PLUGIN_ROOT/agents/schema-designer.md`.

@@ -21,7 +21,7 @@ import textwrap
 from pathlib import Path
 
 CANONICAL_SKILL = Path("skills/excel-to-json/SKILL.md")
-NESTED_PLUGIN_REL = "tools/excel-to-json"
+NESTED_PLUGIN_REL = "excel-to-json"
 BOOTSTRAP_AGENTS = ("cursor", "codex", "opencode", "antigravity", "kilo", "openclaw")
 
 TOOL_CHECKS: dict[str, dict] = {

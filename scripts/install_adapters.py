@@ -22,8 +22,8 @@ from pathlib import Path
 
 CANONICAL_SKILL = Path("skills/excel-to-json")
 MARKER_FILE = ".excel-to-json.json"
-DEFAULT_PLUGIN_REL = "tools/excel-to-json"
-LEGACY_PLUGIN_REL = "tools/excel-to-json"
+DEFAULT_PLUGIN_REL = "excel-to-json"
+LEGACY_PLUGIN_RELS = ("tools/excel-to-json",)
 
 # skill mirror path relative to project root -> agent id
 SKILL_TARGETS: dict[str, str] = {
@@ -110,7 +110,7 @@ def logical_plugin_rel_from_script(
     project_root: Path,
     plugin_root: Path | None = None,
 ) -> str | None:
-    """Nested path e.g. tools/excel-to-json when bootstrap lives under project."""
+    """Nested path e.g. excel-to-json when bootstrap lives under project."""
     found = find_plugin_rel_in_project(project_root, plugin_root)
     if found:
         return found
@@ -374,6 +374,15 @@ def install_cursor_rule_with_rel(
     print(f"OK  {rule_path}")
 
 
+def plugin_rel_replacements(plugin_rel: str) -> dict[str, str]:
+    """Replace default and legacy nested paths when copying command templates."""
+    reps: dict[str, str] = {}
+    for old in (DEFAULT_PLUGIN_REL, *LEGACY_PLUGIN_RELS):
+        reps[old] = plugin_rel
+        reps[old.replace("/", "\\")] = plugin_rel
+    return reps
+
+
 def install_kilo_commands_with_rel(
     project_root: Path,
     plugin_root: Path,
@@ -384,7 +393,7 @@ def install_kilo_commands_with_rel(
     src_dir = plugin_root / ".kilo/commands"
     dest_dir = project_root / ".kilo/commands"
     dest_dir.mkdir(parents=True, exist_ok=True)
-    replacements = {LEGACY_PLUGIN_REL: plugin_rel, LEGACY_PLUGIN_REL.replace("/", "\\"): plugin_rel}
+    replacements = plugin_rel_replacements(plugin_rel)
     for src in sorted(src_dir.glob(KILO_COMMAND_GLOB)):
         dest = dest_dir / src.name
         if dest.is_file() and not replace_copies:
@@ -423,7 +432,8 @@ def install_antigravity_workflow_with_rel(
         print(f"OK  {dest} (exists)")
         return
     text = src.read_text(encoding="utf-8")
-    text = text.replace(LEGACY_PLUGIN_REL, plugin_rel)
+    for old, new in plugin_rel_replacements(plugin_rel).items():
+        text = text.replace(old, new)
     dest.write_text(text, encoding="utf-8")
     print(f"OK  {dest}")
 

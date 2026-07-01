@@ -7,7 +7,7 @@ Resolution order:
   3. .excel-to-json.json pluginRoot walking up from CWD
   4. Walk upward from current working directory
   5. Walk upward from this script's location (works when invoked as
-     python tools/excel-to-json/scripts/resolve_plugin_root.py)
+     python excel-to-json/scripts/resolve_plugin_root.py)
   6. Fail with a pointer to INSTALL.md
 
 Usage:

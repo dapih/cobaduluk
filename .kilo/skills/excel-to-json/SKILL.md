@@ -47,7 +47,7 @@ Resolve the plugin root **once** per session, then prefix every script path with
 
 ```bash
 # Nested install example (from user project root):
-PLUGIN_ROOT=$(python tools/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 
 # Claude Code sets CLAUDE_PLUGIN_ROOT automatically — either works:
 # PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(python "$CLAUDE_PLUGIN_ROOT/scripts/resolve_plugin_root.py")}"

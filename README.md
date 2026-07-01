@@ -24,11 +24,11 @@ Full guide: [INSTALL.md](INSTALL.md)
 
 ### Bootstrap (local / nested install)
 
-For any agent except Claude Code marketplace, clone the repo into your project (default `tools/excel-to-json`) and run bootstrap once from your **project root**:
+For any agent except Claude Code marketplace, clone the repo into your project (default `excel-to-json`) and run bootstrap once from your **project root**:
 
 ```bash
-git clone --depth 1 https://github.com/dapih/cobaduluk.git tools/excel-to-json
-python tools/excel-to-json/scripts/bootstrap.py
+git clone --depth 1 https://github.com/dapih/cobaduluk.git excel-to-json
+python excel-to-json/scripts/bootstrap.py
 ```
 
 Bootstrap installs Python deps, writes **per-agent adapters at your project root** (not only inside the clone), and creates `.excel-to-json.json` so `resolve_plugin_root.py` finds the plugin from any subdirectory.
@@ -38,7 +38,7 @@ Bootstrap installs Python deps, writes **per-agent adapters at your project root
 | `--agents auto` | Detect agents from project layout / PATH (default) |
 | `--agents all` | Cursor, Codex, OpenCode, Antigravity, Kilo, OpenClaw |
 | `--agents cursor,kilo` | Explicit subset |
-| `--clone --dest tools/excel-to-json` | Shallow-clone then bootstrap in one step |
+| `--clone --dest excel-to-json` | Shallow-clone then bootstrap in one step |
 | `--replace-copies` | Overwrite existing skill copies (e.g. after `npx skills add`) |
 | `--with-skills-cli` | Optional: also run `npx skills add` for skills.sh telemetry |
 | `--skip-verify` | Skip `verify_install.py` (not recommended) |
@@ -65,8 +65,8 @@ Both point at the repo root (`"source": "."`). Local bootstrap is still recommen
 Verify after install:
 
 ```bash
-python tools/excel-to-json/scripts/verify_install.py
-python tools/excel-to-json/scripts/smoke_test_compat.py
+python excel-to-json/scripts/verify_install.py
+python excel-to-json/scripts/smoke_test_compat.py
 ```
 
 | Tool | How to run |
