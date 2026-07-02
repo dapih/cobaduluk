@@ -9,7 +9,7 @@
     {
       "name": "excel-to-json",
       "description": "An AI agent skill that converts large, complex Excel tables into clean, validated JSON, and refines the result with a data-quality review, all while spending model tokens frugally.",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "author": {
         "name": "Davi Muammar"
       },
