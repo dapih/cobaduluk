@@ -27,7 +27,7 @@ All items below are **not blocking** the current pipeline — the plugin is full
 
 ## How to evaluate a change before merging
 
-1. **Run `python scripts/measure_tokens.py <job>`** on a completed job before and after the change. Token budget should not increase without a documented reason.
+1. **Run `python skills/excel-to-json/scripts/measure_tokens.py <job>`** on a completed job before and after the change. Token budget should not increase without a documented reason.
 2. **Check parser-builder iteration count** in the job log. Fewer iterations = better learnings or clearer reference docs.
-3. **Validate that all gates still fire**: step 2c match, step 4b conformance, step 6 validate, step 9 lint. Run `grep -n "gate\|confirm\|lint" workflows/full-pipeline.md` to verify nothing was removed.
+3. **Validate that all gates still fire**: step 2c match, step 4b conformance, step 6 validate, step 9 lint. Run `grep -n "gate\|confirm\|lint" skills/excel-to-json/workflows/full-pipeline.md` to verify nothing was removed.
 4. **Fingerprint thresholds**: any change to `fingerprint.py` or `match_profile.py` must be re-spiked against the existing inspect reports in `output/` and the results compared to the spike table in `design/reuse.md`.

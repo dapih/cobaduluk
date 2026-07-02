@@ -1,0 +1,43 @@
+{
+  "_comment": "Default data-quality checks for dq_check.py. Copy into a job folder and tune per table. Severity is one of: error | warn | info.",
+  "checks": {
+    "whitespace": {
+      "enabled": true,
+      "severity": "warn",
+      "_desc": "Leading/trailing/double spaces or tabs in a string value."
+    },
+    "broken_hyphenation": {
+      "enabled": true,
+      "severity": "info",
+      "_desc": "Pattern 'word- word' suggesting a line-break hyphenation artifact."
+    },
+    "placeholder_values": {
+      "enabled": true,
+      "severity": "warn",
+      "tokens": ["-", "–", "—", "N/A", "n/a", "null", "NULL"],
+      "_desc": "Bare placeholder strings that should usually become empty/empty-array."
+    },
+    "trailing_conjunction": {
+      "enabled": true,
+      "severity": "info",
+      "words": ["dan", "atau", "and", "or"],
+      "_desc": "String ends in a conjunction - often a fragment split across Excel rows."
+    },
+    "duplicate_array_items": {
+      "enabled": true,
+      "severity": "warn",
+      "_desc": "Identical items repeated within the same array."
+    },
+    "empty_vs_null": {
+      "enabled": true,
+      "severity": "info",
+      "_desc": "Both empty string and null appear; pick one convention."
+    },
+    "numeric_string": {
+      "enabled": true,
+      "severity": "info",
+      "_desc": "A purely numeric value stored as a string (may be intentional, e.g. zero-padded codes)."
+    }
+  },
+  "max_samples_per_check": 5
+}

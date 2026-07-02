@@ -11,7 +11,7 @@ Validate: **$ARGUMENTS**
 
 Run:
 ```
-python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" <schema> <instance> --counts
+python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/validate_json.py" <schema> <instance> --counts
 ```
 
 Report: valid or not, the error count, and the first errors with their paths. Exit code 0 = valid, 1 = errors, 2 = bad input/schema. This is a deterministic gate — no model row-work. If there are errors, point the user to `/excel-to-json:convert <job>` (parser fix) or `/excel-to-json:schema <job>` (schema fix) depending on whether the source value is legitimate.

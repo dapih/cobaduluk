@@ -5,14 +5,14 @@ description: Data-quality review and report with proposed fixes (not auto-applie
 Data-quality review for job: **$ARGUMENTS**
 
 ```bash
-PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/skills/excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 Precondition: `output/<job>/<job>.json` exists (ideally schema-valid).
 
 Follow `$PLUGIN_ROOT/agents/dq-reviewer.md`:
-1. `python "$PLUGIN_ROOT/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>`
-2. Write `data-quality-<job>.md` from `$PLUGIN_ROOT/templates/data-quality.md`
+1. `python "$PLUGIN_ROOT/skills/excel-to-json/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>`
+2. Write `data-quality-<job>.md` from `$PLUGIN_ROOT/skills/excel-to-json/templates/data-quality.md`
 3. Apply fixes **only** if the user approves; re-validate after.
 
 Report severity summary and top recommendations.
