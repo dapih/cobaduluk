@@ -1,6 +1,12 @@
 ---
 name: excel-to-json
 description: Convert a complex Excel/xlsx table into validated, schema-backed JSON. Use when the user wants to parse a spreadsheet into JSON, create or validate a JSON Schema for tabular data, convert an Excel table that has merged cells or hierarchical / multi-level rows, or run any stage of the pipeline (inspect, schema, convert, validate, data-quality review). Triggers on phrases like "convert this Excel to JSON", "parse the xlsx", "make a JSON schema for this table", "validate my JSON instance", "data quality check the conversion".
+allowed-tools: Bash(python3 *) Bash(python *)
+metadata:
+  author: Davi Muammar
+  version: 0.1.3
+  category: productivity
+  tags: [excel-to-json, data-conversion, data-table, excel, json, converter, parser, automation, json-schema, token-efficiency, minimum-tokens, continual-learning, self-improvement]
 ---
 
 # Excel → JSON conversion
