@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python skills/excel-to-json/scripts/validate_marketplace.py)",
+      "Bash(python skills/excel-to-json/scripts/verify_install.py)",
+      "Bash(python skills/excel-to-json/scripts/smoke_test_compat.py)"
+    ]
+  }
+}
