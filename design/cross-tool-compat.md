@@ -64,6 +64,17 @@ Run after M1–M3. Record tool version and install path in the session log.
 
 Newest entries at the top. Capture: tool version, install path, result, root cause, change made, follow-up.
 
+### 2026-07-02 — Cursor-native subagents
+
+- **Attempted:** verify (against Cursor's actual docs, not assumption) whether Cursor, Codex, and Antigravity have a native mechanism to invoke the plugin's `agents/*.md` files as real subagents, and close the gap for whichever platform it's cheap to close.
+- **Findings:** Codex only reads subagents as TOML at `.codex/agents/` (Markdown is invisible to it regardless of location). Antigravity has no static-file subagent mechanism at all — subagents are created dynamically at runtime via a tool call. Cursor does have a real, documented equivalent (Markdown + frontmatter, scanned from `.cursor/agents/` by default), but with a narrower schema (`name`/`description`/`model`/`readonly`/`is_background` — no `tools:`/`color:`) and no equivalent to `${CLAUDE_PLUGIN_ROOT}`.
+- **Result:** success — Cursor only
+- **Change made:**
+  - [`skills/excel-to-json/scripts/install_adapters.py`](../skills/excel-to-json/scripts/install_adapters.py) — `transform_agent_for_cursor()` converts each Claude Code subagent file into Cursor's schema (drops `tools:`/`color:`, adds `model: inherit`, replaces `${CLAUDE_PLUGIN_ROOT}` with the existing `$PLUGIN_ROOT`-via-`resolve_plugin_root.py` pattern already used by the Kilo/Antigravity adapters); `install_cursor_agents_with_rel()` writes the four transformed files to `.cursor/agents/` during bootstrap
+  - [`skills/excel-to-json/scripts/smoke_test_compat.py`](../skills/excel-to-json/scripts/smoke_test_compat.py) — `PROJECT_BOOTSTRAP_CHECKS["cursor"]` now asserts all four `.cursor/agents/*.md` files exist post-bootstrap
+- **Verified:** transform output inspected file-by-file (frontmatter correctly trimmed, `$PLUGIN_ROOT` substitution correct, generic `<path-to-plugin>`/`<resolver output>` placeholders left untouched); real nested-install run in a scratch project produced correct `.cursor/agents/*.md`; full checklist (`validate_marketplace.py`, `verify_install.py`, `smoke_test_compat.py`) passes
+- **Follow-up:** not manually tested inside an actual running Cursor session — the docs-verified schema is trusted, but whether Cursor's subagent loader tolerates this specific output has not been confirmed live. Codex (TOML) and Antigravity (no static mechanism) are correctly out of scope, not deferred gaps.
+
 ### 2026-06-29 — Bootstrap installers + Cursor marketplace manifest
 
 - **Attempted:** OS-aware per-agent install at project root; interactive `install.ps1` / `install.sh`; `.cursor-plugin/` manifest; nested bootstrap smoke test.

@@ -42,6 +42,74 @@ CURSOR_RULE_NAME = "excel-to-json.mdc"
 KILO_COMMAND_GLOB = "excel-to-json-*.md"
 ANTIGRAVITY_WORKFLOW = Path(".agents/workflows/excel-to-json-run.md")
 
+AGENTS_DIR = Path("agents")
+CURSOR_AGENT_FILES = (
+    "structure-analyst.md",
+    "schema-designer.md",
+    "parser-builder.md",
+    "dq-reviewer.md",
+)
+# Cursor's subagent frontmatter is name/description/model/readonly/is_background
+# (no tools/color), and there's no Cursor equivalent to Claude Code's
+# ${CLAUDE_PLUGIN_ROOT}. Keep only the fields Cursor recognizes, and swap the
+# env var for the same $PLUGIN_ROOT-via-resolver pattern the Kilo/Antigravity
+# adapters already use.
+CURSOR_AGENT_FRONTMATTER_KEEP = ("name", "description")
+CURSOR_AGENT_PREAMBLE = (
+    "Resolve the plugin root once, then use `$PLUGIN_ROOT` for every path below:\n"
+    "```bash\n"
+    "PLUGIN_ROOT=$(python excel-to-json/skills/excel-to-json/scripts/resolve_plugin_root.py)\n"
+    "```\n\n"
+)
+
+
+def transform_agent_for_cursor(text: str) -> str:
+    """Convert a Claude Code subagent file into a Cursor-native one: drop
+    tools:/color: (not in Cursor's schema), add model: inherit, and replace
+    ${CLAUDE_PLUGIN_ROOT} references with the portable resolver pattern."""
+    if not text.startswith("---"):
+        return text
+    end = text.find("---", 3)
+    if end < 0:
+        return text
+    frontmatter = text[3:end].strip("\n")
+    body = text[end + 3 :].lstrip("\n")
+
+    kept = [
+        line
+        for line in frontmatter.splitlines()
+        if line.split(":", 1)[0].strip() in CURSOR_AGENT_FRONTMATTER_KEEP
+    ]
+    kept.append("model: inherit")
+
+    body = body.replace("${CLAUDE_PLUGIN_ROOT}", "$PLUGIN_ROOT")
+    return "---\n" + "\n".join(kept) + "\n---\n\n" + CURSOR_AGENT_PREAMBLE + body
+
+
+def install_cursor_agents_with_rel(
+    project_root: Path,
+    plugin_root: Path,
+    *,
+    replace_copies: bool,
+) -> None:
+    """Give Cursor real, natively-invokable subagents (not just readable docs)
+    by transforming the Claude Code agent files into Cursor's schema at
+    .cursor/agents/, one of the directories Cursor scans by default."""
+    src_dir = plugin_root / AGENTS_DIR
+    dest_dir = project_root / ".cursor" / "agents"
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    for name in CURSOR_AGENT_FILES:
+        src = src_dir / name
+        if not src.is_file():
+            continue
+        dest = dest_dir / name
+        if dest.is_file() and not replace_copies:
+            print(f"OK  {dest} (exists)")
+            continue
+        text = src.read_text(encoding="utf-8")
+        dest.write_text(transform_agent_for_cursor(text), encoding="utf-8")
+        print(f"OK  {dest} (cursor-native subagent)")
+
 CURSOR_RULE_TEMPLATE = """---
 description: Excel to JSON conversion pipeline. Activate when the user wants to parse an xlsx file, convert a spreadsheet to JSON, create a JSON Schema for tabular data, or run any stage of the pipeline (inspect, schema, convert, validate, data-quality review).
 alwaysApply: false
@@ -348,6 +416,7 @@ def install_agent_extras_with_rel(
 ) -> None:
     if agent == "cursor":
         install_cursor_rule_with_rel(project_root, plugin_rel, replace_copies=replace_copies)
+        install_cursor_agents_with_rel(project_root, plugin_root, replace_copies=replace_copies)
     elif agent == "kilo":
         install_kilo_commands_with_rel(project_root, plugin_root, plugin_rel, replace_copies=replace_copies)
         install_kilo_jsonc_with_rel(project_root, plugin_rel)

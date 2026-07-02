@@ -78,7 +78,14 @@ TOOL_CHECKS: dict[str, dict] = {
 # Paths bootstrap.py writes at the *user project root* (--agents all).
 PROJECT_BOOTSTRAP_CHECKS: dict[str, dict] = {
     "cursor": {
-        "paths": (".cursor/skills/excel-to-json/SKILL.md", ".cursor/rules/excel-to-json.mdc"),
+        "paths": (
+            ".cursor/skills/excel-to-json/SKILL.md",
+            ".cursor/rules/excel-to-json.mdc",
+            ".cursor/agents/structure-analyst.md",
+            ".cursor/agents/schema-designer.md",
+            ".cursor/agents/parser-builder.md",
+            ".cursor/agents/dq-reviewer.md",
+        ),
         "rule_max_lines": 20,
         "rule_must_contain": "load skill",
     },
