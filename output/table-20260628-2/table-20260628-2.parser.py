@@ -33,7 +33,7 @@ import re
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(os.path.dirname(HERE))  # docs/<job>/ -> plugin root
+ROOT = os.path.dirname(os.path.dirname(HERE))  # output/<job>/ -> plugin root
 sys.path.insert(0, os.path.join(ROOT, "scripts"))
 from parser_lib import clean, dehyphenate, nest_by_pattern, write_json
 

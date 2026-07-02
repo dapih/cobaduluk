@@ -25,7 +25,7 @@ PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 
 Claude Code sets `${CLAUDE_PLUGIN_ROOT}`. Override: `export EXCEL_TO_JSON_ROOT=/path/to/clone`.
 
-Job outputs go under **`docs/`** in the user's working directory, not inside the plugin folder.
+Job outputs go under **`output/`** in the user's working directory, not inside the plugin folder.
 
 **Tool surfaces:** Claude Code (`commands/`, `/excel-to-json:*`), Cursor (`.cursor/skills/`, rule pointer), Kilo (`.kilo/commands/excel-to-json-*`), Codex/OpenCode/Antigravity (`.agents/skills/`, `.agents/workflows/`). Details: [INSTALL.md](INSTALL.md).
 

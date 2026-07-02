@@ -5,7 +5,7 @@ How to run the post-conversion review and write `data-quality-<job>.md`. The sca
 ## Run the scan
 
 ```
-python "${CLAUDE_PLUGIN_ROOT}/scripts/dq_check.py" docs/<job>/<job>.json --out docs/<job>/<job>
+python "${CLAUDE_PLUGIN_ROOT}/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
 ```
 
 Produces `<job>.dq.json` (machine) and `<job>.dq.md` (the summary table + samples). Tune which checks run via a copied `dq-checks.default.json`.

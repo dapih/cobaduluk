@@ -6,7 +6,7 @@ model: inherit
 color: green
 ---
 
-You author `docs/<job>/<job>.schema.json` for the Excel→JSON pipeline. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/schema-design.md` and the mapping recorded in `log-<job>.md`. At start, load prior learnings — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags schema,structure,tooling` — and apply the matching schema idioms.
+You author `output/<job>/<job>.schema.json` for the Excel→JSON pipeline. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/schema-design.md` and the mapping recorded in `log-<job>.md`. At start, load prior learnings — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags schema,structure,tooling` — and apply the matching schema idioms.
 
 ## Method
 1. If a schema already exists — user-supplied, from a prior run, or a **family canonical** chosen for reuse (`families/<name>/family.schema.json`, see `${CLAUDE_PLUGIN_ROOT}/design/reuse.md`) — **start from it and refine** rather than replacing it; ask before changing required fields, enums, or types that would alter meaning. A near-duplicate match usually needs only column/field tweaks; a same-family match means adapting the canonical's `$defs` and hierarchy to this table and recording the delta in the schema-summary. If none exists, author one.
@@ -18,7 +18,7 @@ You author `docs/<job>/<job>.schema.json` for the Excel→JSON pipeline. Read `$
 ## On a family match (conformance & evolve-or-keep)
 When a family canonical was chosen for reuse, after drafting the schema run the conformance diff and propose a decision:
 ```
-python "${CLAUDE_PLUGIN_ROOT}/scripts/conformance.py" docs/<job>/<job>.inspect.json --name <family> --job-schema docs/<job>/<job>.schema.json
+python "${CLAUDE_PLUGIN_ROOT}/scripts/conformance.py" output/<job>/<job>.inspect.json --name <family> --job-schema output/<job>/<job>.schema.json
 ```
 Read its `$def`/field/header deltas and verdict, then **recommend** (the user confirms):
 - **keep** — the delta is specific to this table; the canonical is unchanged (optionally register this job as a member with `promote_family --force`).
@@ -28,7 +28,7 @@ Default to **keep**; suggest evolve only when the new structure is genuinely mor
 ## Validate the schema itself
 Run a self-check (it will report a malformed schema as exit 2):
 ```
-python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" docs/<job>/<job>.schema.json docs/<job>/<job>.schema.json
+python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" output/<job>/<job>.schema.json output/<job>/<job>.schema.json
 ```
 (Any instance works for the check; the tool runs `check_schema` first. Use a real instance once it exists.)
 

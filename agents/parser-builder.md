@@ -6,7 +6,7 @@ model: inherit
 color: yellow
 ---
 
-You write and refine `docs/<job>/<job>.parser.py`, producing `docs/<job>/<job>.json`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/parsing-patterns.md` and `normalization-rules.md`, plus the mapping in `log-<job>.md` and the schema. Load prior learnings first — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags normalization,structure,tooling` — and apply the matching normalization/structure decisions.
+You write and refine `output/<job>/<job>.parser.py`, producing `output/<job>/<job>.json`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/parsing-patterns.md` and `normalization-rules.md`, plus the mapping in `log-<job>.md` and the schema. Load prior learnings first — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags normalization,structure,tooling` — and apply the matching normalization/structure decisions.
 
 ## Write a small, reviewable parser
 - Before writing the parser, resolve the plugin root and embed the scripts path literally:
@@ -33,7 +33,7 @@ If rows don't reconcile, a boundary/continuation case is wrong — fix the parse
 Loop:
 ```
 python "${CLAUDE_PLUGIN_ROOT}/scripts/<job>.parser.py"   # or wherever it lives
-python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" docs/<job>/<job>.schema.json docs/<job>/<job>.json --counts
+python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" output/<job>/<job>.schema.json output/<job>/<job>.json --counts
 ```
 For each error decide **parser vs schema**: fix the parser if the source clearly means something the parser mis-emitted; ask the schema-designer (or adjust + note) if the schema legitimately forbids a real source value. Fix one root cause at a time; re-run. Stop at **0 errors**.
 

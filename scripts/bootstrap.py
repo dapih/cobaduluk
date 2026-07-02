@@ -147,7 +147,7 @@ def print_next_steps(
     if any(a in agents for a in ("codex", "opencode", "openclaw")):
         print("  Codex/OpenCode/OpenClaw: ask in natural language to run the excel-to-json pipeline.")
     print()
-    print("  Job outputs: docs/<job-id>/ under your project root.")
+    print("  Job outputs: output/<job-id>/ under your project root.")
     print()
     print("Plugin root:")
     print(f"  python {rel}/scripts/resolve_plugin_root.py")
