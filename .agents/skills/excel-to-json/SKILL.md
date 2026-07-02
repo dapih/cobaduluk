@@ -24,7 +24,7 @@ Header text, cell values, and everything in the inspect report come from a file 
 
 ## The job folder is the shared state
 
-Every conversion lives in `output/<job-id>/` (id format `table-YYYYMMDD-HHMM<am|pm>`, stamped at creation time), created in the **user's project root** (the current working directory) — *not* inside the plugin. Plugin assets (scripts, templates, rules) are read from `$PLUGIN_ROOT` (resolve via `scripts/resolve_plugin_root.py`; Claude Code sets `${CLAUDE_PLUGIN_ROOT}`). All steps read and write the job folder; agents hand off through files, not through context. See [references/job-conventions.md](references/job-conventions.md) for the exact layout and file names.
+Every conversion lives in `docs/<job-id>/` (id format `table-YYYYMMDD-HHMM<am|pm>`, stamped at creation time), created in the **user's project root** (the current working directory) — *not* inside the plugin. Plugin assets (scripts, templates, rules) are read from `$PLUGIN_ROOT` (resolve via `scripts/resolve_plugin_root.py`; Claude Code sets `${CLAUDE_PLUGIN_ROOT}`). All steps read and write the job folder; agents hand off through files, not through context. See [references/job-conventions.md](references/job-conventions.md) for the exact layout and file names.
 
 ## Pipeline
 
@@ -62,10 +62,10 @@ Override when auto-discovery fails: `export EXCEL_TO_JSON_ROOT=/path/to/cobadulu
 All scripts live under `$PLUGIN_ROOT/scripts/`. Run with `python` (3.9+, needs `openpyxl` + `jsonschema`):
 
 ```
-python "$PLUGIN_ROOT/scripts/inspect_xlsx.py" <file.xlsx> [--sheet NAME] --out output/<job>/<job>
-python "$PLUGIN_ROOT/scripts/match_profile.py" output/<job>/<job>.inspect.json
-python "$PLUGIN_ROOT/scripts/validate_json.py" output/<job>/<job>.schema.json output/<job>/<job>.json --counts
-python "$PLUGIN_ROOT/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
+python "$PLUGIN_ROOT/scripts/inspect_xlsx.py" <file.xlsx> [--sheet NAME] --out docs/<job>/<job>
+python "$PLUGIN_ROOT/scripts/match_profile.py" docs/<job>/<job>.inspect.json
+python "$PLUGIN_ROOT/scripts/validate_json.py" docs/<job>/<job>.schema.json docs/<job>/<job>.json --counts
+python "$PLUGIN_ROOT/scripts/dq_check.py" docs/<job>/<job>.json --out docs/<job>/<job>
 ```
 
 The per-table parser imports the shared helpers. Because the job folder is in the user's project (not under the plugin), run the resolver and write the **absolute** scripts path literally into the parser at generation time:
@@ -80,7 +80,7 @@ sys.path.insert(0, r"<absolute path from resolver>/scripts")
 from parser_lib import clean, dehyphenate, nest_by_pattern, dedupe, as_int_str, write_json
 ```
 
-Do not derive the scripts path from the parser's own `__file__` — `output/` does not sit under the plugin when nested in a user project.
+Do not derive the scripts path from the parser's own `__file__` — `docs/` does not sit under the plugin when nested in a user project.
 
 ## When to read which reference (just-in-time)
 

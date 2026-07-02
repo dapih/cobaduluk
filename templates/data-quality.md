@@ -1,6 +1,6 @@
 <!--
 TEMPLATE: post-conversion data-quality report.
-Copy to output/<job-id>/data-quality-<job-id>.md and fill in.
+Copy to docs/<job-id>/data-quality-<job-id>.md and fill in.
 Source the findings table from scripts/dq_check.py output, then interpret each
 one (root cause + recommendation). Recommendations are PROPOSED, not applied -
 apply only after user confirmation.

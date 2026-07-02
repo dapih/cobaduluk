@@ -8,7 +8,7 @@ Validate: **$ARGUMENTS**
 PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
-- Job id → `output/<job>/<job>.json` vs `output/<job>/<job>.schema.json`.
+- Job id → `docs/<job>/<job>.json` vs `docs/<job>/<job>.schema.json`.
 - Two paths → validate instance (second) against schema (first).
 
 ```

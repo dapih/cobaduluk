@@ -17,6 +17,6 @@ PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
    - review → `dq-reviewer.md`
 4. Prefix every script with `$PLUGIN_ROOT/scripts/`. Resolve `$PLUGIN_ROOT` via `resolve_plugin_root.py` if not already set.
 5. Respect all confirmation gates (reuse, mapping, schema evolve-or-keep, DQ fixes, learnings append). Skip gates only when `--autonomous` is passed (default KEEP on family evolve; never drop rows).
-6. Log every milestone to `log-<job>.md`. Job outputs live under `output/<job>/` in the user's project root.
+6. Log every milestone to `log-<job>.md`. Job outputs live under `docs/<job>/` in the user's project root.
 
 Do not read the full xlsx or full JSON into context — only inspect reports and script output.

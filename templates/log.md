@@ -1,5 +1,5 @@
 <!--
-TEMPLATE: log report. Copy to output/<job-id>/log-<job-id>.md and fill in.
+TEMPLATE: log report. Copy to docs/<job-id>/log-<job-id>.md and fill in.
 This is the running record of the job. Append entries chronologically; never
 rewrite history. One line per milestone, result, change, or decision.
 Entry format:  - [YYYY-MM-DD HH:MM] [step] message

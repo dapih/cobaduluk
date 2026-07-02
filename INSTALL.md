@@ -48,7 +48,7 @@ git clone --depth 1 https://github.com/dapih/cobaduluk.git excel-to-json
 python excel-to-json/scripts/bootstrap.py --interactive
 ```
 
-Once installed, ask your agent in plain language: "Convert this Excel to JSON." (Kilo and Antigravity also expose `/excel-to-json-run`.) Outputs land in `output/<job-id>/` under your project root.
+Once installed, ask your agent in plain language: "Convert this Excel to JSON." (Kilo and Antigravity also expose `/excel-to-json-run`.) Outputs land in `docs/<job-id>/` under your project root.
 
 ### What the installer does
 

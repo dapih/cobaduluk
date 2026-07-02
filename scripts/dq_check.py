@@ -5,8 +5,8 @@ Walks a produced JSON document and flags common conversion issues with zero AI
 tokens: stray whitespace, broken hyphenation, placeholder values ('-', 'N/A'),
 trailing conjunctions, duplicate array items, empty/null inconsistency, and
 numeric-looking strings. Checks and parameters come from a rules file; if none
-is given it looks for ../skill-rules/dq-checks.default.json next to this
-script, then falls back to built-in defaults.
+is given it looks for ../rules/dq-checks.default.json next to this script, then
+falls back to built-in defaults.
 
 Usage:
     python dq_check.py <instance.json> [--rules rules.json]
@@ -52,7 +52,7 @@ def load_rules(path):
             merged["checks"].setdefault(name, {}).update(cfg)
         return merged
     here = os.path.dirname(os.path.abspath(__file__))
-    fallback = os.path.join(here, "..", "skill-rules", "dq-checks.default.json")
+    fallback = os.path.join(here, "..", "rules", "dq-checks.default.json")
     if os.path.exists(fallback):
         with open(fallback, encoding="utf-8") as f:
             return json.load(f)

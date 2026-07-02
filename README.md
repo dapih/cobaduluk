@@ -118,7 +118,7 @@ flowchart LR
 | Command                                  | Purpose                                                              |
 |------------------------------------------|----------------------------------------------------------------------|
 | `/excel-to-json:run <file.xlsx>`         | Full pipeline; pauses at confirmation gates (`--autonomous` to skip) |
-| `/excel-to-json:new-job <file.xlsx>`     | Create the `output/<job>/` folder and move the input in                |
+| `/excel-to-json:new-job <file.xlsx>`     | Create the `docs/<job>/` folder and move the input in                |
 | `/excel-to-json:inspect <file or job>`   | Structure report only                                                |
 | `/excel-to-json:schema <job>`            | Create, refine, or validate a schema                                 |
 | `/excel-to-json:convert <job>`           | Generate the parser and the JSON instance                            |
@@ -150,10 +150,10 @@ Details in [memory/README.md](memory/README.md).
 
 ## Output: the job folder
 
-Every conversion lives in one self-contained folder under `output/` in your project root:
+Every conversion lives in one self-contained folder under `docs/` in your project root:
 
 ```
-output/table-YYYYMMDD-HHMMam/
+docs/table-YYYYMMDD-HHMMam/
   table.xlsx            source table
   table.inspect.md      structure report (and .json)
   table.schema.json     JSON Schema (Draft 2020-12)

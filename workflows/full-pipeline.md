@@ -38,7 +38,7 @@ Legend: 🤖 = deterministic script · 🧠 = agent (judgment) · ⛔ = confirma
 
 ## Reuse from a past family (step 2c)
 After inspect, score the new table against the promoted-family store:
-`python "$PLUGIN_ROOT/scripts/match_profile.py" output/<job>/<job>.inspect.json`
+`python "$PLUGIN_ROOT/scripts/match_profile.py" docs/<job>/<job>.inspect.json`
 Matching is by structural fingerprint, not headers (see `design/reuse.md`). Act on the verdict — **always confirm before reusing**:
 - **near-duplicate** (cosine ≥ ~0.95): offer to clone the family canonical schema and the matched member's parser, re-pointing columns; parser-builder then adapts and validates.
 - **same family** (~0.65–0.95): offer to warm-start the schema from the canonical; structure-analyst aligns field names to it and schema-designer adapts the `$defs` / hierarchy.
@@ -47,7 +47,7 @@ Reuse never skips a gate — the parser still proves row conservation and the in
 
 ## Family conformance & evolution (medium tier, step 4b)
 On a same-family match, once the schema is drafted, quantify how this table differs from the canonical:
-`python "$PLUGIN_ROOT/scripts/conformance.py" output/<job>/<job>.inspect.json --name <family> --job-schema output/<job>/<job>.schema.json`
+`python "$PLUGIN_ROOT/scripts/conformance.py" docs/<job>/<job>.inspect.json --name <family> --job-schema docs/<job>/<job>.schema.json`
 It reports header, structural-feature, and schema `$def`/field deltas vs the **canonical member**, plus an advisory verdict (`conforms` / `same-family-with-delta` / `divergent`). Use it for the **evolve-or-keep** decision (a ⛔ gate — manual, at the user's discretion):
 - **KEEP** — the delta is table-specific; handle it in this job only. Optionally register the table as a member without changing the canonical: `promote_family.py <job> --name <family> --force`.
 - **EVOLVE** — the delta should become the family standard; adopt this job's schema as a new canonical version: `promote_family.py <job> --name <family> --force --evolve` (bumps `canonical_version`).
