@@ -7,8 +7,8 @@
   "members": [
     {
       "job_id": "table-20260628-1",
-      "schema": "docs/table-20260628-1/table-20260628-1.schema.json",
-      "parser": "docs/table-20260628-1/table-20260628-1.parser.py",
+      "schema": "output/table-20260628-1/table-20260628-1.schema.json",
+      "parser": "output/table-20260628-1/table-20260628-1.parser.py",
       "added": "2026-06-28",
       "fingerprint": {
         "features": {
@@ -64,8 +64,8 @@
     },
     {
       "job_id": "table-20260628-2",
-      "schema": "docs/table-20260628-2/table-20260628-2.schema.json",
-      "parser": "docs/table-20260628-2/table-20260628-2.parser.py",
+      "schema": "output/table-20260628-2/table-20260628-2.schema.json",
+      "parser": "output/table-20260628-2/table-20260628-2.parser.py",
       "added": "2026-06-28",
       "fingerprint": {
         "features": {

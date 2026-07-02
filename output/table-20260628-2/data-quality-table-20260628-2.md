@@ -1,7 +1,7 @@
 # Data-Quality Report: table-20260628-2
 
-**Instance:** `docs/table-20260628-2/table-20260628-2.json`
-**Schema:** `docs/table-20260628-2/table-20260628-2.schema.json`
+**Instance:** `output/table-20260628-2/table-20260628-2.json`
+**Schema:** `output/table-20260628-2/table-20260628-2.schema.json`
 **Top-level entries:** 22 entries across 3 sections
 **Schema validation:** PASSED (0 errors)
 **Source rows accounted for:** 266 rows in -> 22 entries out (0 rows dropped)
