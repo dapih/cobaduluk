@@ -2,7 +2,7 @@
 
 Live status for the [cross-tool skills migration plan](plans/cross-tool-skills-migration.md).
 
-**Not** [`memory/learnings.md`](../skills/excel-to-json/memory/learnings.md) — that file is for Excel-conversion pipeline insights only. This doc tracks marketplace install, path resolution, and per-agent smoke tests.
+**Not** [`memory/learnings.md`](../memory/learnings.md) — that file is for Excel-conversion pipeline insights only. This doc tracks marketplace install, path resolution, and per-agent smoke tests.
 
 ---
 
@@ -27,8 +27,8 @@ Do not mark a milestone **done** until its gate passes.
 
 | ID | Check | Status | Notes |
 |---|---|---|---|
-| **CP1** | `python skills/excel-to-json/scripts/validate_marketplace.py` → exit 0 | **pass** | 2026-06-30 |
-| **CP2** | `python skills/excel-to-json/scripts/verify_install.py` → exit 0 | **pass** | 2026-06-30 |
+| **CP1** | `python scripts/validate_marketplace.py` → exit 0 | **pass** | 2026-06-30 |
+| **CP2** | `python scripts/verify_install.py` → exit 0 | **pass** | 2026-06-30 |
 | **CP3** | Nested install test — clone into test project, run inspect from parent dir | **pass** | resolver via script path from parent CWD (2026-06-30) |
 | **CP4** | Update session log with test results | **pass** | M6 session log + `smoke_test_compat.py` (2026-06-30) |
 | **CP5** | Git tag + README marketplace section reviewed | partial | README + INSTALL updated; `git tag v0.1.0` when ready (gh release blocked on auth) |
@@ -50,12 +50,12 @@ Run after M1–M3. Record tool version and install path in the session log.
 | Kilo Code | bootstrap `--agents kilo` (or interactive install) **or** `npx skills add … --agent kilo` + bootstrap | `/excel-to-json-run` | `.kilo/` at **project root** | **structural pass** — 6 commands + `kilo.jsonc`; extension not auto-detected from PATH |
 | Hermes | `hermes skills tap add dapih/cobaduluk` + install | `/excel-to-json` | Skill in `~/.hermes/skills/` | **structural pass** — INSTALL.md tap docs; Hermes CLI not on PATH |
 
-**Automated gate:** `python skills/excel-to-json/scripts/smoke_test_compat.py` (structural checks for all 8 + nested resolver).
+**Automated gate:** `python scripts/smoke_test_compat.py` (structural checks for all 8 + nested resolver).
 
 **Workarounds documented:**
 - **Recommended install:** `install.sh` / `install.ps1` from project root (interactive bootstrap). Clones to `excel-to-json/`, writes adapters at project root, strips duplicate mirrors inside clone.
 - Do **not** rely on `npx skills add` alone — copies skill only, no Python scripts. Use bootstrap or `--replace-copies` after skills CLI.
-- Do **not** run `npx skills add .` from plugin repo root — it copies into `.agents/skills/` and breaks junction mirrors. Use a nested test project, or restore with `python skills/excel-to-json/scripts/link_skill_discovery.py --replace-copies`.
+- Do **not** run `npx skills add .` from plugin repo root — it copies into `.agents/skills/` and breaks junction mirrors. Use a nested test project, or restore with `python scripts/link_skill_discovery.py --replace-copies`.
 - Legacy path `tools/excel-to-json/` — move to `excel-to-json/` at project root and re-run bootstrap.
 
 ---
@@ -70,11 +70,11 @@ Newest entries at the top. Capture: tool version, install path, result, root cau
 - **Environment:** Windows 10; Python 3.x; junction/symlink/copy fallback in `install_adapters.py`.
 - **Result:** success (merged to `main`)
 - **Change made:**
-  - [`skills/excel-to-json/scripts/install_adapters.py`](../skills/excel-to-json/scripts/install_adapters.py), [`skills/excel-to-json/scripts/install_prompt.py`](../skills/excel-to-json/scripts/install_prompt.py) — interactive agent selection; adapters at user project root
-  - [`skills/excel-to-json/scripts/bootstrap.py`](../skills/excel-to-json/scripts/bootstrap.py) — `--interactive` / `--non-interactive`; strip nested discovery mirrors; shallow walk for `pluginRoot` on Windows
+  - [`scripts/install_adapters.py`](../scripts/install_adapters.py), [`scripts/install_prompt.py`](../scripts/install_prompt.py) — interactive agent selection; adapters at user project root
+  - [`scripts/bootstrap.py`](../scripts/bootstrap.py) — `--interactive` / `--non-interactive`; strip nested discovery mirrors; shallow walk for `pluginRoot` on Windows
   - [`install.ps1`](../install.ps1), [`install.sh`](../install.sh) — default clone path `excel-to-json/`; interactive by default
   - [`.cursor-plugin/`](../.cursor-plugin/) — Cursor marketplace manifest (parallel to `.claude-plugin/`)
-  - [`skills/excel-to-json/scripts/smoke_test_compat.py`](../skills/excel-to-json/scripts/smoke_test_compat.py) — nested bootstrap gate (copytree, project-root adapters, no `excel-to-json/.cursor/skills`)
+  - [`scripts/smoke_test_compat.py`](../scripts/smoke_test_compat.py) — nested bootstrap gate (copytree, project-root adapters, no `excel-to-json/.cursor/skills`)
   - [`README.md`](../README.md), [`INSTALL.md`](../INSTALL.md), [`skills/README.md`](../skills/README.md) — install docs aligned
 - **Verified:** nested bootstrap smoke; resolver from project CWD; duplicate-skill strip when plugin physically under project
 - **Follow-up:** `git tag v0.1.0` + GitHub release when `gh auth login` available; user-global scope still not implemented (prompt documents project-only)
@@ -97,10 +97,10 @@ Newest entries at the top. Capture: tool version, install path, result, root cau
 - **Environment:** Windows 10; Python 3.14.2; Node/npx 11.6.2; skills CLI 1.5.14; Cursor CLI on PATH; Hermes/Codex not on PATH.
 - **Result:** success (structural + local Cursor/npx; runtime manual for 6 tools)
 - **Change made:**
-  - [`skills/excel-to-json/scripts/smoke_test_compat.py`](../skills/excel-to-json/scripts/smoke_test_compat.py) — M6 automated gate (8 tools + nested resolver)
-  - [`skills/excel-to-json/scripts/link_skill_discovery.py`](../skills/excel-to-json/scripts/link_skill_discovery.py) — `--replace-copies` after accidental `npx skills add` in repo root
+  - [`scripts/smoke_test_compat.py`](../scripts/smoke_test_compat.py) — M6 automated gate (8 tools + nested resolver)
+  - [`scripts/link_skill_discovery.py`](../scripts/link_skill_discovery.py) — `--replace-copies` after accidental `npx skills add` in repo root
 - **Verified:**
-  - `python skills/excel-to-json/scripts/smoke_test_compat.py` → exit 0
+  - `python scripts/smoke_test_compat.py` → exit 0
   - `npx skills add . --list` and `npx skills add dapih/cobaduluk --list` → discover `excel-to-json`
   - `npx skills add . --skill excel-to-json --agent cursor -y` in temp nested clone → copies to `.agents/skills/excel-to-json/SKILL.md`
   - Cursor workspace: rule + skill mirror + resolver OK
@@ -114,7 +114,7 @@ Newest entries at the top. Capture: tool version, install path, result, root cau
 - **Result:** success
 - **Change made:**
   - [`LICENSE`](../LICENSE) (MIT), [`requirements.txt`](../requirements.txt)
-  - [`skills/excel-to-json/scripts/verify_install.py`](../skills/excel-to-json/scripts/verify_install.py) — CP2 pass
+  - [`scripts/verify_install.py`](../scripts/verify_install.py) — CP2 pass
   - Slim [`AGENTS.md`](../AGENTS.md); dev rules in [`CONTRIBUTING.md`](../CONTRIBUTING.md)
   - [`README.md`](../README.md) — marketplace-first install, updated layout
 - **Not done:** `git tag v0.1.0` (run manually when publishing to GitHub)
@@ -128,7 +128,7 @@ Newest entries at the top. Capture: tool version, install path, result, root cau
   - [`.kilo/commands/excel-to-json-{run,inspect,schema,convert,validate,review}.md`](../.kilo/commands/)
   - [`.agents/workflows/excel-to-json-run.md`](../.agents/workflows/excel-to-json-run.md)
   - [`INSTALL.md`](../INSTALL.md) — Kilo/Antigravity command table
-  - [`validate_marketplace.py`](../skills/excel-to-json/scripts/validate_marketplace.py) — checks commands/workflows reference resolver
+  - [`validate_marketplace.py`](../scripts/validate_marketplace.py) — checks commands/workflows reference resolver
 - **Follow-up:** M5 — LICENSE, requirements.txt, verify_install.py, README, git tag
 
 ### 2026-06-30 — M3 complete
@@ -137,11 +137,11 @@ Newest entries at the top. Capture: tool version, install path, result, root cau
 - **Result:** success
 - **Change made:**
   - Junctions: `.agents/skills/`, `.cursor/skills/`, `.kilo/skills/`, `.opencode/skills/` → `skills/excel-to-json/`
-  - [`skills/excel-to-json/scripts/link_skill_discovery.py`](../skills/excel-to-json/scripts/link_skill_discovery.py) — recreate mirrors after clone
+  - [`scripts/link_skill_discovery.py`](../scripts/link_skill_discovery.py) — recreate mirrors after clone
   - Slim [`.cursor/rules/excel-to-json.mdc`](../.cursor/rules/excel-to-json.mdc) — skill pointer only (no duplicated pipeline table)
   - [`.kilo/kilo.jsonc`](../.kilo/kilo.jsonc), [`.kilo/rules/excel-to-json.md`](../.kilo/rules/excel-to-json.md)
   - [`.kilocode/rules/excel-to-json.md`](../.kilocode/rules/excel-to-json.md) — deprecation stub
-  - [`validate_marketplace.py`](../skills/excel-to-json/scripts/validate_marketplace.py) — checks discovery mirrors
+  - [`validate_marketplace.py`](../scripts/validate_marketplace.py) — checks discovery mirrors
 - **Verified:** all four mirrors resolve to canonical `SKILL.md`; CP1 still passes
 - **Follow-up:** M4 — `.kilo/commands/`, `.agents/workflows/`
 
@@ -150,8 +150,8 @@ Newest entries at the top. Capture: tool version, install path, result, root cau
 - **Attempted:** Plugin root resolver for nested install; update SKILL, agents, workflows, Cursor/Kilo rules, INSTALL, AGENTS, README.
 - **Result:** success
 - **Change made:**
-  - [`skills/excel-to-json/scripts/resolve_plugin_root.py`](../skills/excel-to-json/scripts/resolve_plugin_root.py) — `CLAUDE_PLUGIN_ROOT` → `EXCEL_TO_JSON_ROOT` → walk CWD → walk from script
-  - Updated [`skills/excel-to-json/SKILL.md`](../skills/excel-to-json/SKILL.md), [`agents/parser-builder.md`](../agents/parser-builder.md), [`workflows/full-pipeline.md`](../skills/excel-to-json/workflows/full-pipeline.md), [`.cursor/rules/excel-to-json.mdc`](../.cursor/rules/excel-to-json.mdc), [`.kilocode/rules/excel-to-json.md`](../.kilocode/rules/excel-to-json.md)
+  - [`scripts/resolve_plugin_root.py`](../scripts/resolve_plugin_root.py) — `CLAUDE_PLUGIN_ROOT` → `EXCEL_TO_JSON_ROOT` → walk CWD → walk from script
+  - Updated [`skills/excel-to-json/SKILL.md`](../skills/excel-to-json/SKILL.md), [`agents/parser-builder.md`](../agents/parser-builder.md), [`workflows/full-pipeline.md`](../workflows/full-pipeline.md), [`.cursor/rules/excel-to-json.mdc`](../.cursor/rules/excel-to-json.mdc), [`.kilocode/rules/excel-to-json.md`](../.kilocode/rules/excel-to-json.md)
 - **Verified:** resolver exits 0 from plugin root, from parent CWD via script path, and via `EXCEL_TO_JSON_ROOT`
 - **Follow-up:** M3 — discovery symlinks (`.agents/skills/`, `.cursor/skills/`, `.kilo/skills/`)
 
@@ -171,9 +171,9 @@ Newest entries at the top. Capture: tool version, install path, result, root cau
   - [`INSTALL.md`](../INSTALL.md) — per-tool GitHub-URL install commands
   - [`skills/README.md`](../skills/README.md) — skills.sh discovery pointer
   - [`.well-known/skills/index.json`](../.well-known/skills/index.json) — optional well-known discovery
-  - [`skills/excel-to-json/scripts/validate_marketplace.py`](../skills/excel-to-json/scripts/validate_marketplace.py) — CP1 gate (exit 0)
+  - [`scripts/validate_marketplace.py`](../scripts/validate_marketplace.py) — CP1 gate (exit 0)
   - [`README.md`](../README.md) — link to INSTALL.md
-- **Follow-up:** M2 — `skills/excel-to-json/scripts/resolve_plugin_root.py` for nested install
+- **Follow-up:** M2 — `scripts/resolve_plugin_root.py` for nested install
 
 ### 2026-06-30 — M0 complete
 
@@ -183,4 +183,4 @@ Newest entries at the top. Capture: tool version, install path, result, root cau
   - Added [`design/plans/cross-tool-skills-migration.md`](plans/cross-tool-skills-migration.md) (canonical plan copy)
   - Added this file (`design/cross-tool-compat.md`)
   - Replaced duplicate `design/cross-tool_skills_migration.plan.md` with pointer to canonical plan
-- **Follow-up:** M1 — `.claude-plugin/marketplace.json`, `INSTALL.md`, `skills/excel-to-json/scripts/validate_marketplace.py`
+- **Follow-up:** M1 — `.claude-plugin/marketplace.json`, `INSTALL.md`, `scripts/validate_marketplace.py`

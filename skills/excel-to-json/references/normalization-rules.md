@@ -1,6 +1,6 @@
 # Normalization rules: safe vs risky
 
-What to clean during parsing, and what to leave alone. Defaults live in `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/skill-rules/normalization.default.json`; copy it into the job folder and tune per table. The guiding rule: **normalize formatting artifacts, preserve meaning.** When in doubt, don't transform — flag it in the DQ report instead.
+What to clean during parsing, and what to leave alone. Defaults live in `${CLAUDE_PLUGIN_ROOT}/skill-rules/normalization.default.json`; copy it into the job folder and tune per table. The guiding rule: **normalize formatting artifacts, preserve meaning.** When in doubt, don't transform — flag it in the DQ report instead.
 
 ## Always safe (on by default)
 
@@ -40,5 +40,5 @@ Surface this as a recommendation in the DQ report and apply it after confirmatio
 
 1. Look at the **inspect samples** for the column. Do the artifacts appear? Are there counter-examples (legitimate hyphens, meaningful dashes)?
 2. Prefer the **narrowest** transform that fixes the artifact without touching good data.
-3. Encode the decision in the job's normalization rules file and **log it**, so the next similar table can reuse the choice (see `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/memory/learnings.md`).
+3. Encode the decision in the job's normalization rules file and **log it**, so the next similar table can reuse the choice (see `${CLAUDE_PLUGIN_ROOT}/memory/learnings.md`).
 4. If a transform is even slightly judgment-laden, leave the data raw and **report** it rather than silently changing it.

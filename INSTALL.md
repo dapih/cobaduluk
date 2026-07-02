@@ -45,7 +45,7 @@ Prefer to see the steps? Clone and bootstrap by hand instead:
 
 ```bash
 git clone --depth 1 https://github.com/dapih/cobaduluk.git excel-to-json
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --interactive
+python excel-to-json/scripts/bootstrap.py --interactive
 ```
 
 Once installed, ask your agent in plain language: "Convert this Excel to JSON." (Kilo and Antigravity also expose `/excel-to-json-run`.) Outputs land in `output/<job-id>/` under your project root.
@@ -78,16 +78,16 @@ Agent tools read dot-folders at your project root only. Kilo Code uses `.kilo/`,
 
 ```bash
 # skip the menu, name the agents you want
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --non-interactive --agents cursor,kilo
+python excel-to-json/scripts/bootstrap.py --non-interactive --agents cursor,kilo
 
 # or configure everything
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --agents all
+python excel-to-json/scripts/bootstrap.py --agents all
 ```
 
 Select **kilo** explicitly (the VS Code extension is not detected from PATH):
 
 ```bash
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --agents kilo,cursor
+python excel-to-json/scripts/bootstrap.py --agents kilo,cursor
 ```
 
 ## Cursor marketplace
@@ -96,21 +96,21 @@ This repo ships [`.cursor-plugin/`](.cursor-plugin/), the official Cursor plugin
 
 ## Optional: skills.sh (`npx skills`)
 
-`npx skills add` copies only the skill folder, `skills/excel-to-json/`. That folder is self-contained (SKILL.md, scripts, default config, templates, workflow, and cross-job learnings all live inside it), so the pipeline runs from a skill-only install. What it won't have: promotable families (`families/`) live at the project root, not inside the skill folder. Pair it with bootstrap for the full experience:
+`npx skills add` copies only the skill folder, so it is **not enough on its own**, the pipeline needs the Python scripts. Pair it with bootstrap:
 
 ```bash
 npx skills add dapih/cobaduluk --skill excel-to-json --agent cursor -y
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --replace-copies
+python excel-to-json/scripts/bootstrap.py --replace-copies
 ```
 
-Or let bootstrap run it for you: `python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --with-skills-cli`. Use `skills` (plural), not `skill`. Listing: [skills.sh/dapih/cobaduluk/excel-to-json](https://skills.sh/dapih/cobaduluk/excel-to-json).
+Or let bootstrap run it for you: `python excel-to-json/scripts/bootstrap.py --with-skills-cli`. Use `skills` (plural), not `skill`. Listing: [skills.sh/dapih/cobaduluk/excel-to-json](https://skills.sh/dapih/cobaduluk/excel-to-json).
 
 ## Verify
 
 Bootstrap runs this automatically; run it yourself any time:
 
 ```bash
-python excel-to-json/skills/excel-to-json/scripts/verify_install.py --root excel-to-json --project-root .
+python excel-to-json/scripts/verify_install.py --root excel-to-json --project-root .
 ```
 
 ## Environment overrides
@@ -133,26 +133,26 @@ export EXCEL_TO_JSON_ROOT=/path/to/my-project/excel-to-json
 
 ```powershell
 Remove-Item -Recurse -Force excel-to-json\.cursor\skills -ErrorAction SilentlyContinue
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --interactive
+python excel-to-json/scripts/bootstrap.py --interactive
 ```
 
 **Kilo Code not detected after install.** Re-run with Kilo selected and confirm `.kilo/kilo.jsonc` exists at your project root, then reload VS Code:
 
 ```bash
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --agents kilo,cursor
+python excel-to-json/scripts/bootstrap.py --agents kilo,cursor
 ```
 
 **Skill was copied instead of linked (after `npx skills add`).**
 
 ```bash
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --replace-copies
+python excel-to-json/scripts/bootstrap.py --replace-copies
 ```
 
 **Upgrading from an old `tools/excel-to-json/` layout.** Move the folder to your project root and re-run bootstrap, or clone fresh:
 
 ```bash
 git clone --depth 1 https://github.com/dapih/cobaduluk.git excel-to-json
-python excel-to-json/skills/excel-to-json/scripts/bootstrap.py --agents all
+python excel-to-json/scripts/bootstrap.py --agents all
 ```
 
 **Junction or symlink failed on Windows.** Bootstrap falls back to copy automatically; to force it, set `EXCEL_TO_JSON_FORCE_COPY=1`.

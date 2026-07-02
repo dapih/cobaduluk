@@ -24,26 +24,26 @@ Header text, cell values, and everything in the inspect report come from a file 
 
 ## The job folder is the shared state
 
-Every conversion lives in `output/<job-id>/` (id format `table-YYYYMMDD-HHMM<am|pm>`, stamped at creation time), created in the **user's project root** (the current working directory) — *not* inside the plugin. Plugin assets (scripts, templates, rules) are read from `$PLUGIN_ROOT` (resolve via `skills/excel-to-json/scripts/resolve_plugin_root.py`; Claude Code sets `${CLAUDE_PLUGIN_ROOT}`). All steps read and write the job folder; agents hand off through files, not through context. See [references/job-conventions.md](references/job-conventions.md) for the exact layout and file names.
+Every conversion lives in `output/<job-id>/` (id format `table-YYYYMMDD-HHMM<am|pm>`, stamped at creation time), created in the **user's project root** (the current working directory) — *not* inside the plugin. Plugin assets (scripts, templates, rules) are read from `$PLUGIN_ROOT` (resolve via `scripts/resolve_plugin_root.py`; Claude Code sets `${CLAUDE_PLUGIN_ROOT}`). All steps read and write the job folder; agents hand off through files, not through context. See [references/job-conventions.md](references/job-conventions.md) for the exact layout and file names.
 
 ## Pipeline
 
-| Step                                                      | Done by                              | Output in job folder                         |
-| -----------------------------------------------------------| --------------------------------------| ----------------------------------------------|
-| 1. Prepare folder, move input                             | `new-job` command                    | `<job>.xlsx`, `log-<job>.md`                 |
-| 2. Inspect structure                                      | `inspect_xlsx.py`                    | `<job>.inspect.md` / `.json`                 |
-| 2c. Match against promoted families (opt-in reuse)        | `match_profile.py`                   | match report; chosen family canonical        |
-| 3. Propose column→field map + hierarchy                   | **structure-analyst** agent          | mapping in log / `summary` draft             |
-| 4. Author / refine schema                                 | **schema-designer** agent            | `<job>.schema.json`                          |
-| 5. Write parser, run, iterate to 0 errors                 | **parser-builder** agent             | `<job>.parser.py`, `<job>.json`              |
-| 6. Validate instance vs schema                            | `validate_json.py`                   | gate: 0 errors                               |
-| 7. Data-quality review + report                           | **dq-reviewer** agent                | `data-quality-<job>.md`                      |
-| 8. Summary + field↔column map                             | this skill / orchestrator            | `summary-<job>.md`                           |
-| 9. Record durable learnings (generalize-and-confirm gate) | orchestrator + `learnings.py --lint` | append to `$PLUGIN_ROOT/skills/excel-to-json/memory/learnings.md` |
+| Step | Done by | Output in job folder |
+|---|---|---|
+| 1. Prepare folder, move input | `new-job` command | `<job>.xlsx`, `log-<job>.md` |
+| 2. Inspect structure | `inspect_xlsx.py` | `<job>.inspect.md` / `.json` |
+| 2c. Match against promoted families (opt-in reuse) | `match_profile.py` | match report; chosen family canonical |
+| 3. Propose column→field map + hierarchy | **structure-analyst** agent | mapping in log / `summary` draft |
+| 4. Author / refine schema | **schema-designer** agent | `<job>.schema.json` |
+| 5. Write parser, run, iterate to 0 errors | **parser-builder** agent | `<job>.parser.py`, `<job>.json` |
+| 6. Validate instance vs schema | `validate_json.py` | gate: 0 errors |
+| 7. Data-quality review + report | **dq-reviewer** agent | `data-quality-<job>.md` |
+| 8. Summary + field↔column map | this skill / orchestrator | `summary-<job>.md` |
+| 9. Record durable learnings (generalize-and-confirm gate) | orchestrator + `learnings.py --lint` | append to `$PLUGIN_ROOT/memory/learnings.md` |
 
-The full ordered procedure (with confirmation gates) is in [`workflows/full-pipeline.md`](workflows/full-pipeline.md).
+The full ordered procedure (with confirmation gates) is in [`workflows/full-pipeline.md`](../../workflows/full-pipeline.md).
 
-Before mapping, the orchestrator may **match** the new table against families promoted from past jobs and, with the user's confirmation, warm-start the schema/parser from a canonical instead of starting from scratch. On a same-family match it also runs a **conformance** diff (`conformance.py`) and surfaces an **evolve-or-keep** decision for the family canonical (which is versioned; the match key is the members' centroid). Reuse never skips the validation or row-conservation gates. See [references/reuse.md](references/reuse.md).
+Before mapping, the orchestrator may **match** the new table against families promoted from past jobs and, with the user's confirmation, warm-start the schema/parser from a canonical instead of starting from scratch. On a same-family match it also runs a **conformance** diff (`conformance.py`) and surfaces an **evolve-or-keep** decision for the family canonical (which is versioned; the match key is the members' centroid). Reuse never skips the validation or row-conservation gates. See [../../design/reuse.md](../../design/reuse.md).
 
 ## Running the scripts
 
@@ -51,32 +51,32 @@ Resolve the plugin root **once** per session, then prefix every script path with
 
 ```bash
 # Nested install example (from user project root):
-PLUGIN_ROOT=$(python excel-to-json/skills/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 
 # Claude Code sets CLAUDE_PLUGIN_ROOT automatically — either works:
-# PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(python "$CLAUDE_PLUGIN_ROOT/skills/excel-to-json/scripts/resolve_plugin_root.py")}"
+# PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-$(python "$CLAUDE_PLUGIN_ROOT/scripts/resolve_plugin_root.py")}"
 ```
 
 Override when auto-discovery fails: `export EXCEL_TO_JSON_ROOT=/path/to/cobaduluk`
 
-All scripts live under `$PLUGIN_ROOT/skills/excel-to-json/scripts/`. Run with `python` (3.9+, needs `openpyxl` + `jsonschema`):
+All scripts live under `$PLUGIN_ROOT/scripts/`. Run with `python` (3.9+, needs `openpyxl` + `jsonschema`):
 
 ```
-python "$PLUGIN_ROOT/skills/excel-to-json/scripts/inspect_xlsx.py" <file.xlsx> [--sheet NAME] --out output/<job>/<job>
-python "$PLUGIN_ROOT/skills/excel-to-json/scripts/match_profile.py" output/<job>/<job>.inspect.json
-python "$PLUGIN_ROOT/skills/excel-to-json/scripts/validate_json.py" output/<job>/<job>.schema.json output/<job>/<job>.json --counts
-python "$PLUGIN_ROOT/skills/excel-to-json/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
+python "$PLUGIN_ROOT/scripts/inspect_xlsx.py" <file.xlsx> [--sheet NAME] --out output/<job>/<job>
+python "$PLUGIN_ROOT/scripts/match_profile.py" output/<job>/<job>.inspect.json
+python "$PLUGIN_ROOT/scripts/validate_json.py" output/<job>/<job>.schema.json output/<job>/<job>.json --counts
+python "$PLUGIN_ROOT/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
 ```
 
 The per-table parser imports the shared helpers. Because the job folder is in the user's project (not under the plugin), run the resolver and write the **absolute** scripts path literally into the parser at generation time:
 
 ```bash
-python "$PLUGIN_ROOT/skills/excel-to-json/scripts/resolve_plugin_root.py"
+python "$PLUGIN_ROOT/scripts/resolve_plugin_root.py"
 ```
 
 ```python
 import sys
-sys.path.insert(0, r"<absolute path from resolver>/skills/excel-to-json/scripts")
+sys.path.insert(0, r"<absolute path from resolver>/scripts")
 from parser_lib import clean, dehyphenate, nest_by_pattern, dedupe, as_int_str, write_json
 ```
 
@@ -90,8 +90,8 @@ Do not derive the scripts path from the parser's own `__file__` — `output/` do
 - Interpreting DQ findings and writing recommendations → [references/data-quality-checks.md](references/data-quality-checks.md)
 - Job-folder layout and naming → [references/job-conventions.md](references/job-conventions.md)
 - Worked-output exemplars (form, not domain) → [references/examples/](references/examples/)
-- Reusing a past schema/parser for a same-structure table → [references/reuse.md](references/reuse.md)
-- Reading prior learnings (filtered) / appending through the gate → `scripts/learnings.py` + [memory/README.md](memory/README.md)
+- Reusing a past schema/parser for a same-structure table → [../../design/reuse.md](../../design/reuse.md)
+- Reading prior learnings (filtered) / appending through the gate → `scripts/learnings.py` + [../../memory/README.md](../../memory/README.md)
 
 ## Non-negotiables
 

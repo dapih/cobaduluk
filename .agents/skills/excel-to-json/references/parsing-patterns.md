@@ -19,7 +19,7 @@ Most complex regulatory/tabular sheets are **denormalized**: one logical entry s
 import sys
 # Job folder lives in the user's project, not under the plugin — use the
 # absolute path from resolve_plugin_root.py (written in at generation).
-sys.path.insert(0, r"<PLUGIN_ROOT>/skills/excel-to-json/scripts")
+sys.path.insert(0, r"<PLUGIN_ROOT>/scripts")
 from parser_lib import clean, dehyphenate, nest_by_pattern, dedupe, as_int_str, write_json
 import openpyxl
 

@@ -9,10 +9,10 @@ todos:
     content: Add .claude-plugin/marketplace.json, INSTALL.md with per-tool GitHub-URL commands, optional .well-known/skills/index.json
     status: completed
   - id: marketplace-validate
-    content: Add skills/excel-to-json/scripts/validate_marketplace.py and skills/excel-to-json/scripts/verify_install.py; run before any release tag
+    content: Add scripts/validate_marketplace.py and scripts/verify_install.py; run before any release tag
     status: completed
   - id: resolve-plugin-root
-    content: Add skills/excel-to-json/scripts/resolve_plugin_root.py and update SKILL.md, agents, workflows, parser-builder to use it (fix nested install)
+    content: Add scripts/resolve_plugin_root.py and update SKILL.md, agents, workflows, parser-builder to use it (fix nested install)
     status: completed
   - id: discovery-symlinks
     content: Add .agents/skills/, .cursor/skills/, .kilo/skills/ symlinks to skills/excel-to-json; slim .cursor/rules to pointer only
@@ -63,7 +63,7 @@ isProject: false
 
 > **Saved plan:** on execution, copy this file to [`design/plans/cross-tool-skills-migration.md`](design/plans/cross-tool-skills-migration.md) in the repo so it travels with the project.
 >
-> **Progress tracker:** [`design/cross-tool-compat.md`](design/cross-tool-compat.md) — milestones, checkpoints, test results, and append-only session log (failures, successes, changes). Separate from [`memory/learnings.md`](../../skills/excel-to-json/memory/learnings.md) which is for Excel-conversion pipeline insights only.
+> **Progress tracker:** [`design/cross-tool-compat.md`](design/cross-tool-compat.md) — milestones, checkpoints, test results, and append-only session log (failures, successes, changes). Separate from [`memory/learnings.md`](memory/learnings.md) which is for Excel-conversion pipeline insights only.
 
 ---
 
@@ -76,7 +76,7 @@ isProject: false
 | **Marketplace catalog** | One GitHub URL → browse → install | Claude Code `/plugin marketplace add`, skills.sh, Hermes tap |
 | **Skill (portable contract)** | [`skills/excel-to-json/SKILL.md`](skills/excel-to-json/SKILL.md) | `npx skills add`, `.agents/skills/`, agent skill tools |
 | **Claude Code plugin wrapper** | Slash commands, agents, `${CLAUDE_PLUGIN_ROOT}` | `/plugin install excel-to-json@…` |
-| **Deterministic core** | `skills/excel-to-json/scripts/`, `workflows/`, `templates/` | Always bundled with install |
+| **Deterministic core** | `scripts/`, `workflows/`, `templates/` | Always bundled with install |
 
 **User flow you want:** marketplace first → select → install. That means every target tool gets a documented one-liner from your GitHub repo, not manual copy-paste of folders.
 
@@ -139,7 +139,7 @@ Add [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) at repo
 
 Also document HTTPS fallback for SSH issues: `git config --global url."https://github.com/".insteadOf git@github.com:`
 
-Add [`skills/excel-to-json/scripts/validate_marketplace.py`](skills/excel-to-json/scripts/validate_marketplace.py): checks `marketplace.json` schema, `plugin.json` version match, required dirs (`commands/`, `skills/`, `skills/excel-to-json/scripts/`).
+Add [`scripts/validate_marketplace.py`](scripts/validate_marketplace.py): checks `marketplace.json` schema, `plugin.json` version match, required dirs (`commands/`, `skills/`, `scripts/`).
 
 ### 0b. skills.sh / vercel-labs skills CLI (covers most tools)
 
@@ -215,7 +215,7 @@ Users can browse [skills.sh](https://skills.sh) via the **Skills.sh** VS Code ex
 
 You chose **nested install** (`my-app/excel-to-json/`). Current `git rev-parse --show-toplevel` → `my-app` root, not plugin root. Breaks scripts.
 
-**Add [`skills/excel-to-json/scripts/resolve_plugin_root.py`](skills/excel-to-json/scripts/resolve_plugin_root.py):**
+**Add [`scripts/resolve_plugin_root.py`](scripts/resolve_plugin_root.py):**
 
 Resolution order:
 1. `CLAUDE_PLUGIN_ROOT` (Claude Code)
@@ -267,7 +267,7 @@ Keep gates identical to [`commands/run.md`](commands/run.md). Use `resolve_plugi
 
 ### 5a. Automated validation (run at every checkpoint)
 
-[`skills/excel-to-json/scripts/verify_install.py`](skills/excel-to-json/scripts/verify_install.py):
+[`scripts/verify_install.py`](scripts/verify_install.py):
 
 1. Python ≥ 3.9, deps installed
 2. `resolve_plugin_root.py` exits 0
@@ -309,15 +309,15 @@ Track in [`design/cross-tool-compat.md`](design/cross-tool-compat.md):
 
 **Checkpoints** (do not advance milestone until checkpoint passes):
 
-- **CP1:** `python skills/excel-to-json/scripts/validate_marketplace.py` → exit 0
-- **CP2:** `python skills/excel-to-json/scripts/verify_install.py` → exit 0
+- **CP1:** `python scripts/validate_marketplace.py` → exit 0
+- **CP2:** `python scripts/verify_install.py` → exit 0
 - **CP3:** Nested install test — clone into `/tmp/test-app/excel-to-json`, run inspect from parent dir
 - **CP4:** Update compat doc session log with results
 - **CP5:** Git tag + README marketplace section reviewed
 
 ### 5d. Continual learning log (compat-specific)
 
-Append to [`design/cross-tool-compat.md`](design/cross-tool-compat.md) — **not** [`memory/learnings.md`](../../skills/excel-to-json/memory/learnings.md):
+Append to [`design/cross-tool-compat.md`](design/cross-tool-compat.md) — **not** [`memory/learnings.md`](memory/learnings.md):
 
 ```markdown
 ## Session log (append-only)
@@ -335,7 +335,7 @@ Also capture:
 - Install path used (marketplace vs manual)
 - Workarounds (SSH→HTTPS, Windows junction vs symlink)
 
-Pipeline conversion learnings stay in [`memory/learnings.md`](../../skills/excel-to-json/memory/learnings.md) via the existing `learnings.py --lint` gate.
+Pipeline conversion learnings stay in [`memory/learnings.md`](memory/learnings.md) via the existing `learnings.py --lint` gate.
 
 ---
 

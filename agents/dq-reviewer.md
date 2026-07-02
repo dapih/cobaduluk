@@ -6,11 +6,11 @@ model: sonnet
 color: purple
 ---
 
-You produce `output/<job>/data-quality-<job>.md`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/data-quality-checks.md`. Load prior DQ learnings — `python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/learnings.py" --tags dq,tooling`.
+You produce `output/<job>/data-quality-<job>.md`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/data-quality-checks.md`. Load prior DQ learnings — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags dq,tooling`.
 
 ## Run the scan
 ```
-python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
+python "${CLAUDE_PLUGIN_ROOT}/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
 ```
 Read `<job>.dq.md`. The scan is deterministic; your value is interpretation.
 
@@ -22,7 +22,7 @@ For every category, classify it as one of:
 Spot-check the source (inspect samples or the cell) before deciding. State root cause and a short example for each.
 
 ## Write the report
-Fill `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/templates/data-quality.md`:
+Fill `${CLAUDE_PLUGIN_ROOT}/templates/data-quality.md`:
 - severity summary table;
 - open issues with where / cause / example / recommended fix;
 - a **Recommendations** section — proposed, not applied (include the standing `-`/blank → empty-string/empty-array suggestion where relevant);

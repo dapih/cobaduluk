@@ -15,12 +15,12 @@ Or: `npx skills add dapih/cobaduluk --skill excel-to-json --agent cursor -y` plu
 
 ## Using this in your project
 
-When the user asks to convert Excel to JSON (or any pipeline stage), **load skill `excel-to-json`** from `skills/excel-to-json/SKILL.md` and follow `skills/excel-to-json/workflows/full-pipeline.md`.
+When the user asks to convert Excel to JSON (or any pipeline stage), **load skill `excel-to-json`** from `skills/excel-to-json/SKILL.md` and follow `workflows/full-pipeline.md`.
 
 Resolve plugin root once:
 
 ```bash
-PLUGIN_ROOT=$(python excel-to-json/skills/excel-to-json/scripts/resolve_plugin_root.py)
+PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 ```
 
 Claude Code sets `${CLAUDE_PLUGIN_ROOT}`. Override: `export EXCEL_TO_JSON_ROOT=/path/to/clone`.
