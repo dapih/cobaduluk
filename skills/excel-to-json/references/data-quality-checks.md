@@ -5,7 +5,7 @@ How to run the post-conversion review and write `data-quality-<job>.md`. The sca
 ## Run the scan
 
 ```
-python "${CLAUDE_PLUGIN_ROOT}/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
+python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
 ```
 
 Produces `<job>.dq.json` (machine) and `<job>.dq.md` (the summary table + samples). Tune which checks run via a copied `dq-checks.default.json`.
@@ -26,7 +26,7 @@ Severity guide: **ERROR** = correctness is wrong (should have been caught by the
 
 ## Writing the report
 
-Use [`templates/data-quality.md`](../../../templates/data-quality.md). For each open finding give: where (paths/entries), root cause, a short example, and the recommended fix. Then a **Recommendations** section listing proposed changes — proposed, not applied. Apply fixes only after the user confirms (workflow guideline).
+Use [`templates/data-quality.md`](../templates/data-quality.md). For each open finding give: where (paths/entries), root cause, a short example, and the recommended fix. Then a **Recommendations** section listing proposed changes — proposed, not applied. Apply fixes only after the user confirms (workflow guideline).
 
 Always include the **row-conservation line**: `rows in → entries out`, proving no source row was dropped.
 

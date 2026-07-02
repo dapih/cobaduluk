@@ -28,9 +28,9 @@ output/
 
 ## Lifecycle
 
-1. **new-job** creates the folder, copies or moves the input in as `<job-id>.xlsx` (ask before moving the user's original), and starts `log-<job-id>.md` from `${CLAUDE_PLUGIN_ROOT}/templates/log.md`.
+1. **new-job** creates the folder, copies or moves the input in as `<job-id>.xlsx` (ask before moving the user's original), and starts `log-<job-id>.md` from `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/templates/log.md`.
 2. All later steps read/write **inside the job folder** and reference files by path. Do not load whole files into context when a path will do.
-3. Reports are copied from `${CLAUDE_PLUGIN_ROOT}/templates/` and filled in.
+3. Reports are copied from `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/templates/` and filled in.
 4. On completion, `summary-<job-id>.md` is the entry point a reader opens first.
 
 ## Just-in-time references

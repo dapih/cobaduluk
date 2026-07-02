@@ -10,7 +10,7 @@ set -euo pipefail
 DEST="${1:-excel-to-json}"
 REPO="https://github.com/dapih/cobaduluk.git"
 
-if [[ ! -f "$DEST/scripts/bootstrap.py" ]]; then
+if [[ ! -f "$DEST/skills/excel-to-json/scripts/bootstrap.py" ]]; then
     echo "-> clone $REPO -> $DEST"
   git clone --depth 1 "$REPO" "$DEST"
 fi
@@ -20,4 +20,4 @@ if [[ "${NON_INTERACTIVE:-0}" != "1" ]]; then
   BOOTSTRAP_ARGS+=(--interactive)
 fi
 
-python "$DEST/scripts/bootstrap.py" "${BOOTSTRAP_ARGS[@]}"
+python "$DEST/skills/excel-to-json/scripts/bootstrap.py" "${BOOTSTRAP_ARGS[@]}"

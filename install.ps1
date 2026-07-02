@@ -12,7 +12,7 @@ param(
 $ErrorActionPreference = "Stop"
 $Repo = "https://github.com/dapih/cobaduluk.git"
 
-if (-not (Test-Path "$Dest/scripts/bootstrap.py")) {
+if (-not (Test-Path "$Dest/skills/excel-to-json/scripts/bootstrap.py")) {
     Write-Host "-> clone $Repo -> $Dest"
     git clone --depth 1 $Repo $Dest
 }
@@ -22,4 +22,4 @@ if (-not $NonInteractive) {
     $bootstrapArgs += "--interactive"
 }
 
-python "$Dest/scripts/bootstrap.py" @bootstrapArgs
+python "$Dest/skills/excel-to-json/scripts/bootstrap.py" @bootstrapArgs
