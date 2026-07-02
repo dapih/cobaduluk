@@ -1,6 +1,6 @@
 # Normalization rules: safe vs risky
 
-What to clean during parsing, and what to leave alone. Defaults live in `${CLAUDE_PLUGIN_ROOT}/rules/normalization.default.json`; copy it into the job folder and tune per table. The guiding rule: **normalize formatting artifacts, preserve meaning.** When in doubt, don't transform — flag it in the DQ report instead.
+What to clean during parsing, and what to leave alone. Defaults live in `${CLAUDE_PLUGIN_ROOT}/skill-rules/normalization.default.json`; copy it into the job folder and tune per table. The guiding rule: **normalize formatting artifacts, preserve meaning.** When in doubt, don't transform — flag it in the DQ report instead.
 
 ## Always safe (on by default)
 

@@ -1,5 +1,5 @@
 <!--
-TEMPLATE: job summary. Copy to docs/<job-id>/summary-<job-id>.md and fill in.
+TEMPLATE: job summary. Copy to output/<job-id>/summary-<job-id>.md and fill in.
 The single document a reader opens first. MUST include the field<->column mapping
 (workflow guideline #7) and plain-language descriptions of both the table and the
 schema.

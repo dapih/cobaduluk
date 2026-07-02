@@ -4,11 +4,11 @@
 
 ## Problem
 
-Two same-family tables converted independently produce divergent, inconsistent output. Evidence: KKP1 (`docs/table-20260628-1`) and KKP2 (`docs/table-20260628-2`) are both Indonesian fisheries PB-UMKU licensing annexes, yet their schemas diverged — the recursive list item is `{teks, sub[]}` in one and `{label, text, children[]}` in the other; grouping is `entri→tingkat_risiko→kewenangan` vs `Section→items→tiers`. Each was authored from scratch. Reuse should let a new same-family table **warm-start** from a past job so shape and vocabulary stay consistent and the work becomes a diff, not a rewrite.
+Two same-family tables converted independently produce divergent, inconsistent output. Evidence: KKP1 (`output/table-20260628-1`) and KKP2 (`output/table-20260628-2`) are both Indonesian fisheries PB-UMKU licensing annexes, yet their schemas diverged — the recursive list item is `{teks, sub[]}` in one and `{label, text, children[]}` in the other; grouping is `entri→tingkat_risiko→kewenangan` vs `Section→items→tiers`. Each was authored from scratch. Reuse should let a new same-family table **warm-start** from a past job so shape and vocabulary stay consistent and the work becomes a diff, not a rewrite.
 
 ## Decisions (locked)
 
-- **Corpus = manual promotion.** A past job becomes reusable only when the user blesses it; do not auto-scan every `docs/*/` job.
+- **Corpus = manual promotion.** A past job becomes reusable only when the user blesses it; do not auto-scan every `output/*/` job.
 - **Always pause and ask** before reusing — never auto-apply a match. Reuse is warm-start + refine and still passes the normal gates (validate to 0 errors + row conservation).
 - **Named families, medium curation.** A family has a name and a *canonical* schema maintained across members (not just a single saved template), with a conformance/diff step for new members and simple version stamps. Chosen because >3 same-family tables are expected.
 - **Matching is structural, not header-text** (see spike).
@@ -45,7 +45,7 @@ Compare with cosine. Header tokens may remain only as a weak tie-breaker.
 
 ## Family model (medium curation)
 
-Project-local store, **tracked** (NOT under a possibly-gitignored `docs/`): `families/<name>/`
+Project-local store, **tracked** (NOT under a possibly-gitignored `output/`): `families/<name>/`
 - `family.json` — name, fingerprint centroid, member job ids, canonical version;
 - `family.schema.json` — the canonical shape.
 
@@ -69,7 +69,7 @@ Flow:
 
 - Numbering detection currently false-positives on decimals (the flat table's `12.5` matched `1.`); restrict it to string / non-numeric cells.
 - Thresholds (0.65 / 0.95) come from 4 tables (3 distinct structures); recalibrate as real families accumulate.
-- Pin the store location given `docs/` may be gitignored for real users — hence `families/` at repo root, tracked.
+- Pin the store location given `output/` may be gitignored for real users — hence `families/` at repo root, tracked.
 - Learning-loop gate (#5) is **built**: agents read `memory/learnings.md` filtered by tag (`learnings.py --tags`) and appends go through the lint gate (`learnings.py --lint`) at step 9.
 
 ## family.json shape (as built)

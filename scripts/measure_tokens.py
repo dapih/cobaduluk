@@ -80,7 +80,7 @@ def main() -> None:
     # Resolve paths
     here = os.path.dirname(os.path.abspath(__file__))
     root = os.path.dirname(here)
-    job_dir = os.path.join(root, "docs", job)
+    job_dir = os.path.join(root, "output", job)
     plugin = root  # plugin root is the repo root in dev
 
     refs = os.path.join(plugin, "skills", "excel-to-json", "references")
