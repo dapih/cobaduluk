@@ -96,7 +96,7 @@ flowchart LR
   end
   github --> marketplaces
   marketplaces --> installed
-  installed --> jobs[my-app/output/table-*/]
+  installed --> jobs[my-app/docs/table-*/]
 ```
 
 ---
@@ -272,7 +272,7 @@ Keep gates identical to [`commands/run.md`](commands/run.md). Use `resolve_plugi
 1. Python ≥ 3.9, deps installed
 2. `resolve_plugin_root.py` exits 0
 3. `validate_marketplace.py` exits 0
-4. `inspect_xlsx.py` on `output/table-20260628-1/` produces unchanged inspect hash (or documented delta)
+4. `inspect_xlsx.py` on `docs/table-20260628-1/` produces unchanged inspect hash (or documented delta)
 5. `learnings.py --lint` on empty entry format check
 
 Run before updating milestone status.

@@ -4,7 +4,7 @@ Hierarchy: Entri → RiskGroup (tingkat_risiko) → KewenanganGroup (kewenangan)
 Every populated source row feeds the current entry's current risk group's
 current kewenangan group.  No row is dropped.
 
-Production parsers use ${CLAUDE_PLUGIN_ROOT}; here output/ sits under the plugin
+Production parsers use ${CLAUDE_PLUGIN_ROOT}; here docs/ sits under the plugin
 root so we resolve scripts/ two levels up from this file.
 """
 import os

@@ -1,11 +1,11 @@
 # Job folder conventions
 
-Every conversion is one **job** with its own folder under `output/` in the **user's project root** (the current working directory) — created where the plugin is *used*, never inside the plugin install. Plugin assets (scripts, templates, rules) are read from `${CLAUDE_PLUGIN_ROOT}`. The folder is the unit of work and the shared state between steps and agents.
+Every conversion is one **job** with its own folder under `docs/` in the **user's project root** (the current working directory) — created where the plugin is *used*, never inside the plugin install. Plugin assets (scripts, templates, rules) are read from `${CLAUDE_PLUGIN_ROOT}`. The folder is the unit of work and the shared state between steps and agents.
 
 ## Layout
 
 ```
-output/
+docs/
   table-20240115-0930am/                          ← one job (id = table-YYYYMMDD-HHMM<am|pm>)
     table-20240115-0930am.xlsx                    source input (moved here in step 1)
     table-20240115-0930am.inspect.md / .json      structure report

@@ -6,7 +6,7 @@ allowed-tools: Read, Bash, Glob
 
 Validate: **$ARGUMENTS**
 
-- If given a **job id**, validate `output/<job>/<job>.json` against `output/<job>/<job>.schema.json`.
+- If given a **job id**, validate `docs/<job>/<job>.json` against `docs/<job>/<job>.schema.json`.
 - If given **two paths**, validate the second (instance) against the first (schema).
 
 Run:

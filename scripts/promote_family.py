@@ -12,7 +12,7 @@ Medium tier (design/reuse.md):
     built against; `--evolve` adopts this job's schema as a new canonical version.
 
 Usage:
-    python promote_family.py <job-id> --name <family> [--output output]
+    python promote_family.py <job-id> --name <family> [--docs docs]
         [--families families] [--force] [--evolve]
 
   (no flag)  create a new family from this job (canonical = its schema, v1)
@@ -20,7 +20,7 @@ Usage:
   --evolve   (with --force) also adopt this job's schema as the new canonical,
              bumping canonical_version
 
-Reads output/<job-id>/<job-id>.inspect.json and .schema.json.
+Reads docs/<job-id>/<job-id>.inspect.json and .schema.json.
 Exit: 0 = promoted, 2 = usage / IO error.
 """
 import argparse
@@ -62,7 +62,7 @@ def main():
     ap = argparse.ArgumentParser(description="Promote a finished job to a reusable family.")
     ap.add_argument("job_id")
     ap.add_argument("--name", required=True, help="family name (kebab-case)")
-    ap.add_argument("--output", default="output")
+    ap.add_argument("--docs", default="docs")
     ap.add_argument("--families", default="families")
     ap.add_argument("--force", action="store_true", help="add this job to an existing family")
     ap.add_argument("--evolve", action="store_true",
@@ -74,7 +74,7 @@ def main():
     except Exception:
         pass
 
-    job_dir = os.path.join(args.output, args.job_id)
+    job_dir = os.path.join(args.docs, args.job_id)
     inspect = os.path.join(job_dir, args.job_id + ".inspect.json")
     schema = os.path.join(job_dir, args.job_id + ".schema.json")
     parser = os.path.join(job_dir, args.job_id + ".parser.py")
@@ -94,7 +94,7 @@ def main():
     canonical = os.path.join(fam_dir, "family.schema.json")
     today = datetime.date.today().isoformat()
     # Store member paths relative to the project root (families' parent) so a
-    # committed family.json stays portable regardless of how --output was passed.
+    # committed family.json stays portable regardless of how --docs was passed.
     proj_root = os.path.dirname(os.path.abspath(args.families))
 
     def rel(p):

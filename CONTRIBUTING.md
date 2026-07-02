@@ -18,7 +18,7 @@ agents/                    structure-analyst, schema-designer, parser-builder, d
 skills/excel-to-json/      canonical SKILL.md and references/
 scripts/                   pipeline plus bootstrap.py, install_adapters.py, verify_install.py
 templates/                 log, data-quality, summary, schema-summary
-skill-rules/               default normalization and DQ configs
+rules/                     default normalization and DQ configs
 workflows/full-pipeline.md canonical step order
 design/                    reuse, roadmap, cross-tool-compat, token analysis
 memory/learnings.md        cross-job learnings
@@ -85,7 +85,7 @@ Bias: caution over speed on non-trivial work.
 
 1. Read `workflows/full-pipeline.md` for pipeline step callers.
 2. Read `design/reuse.md` if touching fingerprint, match, conformance, or promote.
-3. Re-run against existing `output/table-*/` jobs; output unchanged unless intentional.
+3. Re-run against existing `docs/table-*/` jobs; output unchanged unless intentional.
 4. If the token budget is affected: run `python scripts/measure_tokens.py <job>` before and after.
 5. After structural changes: run `python scripts/validate_marketplace.py` and `python scripts/verify_install.py`.
 

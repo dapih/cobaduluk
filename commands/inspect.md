@@ -7,11 +7,11 @@ allowed-tools: Read, Bash, Glob
 Inspect: **$ARGUMENTS**
 
 1. Resolve the target:
-   - If the argument matches an existing `output/<job-id>/` folder, use `output/<job-id>/<job-id>.xlsx` and write the report to `output/<job-id>/<job-id>` (so it produces `<job-id>.inspect.md` / `.json`).
+   - If the argument matches an existing `docs/<job-id>/` folder, use `docs/<job-id>/<job-id>.xlsx` and write the report to `docs/<job-id>/<job-id>` (so it produces `<job-id>.inspect.md` / `.json`).
    - Otherwise treat the argument as a file path and print the report to stdout.
 2. Run:
    ```
-   python "${CLAUDE_PLUGIN_ROOT}/scripts/inspect_xlsx.py" <file> [--sheet NAME] [--out output/<job>/<job>]
+   python "${CLAUDE_PLUGIN_ROOT}/scripts/inspect_xlsx.py" <file> [--sheet NAME] [--out docs/<job>/<job>]
    ```
 3. Read the report and give a brief, high-signal summary: sheet(s) and size, detected header row, the likely entry-boundary column (low fill rate), which columns are header vs detail, any multi-level numbering, and any merged-cell / blank-gap signals worth noting before conversion.
 

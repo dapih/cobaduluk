@@ -10,8 +10,8 @@ PLUGIN_ROOT=$(python excel-to-json/scripts/resolve_plugin_root.py)
 
 Load skill `excel-to-json` from `$PLUGIN_ROOT/skills/excel-to-json/SKILL.md` and follow `$PLUGIN_ROOT/workflows/full-pipeline.md` exactly.
 
-1. **Prepare** — new-job flow: job id `table-YYYYMMDD-HHMM<am|pm>`, create `output/<job>/`, copy input as `<job>.xlsx`, start `log-<job>.md` from `$PLUGIN_ROOT/templates/log.md`. Ask before *moving* the original.
-2. **Inspect & match** — `python "$PLUGIN_ROOT/scripts/inspect_xlsx.py" … --out output/<job>/<job>` then `python "$PLUGIN_ROOT/scripts/match_profile.py" output/<job>/<job>.inspect.json`. On near-duplicate or same-family, **ask whether to reuse** (gate). See `$PLUGIN_ROOT/design/reuse.md`.
+1. **Prepare** — new-job flow: job id `table-YYYYMMDD-HHMM<am|pm>`, create `docs/<job>/`, copy input as `<job>.xlsx`, start `log-<job>.md` from `$PLUGIN_ROOT/templates/log.md`. Ask before *moving* the original.
+2. **Inspect & match** — `python "$PLUGIN_ROOT/scripts/inspect_xlsx.py" … --out docs/<job>/<job>` then `python "$PLUGIN_ROOT/scripts/match_profile.py" docs/<job>/<job>.inspect.json`. On near-duplicate or same-family, **ask whether to reuse** (gate). See `$PLUGIN_ROOT/design/reuse.md`.
 3. **Map** — follow `$PLUGIN_ROOT/agents/structure-analyst.md`. Confirm mapping (gate).
 4. **Schema** — follow `$PLUGIN_ROOT/agents/schema-designer.md`. On family match, run `conformance.py` and evolve-or-keep gate. See `$PLUGIN_ROOT/design/reuse.md`.
 5. **Parse** — follow `$PLUGIN_ROOT/agents/parser-builder.md` to 0 validation errors; prove row conservation.

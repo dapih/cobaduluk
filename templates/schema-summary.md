@@ -1,6 +1,6 @@
 <!--
 TEMPLATE: human-readable schema documentation.
-Copy to output/<job-id>/<job-id>.schema-summary.md (or include inside summary).
+Copy to docs/<job-id>/<job-id>.schema-summary.md (or include inside summary).
 Document every $def/object, its fields, types, constraints, enums, and the
 source->canonical normalization rules the parser applies.
 -->

@@ -61,7 +61,7 @@ def check_deps() -> None:
 
 
 def check_sample_job(root: Path) -> None:
-    job_dir = root / "output" / SAMPLE_JOB
+    job_dir = root / "docs" / SAMPLE_JOB
     inspect_json = job_dir / f"{SAMPLE_JOB}.inspect.json"
     schema = job_dir / f"{SAMPLE_JOB}.schema.json"
     instance = job_dir / f"{SAMPLE_JOB}.json"

@@ -10,7 +10,7 @@ Pick the mode from the flags:
 
 - **`--validate-only`**: do not author anything. Run the schema self-check and, if `<job>.json` exists, validate the instance:
   ```
-  python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" output/<job>/<job>.schema.json output/<job>/<job>.json --counts
+  python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" docs/<job>/<job>.schema.json docs/<job>/<job>.json --counts
   ```
   Report pass/fail and the first errors.
 

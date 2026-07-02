@@ -6,11 +6,11 @@ model: sonnet
 color: purple
 ---
 
-You produce `output/<job>/data-quality-<job>.md`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/data-quality-checks.md`. Load prior DQ learnings — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags dq,tooling`.
+You produce `docs/<job>/data-quality-<job>.md`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/data-quality-checks.md`. Load prior DQ learnings — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags dq,tooling`.
 
 ## Run the scan
 ```
-python "${CLAUDE_PLUGIN_ROOT}/scripts/dq_check.py" output/<job>/<job>.json --out output/<job>/<job>
+python "${CLAUDE_PLUGIN_ROOT}/scripts/dq_check.py" docs/<job>/<job>.json --out docs/<job>/<job>
 ```
 Read `<job>.dq.md`. The scan is deterministic; your value is interpretation.
 

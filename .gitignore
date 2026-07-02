@@ -7,7 +7,7 @@ __pycache__/
 ~$*.xlsm
 
 # Optional: uncomment to keep generated job outputs out of version control
-# output/
+# docs/
 
 # Local plugin-authoring scratch — not part of the published plugin
 PLUGIN-CREATION-BRIEF.md

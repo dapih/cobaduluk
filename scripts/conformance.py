@@ -10,7 +10,7 @@ of members. Advisory only; it decides nothing. Zero AI tokens.
 
 Usage:
     python conformance.py <job.inspect.json> --name <family>
-        [--families families] [--output output] [--job-schema PATH] [--json]
+        [--families families] [--docs docs] [--job-schema PATH] [--json]
 
 Exit: 0 = ran, 2 = usage / IO error.
 """
@@ -73,7 +73,7 @@ def main():
     ap.add_argument("inspect")
     ap.add_argument("--name", required=True)
     ap.add_argument("--families", default="families")
-    ap.add_argument("--output", default="output")
+    ap.add_argument("--docs", default="docs")
     ap.add_argument("--job-schema", dest="job_schema")
     ap.add_argument("--json", action="store_true", dest="as_json")
     args = ap.parse_args()
@@ -94,7 +94,7 @@ def main():
         print(f"ERROR: {e}", file=sys.stderr)
         return 2
 
-    canon = canonical_fingerprint(fam, args.output) or {}
+    canon = canonical_fingerprint(fam, args.docs) or {}
     cfeat = canon.get("features", {})
     cos = round(cosine(vector(feat), canon["vector"]), 3) if canon.get("vector") else None
 
