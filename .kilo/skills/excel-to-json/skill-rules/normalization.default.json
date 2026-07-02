@@ -1,0 +1,30 @@
+{
+  "_comment": "Default normalization toggles a generated parser may consult via parser_lib. Domain-agnostic and conservative: anything that could damage legitimate data is off by default. Copy into a job folder and tune per table.",
+  "whitespace": {
+    "collapse_internal": true,
+    "strip": true,
+    "nbsp_to_space": true,
+    "remove_zero_width": true,
+    "_desc": "Handled by parser_lib.clean()."
+  },
+  "hyphenation": {
+    "dehyphenate_linebreak": true,
+    "merge_no_space_hyphen": false,
+    "protect_reduplication": true,
+    "_desc": "dehyphenate_linebreak merges 'word- word' (safe). merge_no_space_hyphen also merges 'wo-rd' (catches 'pe-nangkap', riskier) — enable per-table when the source has intra-word line-break hyphens. protect_reduplication keeps 'undang-undang'/'sehari-hari' intact when merging (recommended for Indonesian/Malay)."
+  },
+  "placeholders": {
+    "tokens": ["-", "–", "—", "N/A", "n/a", "null", "NULL"],
+    "action": "empty",
+    "_desc": "Map bare placeholders to empty string / drop from arrays (guideline: '-' -> empty)."
+  },
+  "trailing_conjunctions": {
+    "enabled": false,
+    "words": ["dan", "atau", "and", "or"],
+    "_desc": "Off by default: dropping trailing 'dan'/'and' can change legal meaning. Enable only when the source clearly splits sentences across rows and you want them rejoined or trimmed."
+  },
+  "numeric_codes": {
+    "keep_as_string": true,
+    "_desc": "Preserve identifier-like numbers (codes, IDs) as strings to keep leading zeros."
+  }
+}

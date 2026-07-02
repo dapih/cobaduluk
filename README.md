@@ -106,12 +106,12 @@ flowchart LR
 
 | Step         | Done by                    | What it does                                                        |
 |--------------|----------------------------|---------------------------------------------------------------------|
-| inspect      | `scripts/inspect_xlsx.py`  | Compact structure report: sheets, header, column profiles, samples  |
+| inspect      | `skills/excel-to-json/scripts/inspect_xlsx.py`  | Compact structure report: sheets, header, column profiles, samples  |
 | map          | `structure-analyst` agent  | Proposes column-to-field mapping plus hierarchy (you confirm)       |
 | schema       | `schema-designer` agent    | Authors or refines the Draft 2020-12 schema                         |
 | parse        | `parser-builder` agent     | Writes `<job>.parser.py`, then iterates to zero errors              |
-| validate     | `scripts/validate_json.py` | Schema-validation gate                                              |
-| data-quality | `dq-reviewer` agent        | Runs `scripts/dq_check.py`, writes the data-quality report          |
+| validate     | `skills/excel-to-json/scripts/validate_json.py` | Schema-validation gate                                              |
+| data-quality | `dq-reviewer` agent        | Runs `skills/excel-to-json/scripts/dq_check.py`, writes the data-quality report          |
 
 ## Commands
 
@@ -136,7 +136,7 @@ Tables that share a structure do not have to be converted from scratch. After in
 - **same family:** warm-start the schema from the family canonical, then adapt;
 - **no match:** convert from scratch.
 
-Reuse is opt-in and never skips the gates: the parser still proves row conservation and the instance still validates. Details in [design/reuse.md](design/reuse.md).
+Reuse is opt-in and never skips the gates: the parser still proves row conservation and the instance still validates. Details in [skills/excel-to-json/references/reuse.md](skills/excel-to-json/references/reuse.md).
 
 ## It learns from every table, not just the ones like it
 
@@ -146,7 +146,7 @@ Take one example: a merged cell returns its value only in the top-left cell of t
 
 Each entry is plain text you can open and edit yourself, added only through an explicit approval step. Every agent reads just the slice tagged for its role: the parser-builder pulls normalization and structure notes, the schema-designer pulls schema and structure notes. That keeps the store useful without bloating any single run's context, so token-efficiency holds even as usage accumulates.
 
-Details in [memory/README.md](memory/README.md).
+Details in [memory/README.md](skills/excel-to-json/memory/README.md).
 
 ## Output: the job folder
 
