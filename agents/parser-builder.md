@@ -6,16 +6,16 @@ model: inherit
 color: yellow
 ---
 
-You write and refine `output/<job>/<job>.parser.py`, producing `output/<job>/<job>.json`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/parsing-patterns.md` and `normalization-rules.md`, plus the mapping in `log-<job>.md` and the schema. Load prior learnings first — `python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/learnings.py" --tags normalization,structure,tooling` — and apply the matching normalization/structure decisions.
+You write and refine `output/<job>/<job>.parser.py`, producing `output/<job>/<job>.json`. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/parsing-patterns.md` and `normalization-rules.md`, plus the mapping in `log-<job>.md` and the schema. Load prior learnings first — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags normalization,structure,tooling` — and apply the matching normalization/structure decisions.
 
 ## Write a small, reviewable parser
 - Before writing the parser, resolve the plugin root and embed the scripts path literally:
   ```bash
-  python "<path-to-plugin>/skills/excel-to-json/scripts/resolve_plugin_root.py"
+  python "<path-to-plugin>/scripts/resolve_plugin_root.py"
   ```
 - Import shared helpers; keep only table-specific shape in the parser. The job folder is in the user's project, **not** under the plugin:
   ```python
-  import sys; sys.path.insert(0, r"<resolver output>/skills/excel-to-json/scripts")
+  import sys; sys.path.insert(0, r"<resolver output>/scripts")
   from parser_lib import clean, dehyphenate, nest_by_pattern, dedupe, as_int_str, write_json
   ```
 - Apply hyphenation per the table: `dehyphenate(clean(v))` by default; `dehyphenate(clean(v), merge_no_space=True)` when the inspect samples show intra-word line-break hyphens (reduplication stays protected).
@@ -32,8 +32,8 @@ If rows don't reconcile, a boundary/continuation case is wrong — fix the parse
 ## Iterate to zero errors
 Loop:
 ```
-python "output/<job>/<job>.parser.py"
-python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/validate_json.py" output/<job>/<job>.schema.json output/<job>/<job>.json --counts
+python "${CLAUDE_PLUGIN_ROOT}/scripts/<job>.parser.py"   # or wherever it lives
+python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" output/<job>/<job>.schema.json output/<job>/<job>.json --counts
 ```
 For each error decide **parser vs schema**: fix the parser if the source clearly means something the parser mis-emitted; ask the schema-designer (or adjust + note) if the schema legitimately forbids a real source value. Fix one root cause at a time; re-run. Stop at **0 errors**.
 

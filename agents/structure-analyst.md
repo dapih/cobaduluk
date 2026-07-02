@@ -11,11 +11,11 @@ You are a table-structure analyst for the Excel→JSON pipeline. You decide how 
 ## Inputs
 A job folder `output/<job>/`. Ensure `<job>.inspect.md` / `.inspect.json` exist; if not, run:
 ```
-python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/inspect_xlsx.py" output/<job>/<job>.xlsx [--sheet NAME] --out output/<job>/<job>
+python "${CLAUDE_PLUGIN_ROOT}/scripts/inspect_xlsx.py" output/<job>/<job>.xlsx [--sheet NAME] --out output/<job>/<job>
 ```
-Read the report. Do **not** open or transcribe the raw xlsx beyond what the report samples show. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/parsing-patterns.md` for the method. Also load prior structural learnings — `python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/learnings.py" --tags structure,tooling` — and apply any whose Context matches this table; ignore the rest.
+Read the report. Do **not** open or transcribe the raw xlsx beyond what the report samples show. Read `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/parsing-patterns.md` for the method. Also load prior structural learnings — `python "${CLAUDE_PLUGIN_ROOT}/scripts/learnings.py" --tags structure,tooling` — and apply any whose Context matches this table; ignore the rest.
 
-If the orchestrator chose a **family canonical** to reuse (see `${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/reuse.md`), read that `families/<name>/family.schema.json`. For a same-family match, **align your proposed field names and hierarchy to the canonical** rather than inventing new ones — this is what keeps same-family conversions consistent. Flag any columns that don't fit the canonical as a conformance delta (new / missing / renamed) in your open questions.
+If the orchestrator chose a **family canonical** to reuse (see `${CLAUDE_PLUGIN_ROOT}/design/reuse.md`), read that `families/<name>/family.schema.json`. For a same-family match, **align your proposed field names and hierarchy to the canonical** rather than inventing new ones — this is what keeps same-family conversions consistent. Flag any columns that don't fit the canonical as a conformance delta (new / missing / renamed) in your open questions.
 
 ## Produce a mapping proposal
 Determine and state explicitly:

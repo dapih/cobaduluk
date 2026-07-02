@@ -69,7 +69,7 @@ The model never sees the full table or the full JSON. Even `inspect_xlsx.py` cap
 
 ## Measured baseline (from real runs)
 
-`python skills/excel-to-json/scripts/measure_tokens.py <job-id>` measures character counts for every artifact, approximates token counts, and writes a per-step breakdown. Run against both completed jobs:
+`python scripts/measure_tokens.py <job-id>` measures character counts for every artifact, approximates token counts, and writes a per-step breakdown. Run against both completed jobs:
 
 | | KKP1 (table-20260628-1) | KKP2 (table-20260628-2) |
 |---|---:|---:|

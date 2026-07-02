@@ -9,7 +9,7 @@ Tiny, **synthetic** files that illustrate the *form* the pipeline targets — no
 
 Verify:
 ```
-python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/validate_json.py" \
+python "${CLAUDE_PLUGIN_ROOT}/scripts/validate_json.py" \
   "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/examples/example.schema.json" \
   "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/references/examples/example.json"
 ```

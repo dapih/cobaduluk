@@ -11,7 +11,7 @@ Inspect: **$ARGUMENTS**
    - Otherwise treat the argument as a file path and print the report to stdout.
 2. Run:
    ```
-   python "${CLAUDE_PLUGIN_ROOT}/skills/excel-to-json/scripts/inspect_xlsx.py" <file> [--sheet NAME] [--out output/<job>/<job>]
+   python "${CLAUDE_PLUGIN_ROOT}/scripts/inspect_xlsx.py" <file> [--sheet NAME] [--out output/<job>/<job>]
    ```
 3. Read the report and give a brief, high-signal summary: sheet(s) and size, detected header row, the likely entry-boundary column (low fill rate), which columns are header vs detail, any multi-level numbering, and any merged-cell / blank-gap signals worth noting before conversion.
 
